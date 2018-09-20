@@ -1,0 +1,3 @@
+rootProject.name = 'twparking'
+
+include ':app'
