@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "361995064414",
+    "firebase_url": "https://twparking-001.firebaseio.com",
+    "project_id": "twparking-001",
+    "storage_bucket": "twparking-001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361995064414:android:04fed4b5640e7a1f",
+        "android_client_info": {
+          "package_name": "com.twparking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361995064414-9c8ec5p9jja2706jaoipmtv445kah4a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc_CHsqpRV6hxEtR6z0bplb6ahTvK_rxo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
