@@ -6,4 +6,7 @@ module.exports = {
   'plugins': [
     'flowtype',
   ],
+  'rules': {
+    'react/jsx-filename-extension': 'off',
+  },
 };
