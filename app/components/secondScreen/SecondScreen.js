@@ -6,17 +6,11 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Text } from 'react-native';
 
-type Props = {};
-
-class SecondScreen extends Component<Props> {
-  render() {
-    return (
-      <Text>Second screen</Text>
-    );
-  }
-}
+const SecondScreen = () => (
+  <Text>Second screen</Text>
+);
 
 export default SecondScreen;

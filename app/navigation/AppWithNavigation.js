@@ -6,16 +6,12 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import appNavigation from './Routes';
 
 const RootStack = createStackNavigator(appNavigation.routes, { initialRouteName: 'Home' });
 
-class AppWithNavigation extends Component<{}, {}> {
-  render() {
-    return <RootStack />;
-  }
-}
+const AppWithNavigation = () => <RootStack />;
 
 export default AppWithNavigation;

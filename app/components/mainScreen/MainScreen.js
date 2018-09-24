@@ -6,10 +6,8 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  Platform, Text, View, Button, TouchableWithoutFeedback,
-} from 'react-native';
+import React from 'react';
+import { Button, Platform, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './MainScreenStyles';
 import appNavigation from '../../navigation/Routes';
 
@@ -24,30 +22,25 @@ type Props = {
   navigation: Object
 }
 
-class MainScreen extends Component <Props, {}> {
-  render() {
-    const { navigation } = this.props;
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Hola mundo</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-        <Button
-          title="Click me"
-          onPress={() => {
-            navigation.navigate(appNavigation.navigationTree.Second);
-          }}
-        />
-        <TouchableWithoutFeedback
-          onPress={() => {
-            console.warn('touchable clicked');
-          }}
-        >
-          <Text>Cliiick</Text>
-        </TouchableWithoutFeedback>
-      </View>
-    );
-  }
-}
+const MainScreen = ({ navigation }: Props) => (
+  <View style={styles.container}>
+    <Text style={styles.welcome}>Hola mundo</Text>
+    <Text style={styles.instructions}>To get started, edit App.js</Text>
+    <Text style={styles.instructions}>{instructions}</Text>
+    <Button
+      title="Click me"
+      onPress={() => {
+        navigation.navigate(appNavigation.navigationTree.Second);
+      }}
+    />
+    <TouchableWithoutFeedback
+      onPress={() => {
+        console.warn('touchable clicked');
+      }}
+    >
+      <Text>Cliiick</Text>
+    </TouchableWithoutFeedback>
+  </View>
+);
 
 export default MainScreen;
