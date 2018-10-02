@@ -78,28 +78,36 @@ function task_clean {
     echo "${utils_fg}we should clean both ios and android here${normal}"
 
     echo "${utils_fg}CLEANING ANDROID${normal}"
-    echo -e "${utils_fg}\t1. Deleting root build folder${normal}"
+    echo -e "${utils_fg}\tDeleting root build folder${normal}"
     rm -rf android/build
-    echo -e "${utils_fg}\t2. Deleting app build folder${normal}"
+    echo -e "${utils_fg}\tDeleting app build folder${normal}"
     rm -rf android/app/build
 
     echo "${utils_fg}CLEANING REACT NATIVE${normal}"
-    echo -e "${utils_fg}\t0. Clearing react temp files${normal}"
+    echo -e "${utils_fg}\tClearing react temp files${normal}"
     rm -rf $TMPDIR/react-*
-    echo -e "${utils_fg}\t1. Clearing watchman watches${normal}"
+    echo -e "${utils_fg}\tClearing watchman watches${normal}"
     watchman watch-del-all
-    echo -e "${utils_fg}\t2. Deleting node modules...${normal}"
+    echo -e "${utils_fg}\tDeleting node modules...${normal}"
     rm -rf node_modules
+    echo -e "${utils_fg}\tDeleting flow types...${normal}"
     rm -rf flow-typed
-    echo -e "${utils_fg}\t... and reinstalling node modules${normal}"
+    echo -e "${utils_fg}\tDeleting package lock...${normal}"
+    rm package-lock.json
+    echo -e "${utils_fg}\tReinstalling node modules${normal}"
     npm install --reset-cache
-    echo -e "${utils_fg}\t3. Resetting Metro Bundler cache${normal}"
+    echo -e "${utils_fg}\tResetting Metro Bundler cache${normal}"
     rm -rf /tmp/metro-bundler-cache-*
-    echo -e "${utils_fg}\t4. Removing haste cache${normal}"
+    echo -e "${utils_fg}\tRemoving haste cache${normal}"
     rm -rf /tmp/haste-map-react-native-packager-*
     echo "${utils_fg}running whatever command you want [${command}]${normal}"
     execute_task "${command}"
-#    npm start -- --reset-cache
+#    npm start --reset-cache
+}
+
+function task_clean_dir {
+    echo "${utils_fg}cleaning everything not in git (except for idea folder)${normal}"
+    git clean -fxd -e .idea
 }
 
 function task_start_ios {
@@ -177,6 +185,7 @@ function task_share_screen_android {
 function task_help {
   help_message="usage"
   help_message+=" ${utils_fg}clean${normal}"
+  help_message+=" | ${utils_fg}clean_dir${normal}"
   help_message+=" | ${utils_fg}debug${normal}"
   help_message+=" | ${utils_fg}share_screen_android${normal}"
 
@@ -201,6 +210,7 @@ function execute_task {
     shift || true
     case ${task} in
       clean) task_clean "$@" ;;
+      clean_dir) task_clean_dir "$@" ;;
       debug) task_debug ;;
       share_screen_android) task_share_screen_android ;;
 
