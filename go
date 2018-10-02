@@ -95,14 +95,13 @@ function task_clean {
     echo -e "${utils_fg}\tDeleting package lock...${normal}"
     rm package-lock.json
     echo -e "${utils_fg}\tReinstalling node modules${normal}"
-    npm install --reset-cache
+    npm install
     echo -e "${utils_fg}\tResetting Metro Bundler cache${normal}"
-    rm -rf /tmp/metro-bundler-cache-*
+    rm -rf /tmp/metro-bundler-cache-*  # npm start -- --reset-cache
     echo -e "${utils_fg}\tRemoving haste cache${normal}"
     rm -rf /tmp/haste-map-react-native-packager-*
     echo "${utils_fg}running whatever command you want [${command}]${normal}"
     execute_task "${command}"
-#    npm start --reset-cache
 }
 
 function task_clean_dir {
@@ -133,6 +132,13 @@ function task_clean_android_start {
   (cd android && ./gradlew uninstallDebug)
   echo "${android_fg}Installing app${normal}"
   task_start_android
+}
+
+function task_init_ios {
+  check_for_tool "pod" "brew install brew install cocoapods"
+
+  echo "${ios_fg}Initializing pod project${normal}"
+  (cd ios && rm -rf Pods && rm -rf Podfile.lock && pod install)
 }
 
 function task_start_ios_device {
@@ -193,6 +199,7 @@ function task_help {
   help_message+=" | ${android_fg}start_android | run_android${normal}"
   help_message+=" | ${android_fg}clean_android_start${normal}"
 
+  help_message+=" | ${ios_fg}init_ios${normal}"
   help_message+=" | ${ios_fg}list_ios_devices${normal}"
   help_message+=" | ${ios_fg}start_ios | run_ios${normal}"
   help_message+=" | ${ios_fg}start_ios_device DEVICE${normal}"
@@ -220,6 +227,7 @@ function execute_task {
       clean_android_start) task_clean_android_start ;;
 
       list_ios_devices) task_list_ios_devices ;;
+      init_ios) task_init_ios ;;
       run_ios) task_start_ios ;;
       start_ios) task_start_ios ;;
       start_ios_device) task_start_ios_device "$@" ;;
