@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import firebase from 'react-native-firebase';
 import { Button, Platform, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './MainScreenStyles';
 import appNavigation from '../../navigation/Routes';
@@ -22,6 +23,13 @@ type Props = {
   navigation: Object
 }
 
+const getQuery = ()=>{
+  console.warn('firebase ready to access');
+  firebase.database().ref('cars/').once('value', function (snapshot) {
+    console.warn(snapshot.val())
+  });
+};
+
 const MainScreen = ({ navigation }: Props) => (
   <View style={styles.container}>
     <Text style={styles.welcome}>Hola mundo</Text>
@@ -35,7 +43,7 @@ const MainScreen = ({ navigation }: Props) => (
     />
     <TouchableWithoutFeedback
       onPress={() => {
-        console.warn('touchable clicked');
+        getQuery();
       }}
     >
       <Text>Cliiick</Text>
