@@ -10,7 +10,8 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import appNavigation from './Routes';
 
-const RootStack = createStackNavigator(appNavigation.routes, { initialRouteName: 'Home' });
+const RootStack = createStackNavigator(appNavigation.routes,
+  { initialRouteName: appNavigation.initialScreen });
 
 const AppWithNavigation = () => <RootStack />;
 
