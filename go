@@ -90,6 +90,14 @@ function task_clean {
     watchman watch-del-all
     echo -e "${utils_fg}\tDeleting node modules...${normal}"
     rm -rf node_modules
+
+    # Ignore failures when trying to delete package lock
+    set +e
+    echo -e "${utils_fg}\ttrying to delete package lock...${normal}"
+    rm -f package-lock.json
+    # From now on fail on errors
+    set -eu
+
     echo -e "${utils_fg}\tDeleting flow types...${normal}"
     rm -rf flow-typed
     echo -e "${utils_fg}\tDeleting package lock...${normal}"
@@ -120,10 +128,12 @@ function task_start_android {
 }
 
 function task_clean_android_start {
-  # Ignore failures when trying to get colors
+  # Ignore failures when trying to kill processes
   set +e
   echo "${android_fg}Trying to kill the Terminal${normal}"
   killall Terminal
+  echo "${android_fg}Trying to kill npm process${normal}"
+  killall npm
   # From now on fail on errors
   set -eu
   echo "${android_fg}Cleaning everything first${normal}"
