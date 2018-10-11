@@ -1,6 +1,10 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Text, TextInput, View, Button, Image } from 'react-native';
+import { Text, TextInput, View, Image } from 'react-native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
 import firebase from 'react-native-firebase';
 
@@ -85,8 +89,14 @@ class LoginScreen extends Component<Props, State> {
           value={phoneNumber}
         />
         <Button
+          icon={
+            <FontAwesome5Pro
+              name={'comments'}
+              color="white"
+              light
+            />
+          }
           title="Sign In"
-          color="green"
           onPress={this.signIn}
         />
       </View>
@@ -155,8 +165,14 @@ class LoginScreen extends Component<Props, State> {
             <Text style={{ fontSize: 25 }}>Signed In!</Text>
             <Text>{JSON.stringify(user)}</Text>
             <Button
+              icon={
+                <Icon
+                  name='arrow-right'
+                  size={15}
+                  color='white'
+                />
+              }
               title="Sign Out"
-              color="red"
               onPress={this.signOut}
             />
           </View>

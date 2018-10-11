@@ -11,6 +11,8 @@ target 'twparking' do
   pod 'Firebase/Database'
   # Pods for twparking
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'twparkingTests' do
     inherit! :search_paths
     # Pods for testing
