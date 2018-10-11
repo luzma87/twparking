@@ -89,6 +89,7 @@ class LoginScreen extends Component<Props, State> {
           onChangeText={value => this.setState({ phoneNumber: value })}
           placeholder={'Phone number ... '}
           value={phoneNumber}
+          keyboardType="number-pad"
         />
         <Button
           icon={
