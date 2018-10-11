@@ -10,11 +10,12 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { ThemeProvider } from 'react-native-elements';
 import appNavigation from './Routes';
+import { colors } from '../styles/colors';
 
 const theme = {
   colors: {
-    primary: '#7e57c2',
-    secondary: '#ff80ab',
+    primary: colors.deepPurple400,
+    secondary: colors.pink200,
   },
   Button: {
     buttonStyle: {

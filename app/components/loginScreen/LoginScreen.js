@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
 import firebase from 'react-native-firebase';
+import * as navigationHeader from '../../navigation/NavigationStylesHelper';
 
 const successImageUri = 'https://cdn.pixabay.com/photo/2015/06/09/16/12/icon-803718_1280.png';
 
@@ -14,6 +14,8 @@ type Props = {};
 type State = {};
 
 class LoginScreen extends Component<Props, State> {
+  static navigationOptions = navigationHeader.header('TW Parking - Login');
+
   constructor(props) {
     super(props);
     this.unsubscribe = null;
@@ -91,11 +93,11 @@ class LoginScreen extends Component<Props, State> {
         <Button
           icon={
             <FontAwesome5Pro
-              name={'comments'}
+              name="sign-in"
               color="white"
-              light
             />
           }
+          iconRight
           title="Sign In"
           onPress={this.signIn}
         />
