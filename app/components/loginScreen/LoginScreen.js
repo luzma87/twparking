@@ -1,16 +1,19 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Text, TextInput, View, Image } from 'react-native';
+import { Image, Text, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
 import firebase from 'react-native-firebase';
 import * as navigationHeader from '../../navigation/NavigationStylesHelper';
+import appNavigation from '../../navigation/Routes';
 
 const successImageUri = 'https://cdn.pixabay.com/photo/2015/06/09/16/12/icon-803718_1280.png';
 
-type Props = {};
+type Props = {
+  navigation: Object
+};
 type State = {};
 
 class LoginScreen extends Component<Props, State> {
@@ -31,7 +34,11 @@ class LoginScreen extends Component<Props, State> {
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user: user.toJSON() });
+        this.setState({ user: user.toJSON() }, () => {
+          //redirect here
+          const { navigation } = this.props;
+          navigation.navigate(appNavigation.navigationTree.Home);
+        });
       } else {
         // User has been signed out, reset the state
         this.setState({
@@ -51,14 +58,30 @@ class LoginScreen extends Component<Props, State> {
     }
   }
 
-  signIn = () => {
-    const { phoneNumber } = this.state;
+  signInWithPhoneNumber(phoneNumber) {
     this.setState({ message: 'Sending code ...' });
 
     firebase.auth().signInWithPhoneNumber(phoneNumber)
       .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
       .catch(
-        error => this.setState({ message: `Sign In With Phone Number Error: ${error.message}` }));
+        error => this.setState(
+          { message: `Sign In With Phone Number Error: ${error.message}` }));
+  }
+
+  signIn = () => {
+    const { phoneNumber } = this.state;
+
+    firebase.database()
+      .ref('people')
+      .orderByChild('phone')
+      .equalTo(phoneNumber)
+      .once('value', (snapshot) => {
+        if (snapshot.exists()) {
+          this.signInWithPhoneNumber(phoneNumber);
+        } else {
+          this.setState({ message: 'Login not allowed' });
+        }
+      });
   };
 
   confirmCode = () => {
@@ -145,13 +168,13 @@ class LoginScreen extends Component<Props, State> {
     return (
       <View style={{ flex: 1 }}>
 
-        {!user && !confirmResult && this.renderPhoneNumberInput()}
+        {!user && !confirmResult ? this.renderPhoneNumberInput() : null}
 
         {this.renderMessage()}
 
-        {!user && confirmResult && this.renderVerificationCodeInput()}
+        {!user && confirmResult ? this.renderVerificationCodeInput() : null}
 
-        {user && (
+        {user ? (
           <View
             style={{
               padding: 15,
@@ -179,7 +202,7 @@ class LoginScreen extends Component<Props, State> {
               onPress={this.signOut}
             />
           </View>
-        )}
+        ) : null}
       </View>
     );
   }

@@ -23,10 +23,10 @@ type Props = {
   navigation: Object
 }
 
-const getQuery = ()=>{
+const getQuery = () => {
   console.warn('firebase ready to access');
-  firebase.database().ref('cars/').once('value', function (snapshot) {
-    console.warn(snapshot.val())
+  firebase.database().ref('cars/').once('value', function(snapshot) {
+    console.warn(snapshot.val());
   });
 };
 
@@ -38,7 +38,15 @@ const MainScreen = ({ navigation }: Props) => (
     <Button
       title="Click me"
       onPress={() => {
-        navigation.navigate(appNavigation.navigationTree.Second);
+        // const user = firebase.auth().currentUser;
+        //
+        // if (user) {
+        //   console.warn('User is signed in.', user);
+        // } else {
+        //   console.warn('No user is signed in.');
+        // }
+        firebase.auth().signOut();
+        // navigation.navigate(appNavigation.navigationTree.Second);
       }}
     />
     <TouchableWithoutFeedback
