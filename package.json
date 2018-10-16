@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "./node_modules/.bin/eslint .",
-    "test": "jest"
+    "test": "jest",
+    "flow": "./node_modules/.bin/flow check"
   },
   "dependencies": {
     "react": "16.5.0",
@@ -24,6 +25,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "flow-bin": "^0.83.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.5",
     "react-test-renderer": "16.5.0"

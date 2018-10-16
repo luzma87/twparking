@@ -213,6 +213,20 @@ function task_lint() {
     exit ${RESULT}
 }
 
+function task_flow {
+    echo "${normal}"
+    npm run flow
+    if [ $? -ne 0 ]; then
+        echo "${red}There was an error in flow checker${normal}"
+        shame
+        RESULT=1
+     else
+        echo "${green}Flow checked successfully${normal}"
+    fi
+     set -eu
+    exit ${RESULT}
+}
+
 function task_help {
   help_message="usage"
   help_message+=" ${utils_fg}clean${normal}"
@@ -220,6 +234,7 @@ function task_help {
   help_message+=" | ${utils_fg}debug${normal}"
   help_message+=" | ${utils_fg}share_screen_android${normal}"
   help_message+=" | ${utils_fg}lint${normal}"
+  help_message+=" | ${utils_fg}flow${normal}"
 
   help_message+=" | ${android_fg}build_android${normal}"
   help_message+=" | ${android_fg}start_android | run_android${normal}"
@@ -262,6 +277,7 @@ function execute_task {
 
       react_generate_icon) task_react_generate_icon "$@" ;;
       lint) task_lint ;;
+      flow) task_flow ;;
       *) task_help ;;
     esac
 }
