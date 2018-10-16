@@ -93,15 +93,13 @@ function task_clean {
 
     # Ignore failures when trying to delete package lock
     set +e
-    echo -e "${utils_fg}\ttrying to delete package lock...${normal}"
+    echo -e "${utils_fg}\Trying to delete package lock...${normal}"
     rm -f package-lock.json
     # From now on fail on errors
     set -eu
 
     echo -e "${utils_fg}\tDeleting flow types...${normal}"
     rm -rf flow-typed
-    echo -e "${utils_fg}\tDeleting package lock...${normal}"
-    rm package-lock.json
     echo -e "${utils_fg}\tReinstalling node modules${normal}"
     npm install
     echo -e "${utils_fg}\tResetting Metro Bundler cache${normal}"
@@ -198,6 +196,23 @@ function task_share_screen_android {
     adb shell screenrecord --output-format=h264 --size 1200x900 - | ffplay -
 }
 
+function task_lint() {
+#        ESLINT="./node_modules/.bin/eslint"
+     local eslint="$(git rev-parse --show-toplevel)/node_modules/.bin/eslint"
+
+    ${eslint} .
+
+     if [[ "$?" == 0 ]]; then
+       echo ${green}"Javascript validation completed!"
+      else
+        echo ${red}"ESLint Failed"
+        shame
+        RESULT=1
+      fi
+    set -eu
+    exit ${RESULT}
+}
+
 function task_help {
   help_message="usage"
   help_message+=" ${utils_fg}clean${normal}"
@@ -219,6 +234,7 @@ function task_help {
   help_message+=" | ${ios_fg}restart_ios_devices${normal}"
 
   help_message+=" | ${react_fg}react_generate_icon [PATH_TO_ICON]${normal}"
+  help_message+=" | ${react_fg}lint${normal}"
   echo "${help_message}"
 }
 
@@ -245,6 +261,7 @@ function execute_task {
       restart_ios_devices) task_restart_ios_devices ;;
 
       react_generate_icon) task_react_generate_icon "$@" ;;
+      lint) task_lint ;;
       *) task_help ;;
     esac
 }

@@ -1,6 +1,8 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Image, Text, TextInput, View } from 'react-native';
+import {
+  Image, Text, TextInput, View,
+} from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
@@ -35,7 +37,7 @@ class LoginScreen extends Component<Props, State> {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user: user.toJSON() }, () => {
-          //redirect here
+          // redirect here
           const { navigation } = this.props;
           navigation.navigate(appNavigation.navigationTree.Home);
         });
@@ -65,7 +67,9 @@ class LoginScreen extends Component<Props, State> {
       .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
       .catch(
         error => this.setState(
-          { message: `Sign In With Phone Number Error: ${error.message}` }));
+          { message: `Sign In With Phone Number Error: ${error.message}` },
+        ),
+      );
   }
 
   signIn = () => {
@@ -110,17 +114,17 @@ class LoginScreen extends Component<Props, State> {
           autoFocus
           style={{ height: 40, marginTop: 15, marginBottom: 15 }}
           onChangeText={value => this.setState({ phoneNumber: value })}
-          placeholder={'Phone number ... '}
+          placeholder="Phone number ... "
           value={phoneNumber}
           keyboardType="number-pad"
         />
         <Button
-          icon={
+          icon={(
             <FontAwesome5Pro
               name="sign-in"
               color="white"
             />
-          }
+)}
           iconRight
           title="Sign In"
           onPress={this.signIn}
@@ -151,7 +155,7 @@ class LoginScreen extends Component<Props, State> {
           autoFocus
           style={{ height: 40, marginTop: 15, marginBottom: 15 }}
           onChangeText={value => this.setState({ codeInput: value })}
-          placeholder={'Code ... '}
+          placeholder="Code ... "
           value={codeInput}
         />
         <Button
@@ -191,13 +195,13 @@ class LoginScreen extends Component<Props, State> {
             <Text style={{ fontSize: 25 }}>Signed In!</Text>
             <Text>{JSON.stringify(user)}</Text>
             <Button
-              icon={
+              icon={(
                 <Icon
-                  name='arrow-right'
+                  name="arrow-right"
                   size={15}
-                  color='white'
+                  color="white"
                 />
-              }
+)}
               title="Sign Out"
               onPress={this.signOut}
             />
