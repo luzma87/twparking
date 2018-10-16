@@ -4,6 +4,7 @@ platform :ios, '10.0'
 target 'twparking' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
+  #pod 'React', :path => '../node_modules/react-native'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Fabric'
@@ -11,7 +12,7 @@ target 'twparking' do
   pod 'Firebase/Database'
   # Pods for twparking
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  #pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'twparkingTests' do
     inherit! :search_paths
@@ -23,6 +24,7 @@ end
 target 'twparking-tvOS' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
+    #pod 'React', :path => '../node_modules/react-native'
     pod 'Firebase/Core'
     pod 'Fabric'
     pod 'Crashlytics'
