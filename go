@@ -219,6 +219,7 @@ function task_help {
   help_message+=" | ${utils_fg}clean_dir${normal}"
   help_message+=" | ${utils_fg}debug${normal}"
   help_message+=" | ${utils_fg}share_screen_android${normal}"
+  help_message+=" | ${utils_fg}lint${normal}"
 
   help_message+=" | ${android_fg}build_android${normal}"
   help_message+=" | ${android_fg}start_android | run_android${normal}"
@@ -234,7 +235,6 @@ function task_help {
   help_message+=" | ${ios_fg}restart_ios_devices${normal}"
 
   help_message+=" | ${react_fg}react_generate_icon [PATH_TO_ICON]${normal}"
-  help_message+=" | ${react_fg}lint${normal}"
   echo "${help_message}"
 }
 
