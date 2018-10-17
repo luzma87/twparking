@@ -20,4 +20,12 @@ export const colors = {
   pink700: '#C2185B',
   pink800: '#AD1457',
   pink900: '#880E4F',
+
+  gray1: '#7B7B7C',
+  gray2: '#C9CBCE',
+  gray3: '#C3C6D0',
+  gray4: '#D5E4EF',
+  gray5: '#E2E4E6',
+  gray6: '#EBEFF2',
+  gray7: '#F7FBFF',
 };

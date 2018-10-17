@@ -7,10 +7,19 @@
  */
 
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+import TWHeader from '../TWHeader/TWHeader';
 
 const SecondScreen = () => (
-  <Text>Second screen</Text>
+  <View>
+    <TWHeader
+      title="klsanlkasnlks"
+      onPress={() => {
+        console.warn('LOL');
+      }}
+    />
+    <Text>Second screen</Text>
+  </View>
 );
 
 export default SecondScreen;

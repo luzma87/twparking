@@ -60,18 +60,6 @@ class LoginScreen extends Component<Props, State> {
     }
   }
 
-  signInWithPhoneNumber(phoneNumber) {
-    this.setState({ message: 'Sending code ...' });
-
-    firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
-      .catch(
-        error => this.setState(
-          { message: `Sign In With Phone Number Error: ${error.message}` },
-        ),
-      );
-  }
-
   signIn = () => {
     const { phoneNumber } = this.state;
 
@@ -103,6 +91,18 @@ class LoginScreen extends Component<Props, State> {
   signOut = () => {
     firebase.auth().signOut();
   };
+
+  signInWithPhoneNumber(phoneNumber) {
+    this.setState({ message: 'Sending code ...' });
+
+    firebase.auth().signInWithPhoneNumber(phoneNumber)
+      .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
+      .catch(
+        error => this.setState(
+          { message: `Sign In With Phone Number Error: ${error.message}` },
+        ),
+      );
+  }
 
   renderPhoneNumberInput() {
     const { phoneNumber } = this.state;

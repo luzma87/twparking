@@ -45,8 +45,8 @@ const MainScreen = ({ navigation }: Props) => (
         // } else {
         //   console.warn('No user is signed in.');
         // }
-        firebase.auth().signOut();
-        // navigation.navigate(appNavigation.navigationTree.Second);
+        // firebase.auth().signOut();
+        navigation.navigate(appNavigation.navigationTree.Second);
       }}
     />
     <TouchableWithoutFeedback

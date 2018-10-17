@@ -1,6 +1,6 @@
-import MainScreen from '../components/mainScreen/MainScreen';
 import SecondScreen from '../components/secondScreen/SecondScreen';
 import LoginScreen from '../components/loginScreen/LoginScreen';
+import HomeScreen from '../components/homeScreen/HomeScreen';
 
 const routes = {
   Login: {
@@ -8,7 +8,7 @@ const routes = {
     title: 'Login',
   },
   Home: {
-    screen: MainScreen,
+    screen: HomeScreen,
     title: 'Home',
   },
   Second: {
