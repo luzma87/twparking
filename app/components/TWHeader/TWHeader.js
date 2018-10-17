@@ -17,6 +17,7 @@ const TWHeader = ({ title, onPress }: Props) => {
   return (
     <View
       style={[
+        { height: 75 },
         headerStyles.header,
         styles.container,
         otherStyles,
