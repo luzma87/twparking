@@ -17,7 +17,7 @@ const TWHeader = ({ title, onPress }: Props) => {
       style={[
         {
           height: 70,
-          backgroundColor: colors.primary100,
+          backgroundColor: colors.primary900,
         },
         styles.container,
         otherStyles,
@@ -31,7 +31,7 @@ const TWHeader = ({ title, onPress }: Props) => {
         weight="bold"
         font="vt323"
         size="title"
-        color={colors.primary800}
+        color={colors.secondary500}
       />
       {hasBackButton ? <View style={{ width: 35 }} /> : null}
     </View>

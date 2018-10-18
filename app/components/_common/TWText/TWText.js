@@ -1,9 +1,9 @@
 /* @flow */
-import React, {Component} from 'react';
-import {Platform, Text} from 'react-native';
-import {scale} from 'react-native-size-matters';
-import {colors} from "../../../styles/colors";
-import fonts from "../../../styles/fonts";
+import React, { Component } from 'react';
+import { Platform, Text } from 'react-native';
+import { scale } from 'react-native-size-matters';
+import { colors } from '../../../styles/colors';
+import fonts from '../../../styles/fonts';
 
 export type fontSizes = 'big' | 'title' | 'regular' | 'small' | 'tiny';
 
@@ -63,7 +63,7 @@ export default class TWText extends Component<Props, {}> {
     font: 'almendra',
     weight: 'regular',
     size: 'regular',
-    color: colors.black,
+    color: colors.primary800,
     align: 'left',
     lineHeight: 1,
     text: undefined,
@@ -91,7 +91,7 @@ export default class TWText extends Component<Props, {}> {
     } = this.props;
 
     let usableLineHeight = 1;
-    let fontSize = getFontSize(size);
+    const fontSize = getFontSize(size);
     let usableFont: string = 'almendra';
     if (font) {
       usableFont = font;
@@ -107,9 +107,9 @@ export default class TWText extends Component<Props, {}> {
     if (shadow) {
       shadowStyle = {
         textShadowColor: colors.grayAlpha,
-        textShadowOffset: {width: 2, height: 2},
+        textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 3,
-      }
+      };
     }
 
     return (
