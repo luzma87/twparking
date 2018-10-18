@@ -5,8 +5,8 @@ import { Icon } from 'react-native-elements';
 import TabNavigator from 'react-native-tab-navigator';
 import { scale } from 'react-native-size-matters';
 import { colors } from '../../styles/colors';
-import navigationHeader from '../../util/NavigationStylesHelper';
 import TWHeader from '../_common/TWHeader/TWHeader';
+import * as navigationHeader from "../../navigation/NavigationStylesHelper";
 
 type Props = {
   navigation: Object

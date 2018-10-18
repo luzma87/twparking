@@ -22,10 +22,6 @@ const twHeaderStyles = ScaledSheet.create({
     }),
   },
 
-  text: {
-    color: colors.fiord3,
-  },
-
   containerWithBackButton: {
     flexDirection: 'row',
     alignItems: 'center',
