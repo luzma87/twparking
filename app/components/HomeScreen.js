@@ -1,9 +1,10 @@
 /* @flow */
 import React, { Component } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, StatusBar, View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import { scale } from 'react-native-size-matters';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
+import { ThemeProvider } from 'react-native-elements';
 import { colors } from '../styles/colors';
 import TWHeader from './_common/TWHeader/TWHeader';
 import navigationHeader from '../navigation/NavigationStylesHelper';
@@ -13,6 +14,7 @@ import History from './History';
 import More from './More';
 import fonts from '../styles/fonts';
 import deviceHelper from '../util/deviceHelper';
+import Car from './Car';
 
 type Props = {
   navigation: Object
@@ -53,6 +55,7 @@ const getMenuItem = (name, iconName, menu) => ({
 
 const menuItems = [
   getMenuItem('Profile', 'user-ninja', <Profile />),
+  getMenuItem('Car', 'car-bump', <Car />),
   getMenuItem('Payments', 'money-bill-wave', <Payments />),
   getMenuItem('History', 'file-invoice', <History />),
   getMenuItem('More', 'ellipsis-h', <More />),
@@ -80,15 +83,14 @@ class HomeScreen extends Component<Props, State> {
   render() {
     const { selectedTab } = this.state;
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: colors.primary100 }}>
+      <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
         {deviceHelper.isiPhoneX() ? (
           <View style={{
             backgroundColor: colors.primary900,
-            position: 'absolute',
             top: 0,
             right: 0,
             left: 0,
-            height: 80,
+            height: 20,
             zIndex: -1000,
           }}
           />
@@ -118,19 +120,16 @@ class HomeScreen extends Component<Props, State> {
             </TabNavigator.Item>
           ))}
         </TabNavigator>
-        {deviceHelper.isiPhoneX() ? (
-          <View style={{
-            backgroundColor: colors.primary900,
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            left: 0,
-            height: 80,
-            zIndex: -1000,
-          }}
-          />
-        ) : null}
-      </SafeAreaView>
+        <View style={{
+          backgroundColor: colors.primary900,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          height: deviceHelper.isiPhoneX() ? 25 : 10,
+          zIndex: -1000,
+        }}
+        />
+      </View>
     );
   }
 }

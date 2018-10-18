@@ -19,7 +19,6 @@ const twHeaderStyles = ScaledSheet.create({
         shadowColor: colors.gray1,
         shadowOffset: { height: 2, width: 0 },
         alignItems: 'center',
-        // paddingTop: 10,
       },
       android: {
         alignItems: 'flex-start',

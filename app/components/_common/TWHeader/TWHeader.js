@@ -16,7 +16,7 @@ const TWHeader = ({ title, onPress }: Props) => {
     <View
       style={[
         {
-          height: 70,
+          height: 75,
           backgroundColor: colors.primary900,
         },
         styles.container,
@@ -26,8 +26,9 @@ const TWHeader = ({ title, onPress }: Props) => {
       {hasBackButton ? <TWBackButton onPress={() => onPress()} /> : null}
       <TWText
         text={title}
+        style={{ paddingTop: 20 }}
         uppercase
-        shadow
+        // shadow
         weight="bold"
         font="vt323"
         size="title"
