@@ -1,10 +1,6 @@
 /* @flow */
 
 const noHeader = {
-  headerLeft: null,
-  gesturesEnabled: false,
-  headerTitleAllowFontScaling: false,
-  headerBackTitle: false,
   header: null,
 };
 
