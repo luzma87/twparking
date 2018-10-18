@@ -13,7 +13,7 @@ const commonHeaderWithTitle = title => ({
   headerStyle: styles.header,
   // title: I18n.t(titleI18nKey).toUpperCase(),
   title: title.toUpperCase(),
-  headerTintColor: colors.deepPurple500,
+  headerTintColor: colors.primary500,
   headerTitleStyle: styles.headerTitle,
 });
 

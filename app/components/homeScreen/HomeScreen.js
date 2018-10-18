@@ -139,13 +139,13 @@ class HomeScreen extends Component<Props, State> {
               tabStyle={
                [
                  {
-                   borderBottomColor: colors.deepPurple300,
+                   borderBottomColor: colors.primary300,
                  },
                ]
              }
               selectedTitleStyle={{
                 fontSize: scale(15),
-                color: colors.deepPurple500,
+                color: colors.primary500,
               }}
               selected={selectedTab === menuItem.key}
               title={menuItem.title}

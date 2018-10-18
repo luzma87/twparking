@@ -1,9 +1,9 @@
-import { ScaledSheet } from 'react-native-size-matters';
-import { colors } from '../styles/colors';
+import {ScaledSheet} from 'react-native-size-matters';
+import {colors} from '../styles/colors';
 
 const navigationStyles = ScaledSheet.create({
   header: {
-    backgroundColor: colors.deepPurple100,
+    backgroundColor: colors.primary100,
   },
 
   headerTitle: {
