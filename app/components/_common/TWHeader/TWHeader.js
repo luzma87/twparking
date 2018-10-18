@@ -6,7 +6,7 @@ import { Text } from 'react-native-elements';
 import styles from './twHeaderStyles';
 // import headerStyles from '../../../util/navigationStyles';
 import TWBackButton from './TWBackButton';
-import headerStyles from '../../navigation/navigationStyles';
+import headerStyles from '../../../navigation/navigationStyles';
 
 
 type Props = { title: string, onPress: ()=>void };
@@ -17,7 +17,7 @@ const TWHeader = ({ title, onPress }: Props) => {
   return (
     <View
       style={[
-        { height: 75 },
+        { height: 70 },
         headerStyles.header,
         styles.container,
         otherStyles,

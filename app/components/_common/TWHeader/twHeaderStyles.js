@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 import { ScaledSheet } from 'react-native-size-matters';
-import { colors } from '../../styles/colors';
+import { colors } from '../../../styles/colors';
 
 const twHeaderStyles = ScaledSheet.create({
 

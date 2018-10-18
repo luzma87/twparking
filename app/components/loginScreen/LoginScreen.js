@@ -1,18 +1,16 @@
 /* @flow */
 import React, {Component} from 'react';
 import {
-  Image, Text, TextInput, View,
+  Text, TextInput, View,
 } from 'react-native';
 import {Button, Input} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
 import firebase from 'react-native-firebase';
 import * as navigationHeader from '../../navigation/NavigationStylesHelper';
 import appNavigation from '../../navigation/Routes';
 import {colors} from "../../styles/colors";
-
-const successImageUri = 'https://cdn.pixabay.com/photo/2015/06/09/16/12/icon-803718_1280.png';
+import TWHeader from "../_common/TWHeader/TWHeader";
 
 type Props = {
   navigation: Object
@@ -20,7 +18,7 @@ type Props = {
 type State = {};
 
 class LoginScreen extends Component<Props, State> {
-  static navigationOptions = navigationHeader.header('TW Parking - Login');
+  static navigationOptions = navigationHeader.noHeader;
 
   constructor(props) {
     super(props);
@@ -152,7 +150,7 @@ class LoginScreen extends Component<Props, State> {
     }
 
     return (
-      <Text style={{padding: 5, backgroundColor: '#000', color: '#fff'}}>{message}</Text>
+      <Text style={{padding: 5, backgroundColor: colors.secondary900, color: colors.white}}>{message}</Text>
     );
   }
 
@@ -171,8 +169,8 @@ class LoginScreen extends Component<Props, State> {
         />
         <Button
           title="Confirm Code"
-          color="#841584"
           onPress={this.confirmCode}
+          style={{marginTop: 20}}
         />
       </View>
     );
@@ -182,42 +180,14 @@ class LoginScreen extends Component<Props, State> {
     const {user, confirmResult} = this.state;
     return (
       <View style={{flex: 1}}>
-
+        <TWHeader title="TW Parking - Login" onPress={null}/>
         {!user && !confirmResult ? this.renderPhoneNumberInput() : null}
 
         {this.renderMessage()}
 
         {!user && confirmResult ? this.renderVerificationCodeInput() : null}
 
-        {user ? (
-          <View
-            style={{
-              padding: 15,
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: '#77dd77',
-              flex: 1,
-            }}
-          >
-            <Image
-              source={{uri: successImageUri}}
-              style={{width: 100, height: 100, marginBottom: 25}}
-            />
-            <Text style={{fontSize: 25}}>Signed In!</Text>
-            <Text>{JSON.stringify(user)}</Text>
-            <Button
-              icon={(
-                <Icon
-                  name="arrow-right"
-                  size={15}
-                  color="white"
-                />
-              )}
-              title="Sign Out"
-              onPress={this.signOut}
-            />
-          </View>
-        ) : null}
+        {user ? <View/> : null}
       </View>
     );
   }
