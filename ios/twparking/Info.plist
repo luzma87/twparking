@@ -87,6 +87,18 @@
 		<string>FontAwesome5_Pro_Light.ttf</string>
 		<string>FontAwesome5_Pro_Regular.ttf</string>
 		<string>FontAwesome5_Pro_Solid.ttf</string>
+		<string>Almendra-Bold.ttf</string>
+		<string>Almendra-BoldItalic.ttf</string>
+		<string>Almendra-Italic.ttf</string>
+		<string>Almendra-Regular.ttf</string>
+		<string>ComingSoon-Regular.ttf</string>
+		<string>CormorantUpright-Bold.ttf</string>
+		<string>CormorantUpright-Light.ttf</string>
+		<string>CormorantUpright-Medium.ttf</string>
+		<string>CormorantUpright-Regular.ttf</string>
+		<string>CormorantUpright-SemiBold.ttf</string>
+		<string>ReenieBeanie.ttf</string>
+		<string>VT323-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

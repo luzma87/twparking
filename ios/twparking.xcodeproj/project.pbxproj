@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -63,6 +62,18 @@
 		E3B4AADB65D448FB91E74AB3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CA82C32D679458594FDD69B /* FontAwesome.ttf */; };
 		E4B8055F5110430B83A4802A /* FontAwesome5_Pro_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 325210E6FD6D4E23985EDCEC /* FontAwesome5_Pro_Light.ttf */; };
 		F48FB52401AE4D7786BA2459 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06FA7957C6DA4AB5B9C505F9 /* Entypo.ttf */; };
+		B0784BCCB34D430B82A4122E /* Almendra-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9A3EC3AE344BDB95887613 /* Almendra-Bold.ttf */; };
+		7F75EC746D5747218253C6CC /* Almendra-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1A879C7232140E49173AB37 /* Almendra-BoldItalic.ttf */; };
+		CC17FC2992C8486B83162D22 /* Almendra-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96540F19C8714A09984D26AE /* Almendra-Italic.ttf */; };
+		5D5BC55B73B44DC99BF9D256 /* Almendra-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EB09DD7F65D450F9F388A13 /* Almendra-Regular.ttf */; };
+		C2B0B1EE31B44111B38F9A33 /* ComingSoon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 712B72D8665B441780533F29 /* ComingSoon-Regular.ttf */; };
+		77CADD5882C045E8B136E723 /* CormorantUpright-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 542A4557EF2A4F248127CF78 /* CormorantUpright-Bold.ttf */; };
+		057F36ABE7CC4BC7A8FA3881 /* CormorantUpright-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A682362202044D7A9D63EC0 /* CormorantUpright-Light.ttf */; };
+		E89D4792D66647F49424524A /* CormorantUpright-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 027D8975ADFA4B7DA5521337 /* CormorantUpright-Medium.ttf */; };
+		42500DA9ECC449E2BD9F6E6E /* CormorantUpright-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B41D48198F614898A81905B0 /* CormorantUpright-Regular.ttf */; };
+		01CBDC43E1984F7B97D37D00 /* CormorantUpright-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BA36C3AB6C742AAA85C6DDC /* CormorantUpright-SemiBold.ttf */; };
+		3AD2E49B4E35403D95C40C40 /* ReenieBeanie.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 402892A9AE1344F399D5E27D /* ReenieBeanie.ttf */; };
+		FBA4E539D81E4133859E379B /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51B203FFE2B4CA5A8DAB399 /* VT323-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -409,6 +420,18 @@
 		C5CAE3279144E524EB6E006F /* Pods-twparking-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twparking-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twparking-tvOS/Pods-twparking-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D6D43CD736253B79236C8FCB /* Pods-twparking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twparking.release.xcconfig"; path = "Pods/Target Support Files/Pods-twparking/Pods-twparking.release.xcconfig"; sourceTree = "<group>"; };
 		E5ED3851E5795208614FD2E7 /* Pods-twparkingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twparkingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-twparkingTests/Pods-twparkingTests.release.xcconfig"; sourceTree = "<group>"; };
+		AC9A3EC3AE344BDB95887613 /* Almendra-Bold.ttf */ = {isa = PBXFileReference; name = "Almendra-Bold.ttf"; path = "../assets/fonts/Almendra-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A1A879C7232140E49173AB37 /* Almendra-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Almendra-BoldItalic.ttf"; path = "../assets/fonts/Almendra-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		96540F19C8714A09984D26AE /* Almendra-Italic.ttf */ = {isa = PBXFileReference; name = "Almendra-Italic.ttf"; path = "../assets/fonts/Almendra-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6EB09DD7F65D450F9F388A13 /* Almendra-Regular.ttf */ = {isa = PBXFileReference; name = "Almendra-Regular.ttf"; path = "../assets/fonts/Almendra-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		712B72D8665B441780533F29 /* ComingSoon-Regular.ttf */ = {isa = PBXFileReference; name = "ComingSoon-Regular.ttf"; path = "../assets/fonts/ComingSoon-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		542A4557EF2A4F248127CF78 /* CormorantUpright-Bold.ttf */ = {isa = PBXFileReference; name = "CormorantUpright-Bold.ttf"; path = "../assets/fonts/CormorantUpright-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7A682362202044D7A9D63EC0 /* CormorantUpright-Light.ttf */ = {isa = PBXFileReference; name = "CormorantUpright-Light.ttf"; path = "../assets/fonts/CormorantUpright-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		027D8975ADFA4B7DA5521337 /* CormorantUpright-Medium.ttf */ = {isa = PBXFileReference; name = "CormorantUpright-Medium.ttf"; path = "../assets/fonts/CormorantUpright-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B41D48198F614898A81905B0 /* CormorantUpright-Regular.ttf */ = {isa = PBXFileReference; name = "CormorantUpright-Regular.ttf"; path = "../assets/fonts/CormorantUpright-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4BA36C3AB6C742AAA85C6DDC /* CormorantUpright-SemiBold.ttf */ = {isa = PBXFileReference; name = "CormorantUpright-SemiBold.ttf"; path = "../assets/fonts/CormorantUpright-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		402892A9AE1344F399D5E27D /* ReenieBeanie.ttf */ = {isa = PBXFileReference; name = "ReenieBeanie.ttf"; path = "../assets/fonts/ReenieBeanie.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B51B203FFE2B4CA5A8DAB399 /* VT323-Regular.ttf */ = {isa = PBXFileReference; name = "VT323-Regular.ttf"; path = "../assets/fonts/VT323-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -652,6 +675,18 @@
 				325210E6FD6D4E23985EDCEC /* FontAwesome5_Pro_Light.ttf */,
 				94A9AFAE99AC4AFD8FC56F51 /* FontAwesome5_Pro_Regular.ttf */,
 				13E3C5DF43F1433F98BC3BD2 /* FontAwesome5_Pro_Solid.ttf */,
+				AC9A3EC3AE344BDB95887613 /* Almendra-Bold.ttf */,
+				A1A879C7232140E49173AB37 /* Almendra-BoldItalic.ttf */,
+				96540F19C8714A09984D26AE /* Almendra-Italic.ttf */,
+				6EB09DD7F65D450F9F388A13 /* Almendra-Regular.ttf */,
+				712B72D8665B441780533F29 /* ComingSoon-Regular.ttf */,
+				542A4557EF2A4F248127CF78 /* CormorantUpright-Bold.ttf */,
+				7A682362202044D7A9D63EC0 /* CormorantUpright-Light.ttf */,
+				027D8975ADFA4B7DA5521337 /* CormorantUpright-Medium.ttf */,
+				B41D48198F614898A81905B0 /* CormorantUpright-Regular.ttf */,
+				4BA36C3AB6C742AAA85C6DDC /* CormorantUpright-SemiBold.ttf */,
+				402892A9AE1344F399D5E27D /* ReenieBeanie.ttf */,
+				B51B203FFE2B4CA5A8DAB399 /* VT323-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1229,6 +1264,18 @@
 				E4B8055F5110430B83A4802A /* FontAwesome5_Pro_Light.ttf in Resources */,
 				12E7A1D9A9404D14B0D5D267 /* FontAwesome5_Pro_Regular.ttf in Resources */,
 				0A5BEE2D5DD040BBA1F4C228 /* FontAwesome5_Pro_Solid.ttf in Resources */,
+				B0784BCCB34D430B82A4122E /* Almendra-Bold.ttf in Resources */,
+				7F75EC746D5747218253C6CC /* Almendra-BoldItalic.ttf in Resources */,
+				CC17FC2992C8486B83162D22 /* Almendra-Italic.ttf in Resources */,
+				5D5BC55B73B44DC99BF9D256 /* Almendra-Regular.ttf in Resources */,
+				C2B0B1EE31B44111B38F9A33 /* ComingSoon-Regular.ttf in Resources */,
+				77CADD5882C045E8B136E723 /* CormorantUpright-Bold.ttf in Resources */,
+				057F36ABE7CC4BC7A8FA3881 /* CormorantUpright-Light.ttf in Resources */,
+				E89D4792D66647F49424524A /* CormorantUpright-Medium.ttf in Resources */,
+				42500DA9ECC449E2BD9F6E6E /* CormorantUpright-Regular.ttf in Resources */,
+				01CBDC43E1984F7B97D37D00 /* CormorantUpright-SemiBold.ttf in Resources */,
+				3AD2E49B4E35403D95C40C40 /* ReenieBeanie.ttf in Resources */,
+				FBA4E539D81E4133859E379B /* VT323-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

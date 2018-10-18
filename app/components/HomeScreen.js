@@ -12,6 +12,7 @@ import Payments from "./Payments";
 import History from "./History";
 import More from "./More";
 import FontAwesome5Pro from "react-native-vector-icons/FontAwesome5Pro";
+import fonts from "../styles/fonts";
 
 type Props = {
   navigation: Object
@@ -82,6 +83,7 @@ class HomeScreen extends Component<Props, State> {
             <TabNavigator.Item
               key={menuItem.key}
               titleStyle={{
+                fontFamily: fonts.vt323.regular,
                 fontSize: scale(15),
                 color: colors.primary500,
               }}

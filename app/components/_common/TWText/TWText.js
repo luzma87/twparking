@@ -3,17 +3,21 @@ import React, {Component} from 'react';
 import {Platform, Text} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import {colors} from "../../../styles/colors";
+import fonts from "../../../styles/fonts";
 
 export type fontSizes = 'big' | 'title' | 'regular' | 'small' | 'tiny';
 
 type Props = {
-  weight?: 'light' | 'regular' | 'bold' | 'black',
+  font?: 'almendra' | 'comingSoon' | 'cormorantUpright' | 'reenieBeanie' | 'vt323',
+  weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold',
   size?: fontSizes,
   color?: string,
   align?: 'left' | 'center' | 'right' | 'justify',
   text?: string,
   lineHeight?: number,
   uppercase?: boolean,
+  italic?: boolean,
+  shadow?: boolean,
   style?: any,
 };
 
@@ -47,8 +51,16 @@ const getFontSize = (size) => {
   }
 };
 
+const getFontFamily = (font, weight, italic) => {
+  if (italic) {
+    return fonts[font].italic[weight];
+  }
+  return fonts[font][weight];
+};
+
 export default class TWText extends Component<Props, {}> {
   static defaultProps = {
+    font: 'almendra',
     weight: 'regular',
     size: 'regular',
     color: colors.black,
@@ -57,24 +69,33 @@ export default class TWText extends Component<Props, {}> {
     text: undefined,
     i18n: null,
     style: null,
+    italic: false,
+    shadow: false,
     uppercase: false,
   };
 
   render() {
     const {
+      font,
       weight,
       size,
       color,
       align,
       text,
       lineHeight,
-      uppercase,
       style,
+      italic,
+      uppercase,
+      shadow,
       ...attributes
     } = this.props;
 
     let usableLineHeight = 1;
     let fontSize = getFontSize(size);
+    let usableFont: string = 'almendra';
+    if (font) {
+      usableFont = font;
+    }
     if (lineHeight) {
       usableLineHeight = lineHeight * fontSize;
     }
@@ -82,17 +103,25 @@ export default class TWText extends Component<Props, {}> {
     if (uppercase) {
       textToShow = text.toUpperCase();
     }
+    let shadowStyle = {};
+    if (shadow) {
+      shadowStyle = {
+        textShadowColor: colors.grayAlpha,
+        textShadowOffset: {width: 2, height: 2},
+        textShadowRadius: 3,
+      }
+    }
 
     return (
       <Text
         style={[
           {
-            // fontWeight: weight,
+            fontFamily: getFontFamily(usableFont, weight, italic),
             fontSize,
             lineHeight: usableLineHeight,
             color,
             textAlign: align,
-          }, style]}
+          }, style, shadowStyle]}
         {...attributes}
       >
         {textToShow}
