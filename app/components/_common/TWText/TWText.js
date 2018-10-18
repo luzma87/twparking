@@ -87,7 +87,7 @@ export default class TWText extends Component<Props, {}> {
       <Text
         style={[
           {
-            fontWeight: weight,
+            // fontWeight: weight,
             fontSize,
             lineHeight: usableLineHeight,
             color,

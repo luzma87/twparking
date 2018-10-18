@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import Payments from "./Payments";
 import History from "./History";
 import More from "./More";
+import FontAwesome5Pro from "react-native-vector-icons/FontAwesome5Pro";
 
 type Props = {
   navigation: Object
@@ -21,20 +22,19 @@ type State = {
 };
 
 const iconColor = colors.primary800;
-const selectedIconColor = colors.primary800;
+const selectedIconColor = colors.secondary500;
 
-const getIcon = (iconName) => (<Icon
-  raised
-  type="font-awesome"
+const getIcon = (iconName) => (<FontAwesome5Pro
+  light
   color={iconColor}
+  size={30}
   name={iconName}
 />);
 
-const getSelectedIcon = (iconName) => (<Icon
-  raised
-  reverse
-  type="font-awesome"
+const getSelectedIcon = (iconName) => (<FontAwesome5Pro
+  solid
   color={selectedIconColor}
+  size={30}
   name={iconName}
 />);
 
@@ -47,9 +47,9 @@ const getMenuItem = (name, iconName, menu) => ({
 });
 
 const menuItems = [
-  getMenuItem('Profile', 'user', <Profile/>),
-  getMenuItem('Payments', 'money', <Payments/>),
-  getMenuItem('History', 'file-text-o', <History/>),
+  getMenuItem('Profile', 'user-ninja', <Profile/>),
+  getMenuItem('Payments', 'money-bill-wave', <Payments/>),
+  getMenuItem('History', 'file-invoice', <History/>),
   getMenuItem('More', 'ellipsis-h', <More/>),
 ];
 
@@ -77,18 +77,18 @@ class HomeScreen extends Component<Props, State> {
     return (
       <SafeAreaView style={{flex: 1}}>
         <TWHeader title={this.getTitle()} onPress={null}/>
-        <TabNavigator tabBarStyle={{height: scale(85)}}>
+        <TabNavigator tabBarStyle={{height: scale(65)}}>
           {menuItems.map(menuItem => (
             <TabNavigator.Item
               key={menuItem.key}
               titleStyle={{
                 fontSize: scale(15),
-                color: colors.gray2,
+                color: colors.primary500,
               }}
               tabStyle={[{borderBottomColor: colors.primary300}]}
               selectedTitleStyle={{
                 fontSize: scale(15),
-                color: colors.primary500,
+                color: colors.secondary500,
               }}
               selected={selectedTab === menuItem.key}
               title={menuItem.title}
