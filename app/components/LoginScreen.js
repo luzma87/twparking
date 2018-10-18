@@ -1,21 +1,21 @@
 /* @flow */
-import React, {Component} from 'react';
-import {
-  Text, TextInput, View,
-} from 'react-native';
-import {Button, Input} from 'react-native-elements';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { Button, Input } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-
 import firebase from 'react-native-firebase';
 import appNavigation from '../navigation/Routes';
-import {colors} from "../styles/colors";
-import TWHeader from "./_common/TWHeader/TWHeader";
-import navigationHeader from "../navigation/NavigationStylesHelper";
+import { colors } from '../styles/colors';
+import TWHeader from './_common/TWHeader/TWHeader';
+import navigationHeader from '../navigation/NavigationStylesHelper';
+import TWText from './_common/TWText/TWText';
 
 type Props = {
   navigation: Object
 };
 type State = {};
+
+const inputIconSize = 16;
 
 class LoginScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
@@ -35,9 +35,9 @@ class LoginScreen extends Component<Props, State> {
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({user: user.toJSON()}, () => {
+        this.setState({ user: user.toJSON() }, () => {
           // redirect here
-          const {navigation} = this.props;
+          const { navigation } = this.props;
           navigation.navigate(appNavigation.navigationTree.Home);
         });
       } else {
@@ -60,7 +60,7 @@ class LoginScreen extends Component<Props, State> {
   }
 
   signIn = () => {
-    const {phoneNumber} = this.state;
+    const { phoneNumber } = this.state;
 
     firebase.database()
       .ref('people')
@@ -70,20 +70,20 @@ class LoginScreen extends Component<Props, State> {
         if (snapshot.exists()) {
           this.signInWithPhoneNumber(phoneNumber);
         } else {
-          this.setState({message: 'Login not allowed'});
+          this.setState({ message: 'Login not allowed' });
         }
       });
   };
 
   confirmCode = () => {
-    const {codeInput, confirmResult} = this.state;
+    const { codeInput, confirmResult } = this.state;
 
     if (confirmResult && codeInput.length) {
       confirmResult.confirm(codeInput)
         .then((user) => {
-          this.setState({message: 'Code Confirmed!'});
+          this.setState({ message: 'Code Confirmed!' });
         })
-        .catch(error => this.setState({message: `Code Confirm Error: ${error.message}`}));
+        .catch(error => this.setState({ message: `Code Confirm Error: ${error.message}` }));
     }
   };
 
@@ -92,34 +92,33 @@ class LoginScreen extends Component<Props, State> {
   };
 
   signInWithPhoneNumber(phoneNumber) {
-    this.setState({message: 'Sending code ...'});
+    this.setState({ message: 'Sending code ...' });
 
     firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => this.setState({confirmResult, message: 'Code has been sent!'}))
+      .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
       .catch(
         error => this.setState(
-          {message: `Sign In With Phone Number Error: ${error.message}`},
+          { message: `Sign In With Phone Number Error: ${error.message}` },
         ),
       );
   }
 
   renderPhoneNumberInput() {
-    const iconSize = 16;
-    const {phoneNumber} = this.state;
+    const { phoneNumber } = this.state;
 
     return (
-      <View style={{padding: 25}}>
-        <Text>Enter phone number:</Text>
+      <View style={{ padding: 25 }}>
+        <TWText text="Enter phone number:" />
         <Input
           autoFocus
-          containerStyle={{marginTop: 15, marginBottom: 20}}
-          onChangeText={value => this.setState({phoneNumber: value})}
+          containerStyle={{ marginTop: 15, marginBottom: 20 }}
+          onChangeText={value => this.setState({ phoneNumber: value })}
           placeholder="Phone number ... "
           value={phoneNumber}
           keyboardType="number-pad"
           leftIcon={(
             <FontAwesome5Pro
-              size={iconSize}
+              size={inputIconSize}
               color={colors.primary300}
               name="mobile-android-alt"
             />
@@ -128,66 +127,87 @@ class LoginScreen extends Component<Props, State> {
         <Button
           icon={(
             <FontAwesome5Pro
-              size={iconSize}
+              size={inputIconSize}
               name="sign-in"
               color="white"
             />
           )}
           iconRight
-          title="Sign In"
+          title="SIGN IN"
           onPress={this.signIn}
-          style={{marginTop: 20}}
+          style={{ marginTop: 20 }}
         />
       </View>
     );
   }
 
   renderMessage() {
-    const {message} = this.state;
+    const { message } = this.state;
 
     if (!message.length) {
       return null;
     }
 
     return (
-      <Text style={{padding: 5, backgroundColor: colors.secondary900, color: colors.white}}>{message}</Text>
+      <TWText
+        color={colors.white}
+        style={{ padding: 5, backgroundColor: colors.secondary900 }}
+        text={message}
+      />
     );
   }
 
   renderVerificationCodeInput() {
-    const {codeInput} = this.state;
+    const { codeInput } = this.state;
 
     return (
-      <View style={{marginTop: 25, padding: 25}}>
-        <Text>Enter verification code below:</Text>
-        <TextInput
+      <View style={{ marginTop: 25, padding: 25 }}>
+        <TWText text="Enter verification code below:" />
+        <Input
           autoFocus
-          style={{height: 40, marginTop: 15, marginBottom: 15}}
-          onChangeText={value => this.setState({codeInput: value})}
+          style={{ height: 40, marginTop: 15, marginBottom: 15 }}
+          onChangeText={value => this.setState({ codeInput: value })}
           placeholder="Code ... "
+          keyboardType="number-pad"
+          leftIcon={(
+            <FontAwesome5Pro
+              solid
+              size={inputIconSize}
+              color={colors.primary300}
+              name="paw"
+            />
+          )}
           value={codeInput}
         />
         <Button
+          icon={(
+            <FontAwesome5Pro
+              solid
+              size={inputIconSize}
+              name="paw"
+              color="white"
+            />
+          )}
           title="Confirm Code"
           onPress={this.confirmCode}
-          style={{marginTop: 20}}
+          style={{ marginTop: 20 }}
         />
       </View>
     );
   }
 
   render() {
-    const {user, confirmResult} = this.state;
+    const { user, confirmResult } = this.state;
     return (
-      <View style={{flex: 1}}>
-        <TWHeader title="TW Parking - Login" onPress={null}/>
+      <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
+        <TWHeader title="TW Parking - Login" onPress={null} />
         {!user && !confirmResult ? this.renderPhoneNumberInput() : null}
 
         {this.renderMessage()}
 
         {!user && confirmResult ? this.renderVerificationCodeInput() : null}
 
-        {user ? <View/> : null}
+        {user ? <View /> : null}
       </View>
     );
   }

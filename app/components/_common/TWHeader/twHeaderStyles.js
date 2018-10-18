@@ -1,6 +1,6 @@
-import {Platform} from 'react-native';
-import {ScaledSheet} from 'react-native-size-matters';
-import {colors} from '../../../styles/colors';
+import { Platform } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
+import { colors } from '../../../styles/colors';
 
 const twHeaderStyles = ScaledSheet.create({
 
@@ -17,9 +17,9 @@ const twHeaderStyles = ScaledSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 3,
         shadowColor: colors.gray1,
-        shadowOffset: {height: 2, width: 0},
+        shadowOffset: { height: 2, width: 0 },
         alignItems: 'center',
-
+        // paddingTop: 10,
       },
       android: {
         alignItems: 'flex-start',

@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
-import { SafeAreaView, View, StatusBar } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import { scale } from 'react-native-size-matters';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
@@ -81,10 +81,6 @@ class HomeScreen extends Component<Props, State> {
     const { selectedTab } = this.state;
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.primary100 }}>
-        <StatusBar
-          backgroundColor={colors.primary900}
-          barStyle="light-content"
-        />
         {deviceHelper.isiPhoneX() ? (
           <View style={{
             backgroundColor: colors.primary900,
