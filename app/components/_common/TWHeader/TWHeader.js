@@ -25,7 +25,7 @@ const TWHeader = ({title, onPress}: Props) => {
       ]}
     >
       {hasBackButton ? <TWBackButton onPress={() => onPress()}/> : null}
-      <TWText text={title} uppercase/>
+      <TWText text={title} uppercase weight="bold"/>
       {hasBackButton ? <View style={{width: 35}}/> : null}
     </View>
   );

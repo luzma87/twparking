@@ -7,10 +7,10 @@ import {Button, Input} from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 
 import firebase from 'react-native-firebase';
-import appNavigation from '../../navigation/Routes';
-import {colors} from "../../styles/colors";
-import TWHeader from "../_common/TWHeader/TWHeader";
-import navigationHeader from "../../navigation/NavigationStylesHelper";
+import appNavigation from '../navigation/Routes';
+import {colors} from "../styles/colors";
+import TWHeader from "./_common/TWHeader/TWHeader";
+import navigationHeader from "../navigation/NavigationStylesHelper";
 
 type Props = {
   navigation: Object

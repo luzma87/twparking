@@ -1,5 +1,5 @@
-import LoginScreen from '../components/loginScreen/LoginScreen';
-import HomeScreen from '../components/homeScreen/HomeScreen';
+import LoginScreen from "../components/LoginScreen";
+import HomeScreen from "../components/HomeScreen";
 
 const routes = {
   Login: {

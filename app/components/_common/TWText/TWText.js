@@ -4,7 +4,7 @@ import {Platform, Text} from 'react-native';
 import {scale} from 'react-native-size-matters';
 import {colors} from "../../../styles/colors";
 
-export type fontSizes = 'huge' | 'big' | 'title' | 'regular' | 'small' | 'tiny';
+export type fontSizes = 'big' | 'title' | 'regular' | 'small' | 'tiny';
 
 type Props = {
   weight?: 'light' | 'regular' | 'bold' | 'black',
@@ -13,8 +13,8 @@ type Props = {
   align?: 'left' | 'center' | 'right' | 'justify',
   text?: string,
   lineHeight?: number,
+  uppercase?: boolean,
   style?: any,
-  uppercase?: boolean
 };
 
 const baseFontSize = Platform.OS === 'ios' ? 20 : 19;
@@ -32,8 +32,6 @@ const sizeToScale = (size) => {
 
 const getFontSize = (size) => {
   switch (size) {
-    case 'huge':
-      return transformToScale(5);
     case 'big':
       return transformToScale(2.5);
     case 'title':
