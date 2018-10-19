@@ -38,7 +38,7 @@ class LoginScreen extends Component<Props, State> {
         this.setState({ user: user.toJSON() }, () => {
           // redirect here
           const { navigation } = this.props;
-          navigation.navigate(appNavigation.navigationTree.Home);
+          navigation.navigate(appNavigation.navigationTree.UserHome);
         });
       } else {
         // User has been signed out, reset the state

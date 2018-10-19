@@ -1,20 +1,11 @@
 import LoginScreen from '../components/LoginScreen';
-import HomeScreen from '../components/HomeScreen';
+import UserHomeScreen from '../components/user/UserHomeScreen';
 import AdminHomeScreen from '../components/admin/AdminHomeScreen';
 
 const routes = {
-  Login: {
-    screen: LoginScreen,
-    title: 'Login',
-  },
-  Home: {
-    screen: HomeScreen,
-    title: 'Home',
-  },
-  AdminHome: {
-    screen: AdminHomeScreen,
-    title: 'AdminHome',
-  },
+  Login: { screen: LoginScreen },
+  UserHome: { screen: UserHomeScreen },
+  AdminHome: { screen: AdminHomeScreen },
 };
 
 const routesKeys = Object.keys(routes);

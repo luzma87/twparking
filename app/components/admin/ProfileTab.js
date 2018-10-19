@@ -14,7 +14,7 @@ type State = {};
 class AdminProfile extends Component<Props, State> {
   changeUser() {
     const { navigation } = this.props;
-    navigation.navigate(appNavigation.navigationTree.Home);
+    navigation.navigate(appNavigation.navigationTree.UserHome);
   }
 
   render() {

@@ -4,16 +4,16 @@ import { View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import { scale } from 'react-native-size-matters';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import colors from '../styles/colors';
-import TWHeader from './_common/TWHeader/TWHeader';
-import navigationHeader from '../navigation/NavigationStylesHelper';
-import Profile from './Profile';
-import Payments from './Payments';
-import History from './History';
-import More from './More';
-import fonts from '../styles/fonts';
-import deviceHelper from '../util/deviceHelper';
-import Car from './Car';
+import colors from '../../styles/colors';
+import TWHeader from '../_common/TWHeader/TWHeader';
+import navigationHeader from '../../navigation/NavigationStylesHelper';
+import Profile from './ProfileTab';
+import Payments from './PaymentsTab';
+import HistoryTab from './HistoryTab';
+import MoreTab from './MoreTab';
+import fonts from '../../styles/fonts';
+import deviceHelper from '../../util/deviceHelper';
+import CarTab from './CarTab';
 
 type Props = {
   navigation: Object
@@ -52,7 +52,7 @@ const getMenuItem = (name, iconName, menu) => ({
   menu,
 });
 
-class HomeScreen extends Component<Props, State> {
+class UserHomeScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
 
   constructor(props: Props) {
@@ -72,10 +72,10 @@ class HomeScreen extends Component<Props, State> {
     const { navigation } = this.props;
     return [
       getMenuItem('Profile', 'user-ninja', <Profile navigation={navigation} />),
-      getMenuItem('Car', 'car-bump', <Car />),
+      getMenuItem('CarTab', 'car-bump', <CarTab />),
       getMenuItem('Payments', 'money-bill-wave', <Payments />),
-      getMenuItem('History', 'file-invoice', <History />),
-      getMenuItem('More', 'ellipsis-h', <More />),
+      getMenuItem('HistoryTab', 'file-invoice', <HistoryTab />),
+      getMenuItem('MoreTab', 'ellipsis-h', <MoreTab />),
     ];
   }
 
@@ -142,4 +142,4 @@ class HomeScreen extends Component<Props, State> {
   }
 }
 
-export default HomeScreen;
+export default UserHomeScreen;

@@ -1,12 +1,12 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import TWText from './_common/TWText/TWText';
+import TWText from '../_common/TWText/TWText';
 
 type Props = {};
 type State = {};
 
-class Car extends Component<Props, State> {
+class CarTab extends Component<Props, State> {
   render() {
     return (
       <View>
@@ -16,4 +16,4 @@ class Car extends Component<Props, State> {
   }
 }
 
-export default Car;
+export default CarTab;

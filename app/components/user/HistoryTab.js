@@ -6,14 +6,14 @@ import TWText from '../_common/TWText/TWText';
 type Props = {};
 type State = {};
 
-class AdminParking extends Component<Props, State> {
+class HistoryTab extends Component<Props, State> {
   render() {
     return (
       <View>
-        <TWText text="this is the AdminParking screen" />
+        <TWText text="this is the history screen" />
       </View>
     );
   }
 }
 
-export default AdminParking;
+export default HistoryTab;

@@ -9,12 +9,12 @@ import TWHeader from '../_common/TWHeader/TWHeader';
 import navigationHeader from '../../navigation/NavigationStylesHelper';
 import fonts from '../../styles/fonts';
 import deviceHelper from '../../util/deviceHelper';
-import AdminProfile from './AdminProfile';
-import AdminPayments from './AdminPayments';
-import AdminBalance from './AdminBalance';
-import AdminParking from './AdminParking';
-import AdminUsers from './AdminUsers';
-import AdminTasks from './AdminTasks';
+import AdminProfile from './ProfileTab';
+import AdminPayments from './PaymentsTab';
+import AdminBalance from './BalanceTab';
+import AdminParkingTab from './ParkingTab';
+import AdminUsers from './UsersTab';
+import AdminTasks from './TasksTab';
 
 type Props = {
   navigation: Object
@@ -74,7 +74,7 @@ class AdminHomeScreen extends Component<Props, State> {
       getMenuItem('Admin', 'user-secret', <AdminProfile navigation={navigation} />),
       getMenuItem('Payments', 'hand-holding-usd', <AdminPayments />),
       getMenuItem('Balance', 'abacus', <AdminBalance />),
-      getMenuItem('Parking', 'warehouse', <AdminParking />),
+      getMenuItem('Parking', 'warehouse', <AdminParkingTab />),
       getMenuItem('Users', 'user-astronaut', <AdminUsers />),
       getMenuItem('Tasks', 'unicorn', <AdminTasks />),
     ];
