@@ -7,6 +7,7 @@ import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
 import { withContext } from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
+import i18n from '../../i18n';
 
 type Props = {
   navigation: Object,
@@ -30,6 +31,8 @@ class Profile extends Component<Props, State> {
     return (
       <View>
         <TWText text={`this is the profile screen [${this.props.context.user.name}]`} />
+        <TWText text={i18n.t('title')} />
+        <TWText text={i18n.t('current', { language: i18n.currentLocale() })} />
         <Button
           icon={(
             <FontAwesome5Pro

@@ -1,0 +1,4 @@
+{
+  "title": "demo de react-native-languages",
+  "current": "El idioma actual es \"{{language}}\""
+}

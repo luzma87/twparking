@@ -9,10 +9,12 @@
     "flow": "./node_modules/.bin/flow check"
   },
   "dependencies": {
+    "i18n-js": "^3.0.11",
     "react": "16.5.0",
     "react-native": "0.57.0",
     "react-native-elements": "^1.0.0-beta6",
     "react-native-firebase": "^5.0.0",
+    "react-native-languages": "^3.0.1",
     "react-native-size-matters": "^0.1.4",
     "react-native-tab-navigator": "^0.3.4",
     "react-native-vector-icons": "^6.0.2",
