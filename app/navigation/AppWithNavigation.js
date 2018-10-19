@@ -13,6 +13,7 @@ import { StatusBar } from 'react-native';
 import appNavigation from './Routes';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import GlobalProvider from '../context/GlobalProvider';
 
 const theme = {
   colors: {
@@ -43,7 +44,9 @@ const AppWithNavigation = () => (
       backgroundColor={colors.primary900}
       barStyle="light-content"
     />
-    <RootStack />
+    <GlobalProvider>
+      <RootStack />
+    </GlobalProvider>
   </ThemeProvider>
 );
 

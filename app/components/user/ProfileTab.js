@@ -5,14 +5,23 @@ import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import { Button } from 'react-native-elements';
 import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
+import { withContext } from '../../context/WithContext';
+import type { GlobalContext } from '../../context/types';
 
 type Props = {
-  navigation: Object
+  navigation: Object,
+  context: GlobalContext
 };
 type State = {};
 
 class Profile extends Component<Props, State> {
   changeUser() {
+    const { context } = this.props;
+    console.warn(this.props);
+    const user = {
+      name: 'Pepe',
+    };
+    context.updateUser(user);
     const { navigation } = this.props;
     navigation.navigate(appNavigation.navigationTree.AdminHome);
   }
@@ -20,7 +29,7 @@ class Profile extends Component<Props, State> {
   render() {
     return (
       <View>
-        <TWText text="this is the profile screen" />
+        <TWText text={`this is the profile screen [${this.props.context.user.name}]`} />
         <Button
           icon={(
             <FontAwesome5Pro
@@ -41,4 +50,4 @@ class Profile extends Component<Props, State> {
   }
 }
 
-export default Profile;
+export default withContext(Profile);

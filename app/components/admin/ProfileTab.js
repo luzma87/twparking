@@ -5,9 +5,12 @@ import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import { Button } from 'react-native-elements';
 import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
+import { withContext } from '../../context/WithContext';
+import type { GlobalContext } from '../../context/types';
 
 type Props = {
   navigation: Object,
+  context: GlobalContext
 };
 type State = {};
 
@@ -20,7 +23,7 @@ class AdminProfile extends Component<Props, State> {
   render() {
     return (
       <View>
-        <TWText text="this is the AdminProfile screen" />
+        <TWText text={`this is the AdminProfile screen [${this.props.context.user.name}]`} />
 
         <Button
           icon={(
@@ -42,4 +45,4 @@ class AdminProfile extends Component<Props, State> {
   }
 }
 
-export default AdminProfile;
+export default withContext(AdminProfile);
