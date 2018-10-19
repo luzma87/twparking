@@ -7,9 +7,9 @@ import TWBackButton from './TWBackButton';
 import TWText from '../TWText/TWText';
 import colors from '../../../styles/colors';
 
-type Props = { title: string, onPress: () => void };
+type Props = { titleI18n: string, onPress: () => void };
 
-const TWHeader = ({ title, onPress }: Props) => {
+const TWHeader = ({ titleI18n, onPress }: Props) => {
   const hasBackButton = onPress !== null;
   const otherStyles = hasBackButton ? styles.containerWithBackButton : {};
   return (
@@ -25,7 +25,7 @@ const TWHeader = ({ title, onPress }: Props) => {
     >
       {hasBackButton ? <TWBackButton onPress={() => onPress()} /> : null}
       <TWText
-        text={title}
+        i18n={titleI18n}
         style={{ paddingTop: 20 }}
         uppercase
         // shadow

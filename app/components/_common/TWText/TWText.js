@@ -4,6 +4,7 @@ import { Platform, Text } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import colors from '../../../styles/colors';
 import fonts from '../../../styles/fonts';
+import I18n from '../../../i18n';
 
 export type fontSizes = 'big' | 'title' | 'regular' | 'small' | 'tiny';
 
@@ -13,6 +14,8 @@ type Props = {
   size?: fontSizes,
   color?: string,
   align?: 'left' | 'center' | 'right' | 'justify',
+  i18n?: string,
+  i18nParams?: Object,
   text?: string,
   lineHeight?: number,
   uppercase?: boolean,
@@ -63,6 +66,7 @@ export default class TWText extends Component<Props, {}> {
     lineHeight: 1,
     text: undefined,
     i18n: null,
+    i18nParams: {},
     style: null,
     italic: false,
     shadow: false,
@@ -77,6 +81,8 @@ export default class TWText extends Component<Props, {}> {
       color,
       align,
       text,
+      i18n,
+      i18nParams,
       lineHeight,
       style,
       italic,
@@ -84,6 +90,16 @@ export default class TWText extends Component<Props, {}> {
       shadow,
       ...attributes
     } = this.props;
+
+    let shownText = '';
+    if (i18n) {
+      shownText = I18n.t(i18n, i18nParams);
+    } else if (text && text !== null && text !== undefined) {
+      shownText = text;
+    }
+    if (uppercase) {
+      shownText = shownText.toUpperCase();
+    }
 
     let usableLineHeight = 1;
     const fontSize = getFontSize(size);
@@ -93,10 +109,6 @@ export default class TWText extends Component<Props, {}> {
     }
     if (lineHeight) {
       usableLineHeight = lineHeight * fontSize;
-    }
-    let textToShow = text;
-    if (uppercase) {
-      textToShow = text.toUpperCase();
     }
     let shadowStyle = {};
     if (shadow) {
@@ -119,7 +131,7 @@ export default class TWText extends Component<Props, {}> {
           }, style, shadowStyle]}
         {...attributes}
       >
-        {textToShow}
+        {shownText}
       </Text>
     );
   }

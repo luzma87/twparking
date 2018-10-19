@@ -14,7 +14,6 @@ import MoreTab from './MoreTab';
 import fonts from '../../styles/fonts';
 import deviceHelper from '../../util/deviceHelper';
 import CarTab from './CarTab';
-import i18n from '../../i18n';
 
 type Props = {
   navigation: Object
@@ -47,7 +46,7 @@ const getSelectedIcon = iconName => (
 
 const getMenuItem = (key, iconName, menu) => ({
   key,
-  title: i18n.t(`screens.user.home.tabs.${key}`),
+  title: `screens.user.home.tabs.${key}`,
   icon: getIcon(iconName),
   selectedIcon: getSelectedIcon(iconName),
   menu,
@@ -65,7 +64,7 @@ class UserHomeScreen extends Component<Props, State> {
 
   getTitle() {
     const { selectedTab } = this.state;
-    return i18n.t(`screens.user.home.tabs.${selectedTab}`);
+    return `screens.user.home.tabs.${selectedTab}`;
   }
 
   menuItems() {
@@ -100,7 +99,7 @@ class UserHomeScreen extends Component<Props, State> {
           />
         ) : null}
         <TWHeader
-          title={this.getTitle()}
+          titleI18n={this.getTitle()}
           onPress={null}
         />
         <TabNavigator tabBarStyle={{ height: scale(65), backgroundColor: colors.primary900 }}>

@@ -11,6 +11,7 @@
         "codeConfirm": "Code Confirm Error: {{message}}",
         "signIn": "Sign In With Phone Number Error: {{message}}"
       },
+      "codeSending":"Sending code…",
       "codeConfirmed": "Code Confirmed!",
       "codeSent": "Code has been sent!",
       "form": {

@@ -15,7 +15,6 @@ import AdminBalance from './BalanceTab';
 import AdminParkingTab from './ParkingTab';
 import AdminUsers from './UsersTab';
 import AdminTasks from './TasksTab';
-import i18n from '../../i18n';
 
 type Props = {
   navigation: Object
@@ -48,7 +47,7 @@ const getSelectedIcon = iconName => (
 
 const getMenuItem = (key, iconName, menu) => ({
   key,
-  title: i18n.t(`screens.admin.home.tabs.${key}`),
+  title: `screens.admin.home.tabs.${key}`,
   icon: getIcon(iconName),
   selectedIcon: getSelectedIcon(iconName),
   menu,
@@ -66,7 +65,7 @@ class AdminHomeScreen extends Component<Props, State> {
 
   getTitle() {
     const { selectedTab } = this.state;
-    return i18n.t(`screens.admin.home.tabs.${selectedTab}`);
+    return `screens.admin.home.tabs.${selectedTab}`;
   }
 
   menuItems() {
@@ -100,7 +99,7 @@ class AdminHomeScreen extends Component<Props, State> {
           }}
           />
         ) : null}
-        <TWHeader title={this.getTitle()} onPress={null} />
+        <TWHeader titleI18n={this.getTitle()} onPress={null} />
         <TabNavigator tabBarStyle={{ height: scale(65), backgroundColor: colors.primary900 }}>
           {this.menuItems().map(menuItem => (
             <TabNavigator.Item

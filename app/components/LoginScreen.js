@@ -14,7 +14,14 @@ import i18n from '../i18n';
 type Props = {
   navigation: Object
 };
-type State = {};
+type State = {
+  user: Object,
+  message: string,
+  messageParam: Object,
+  codeInput: string,
+  phoneNumber: string,
+  confirmResult: Object
+};
 
 const inputIconSize = 16;
 
@@ -27,6 +34,7 @@ class LoginScreen extends Component<Props, State> {
     this.state = {
       user: null,
       message: '',
+      messageParam: {},
       codeInput: '',
       phoneNumber: '+593',
       confirmResult: null,
@@ -46,6 +54,7 @@ class LoginScreen extends Component<Props, State> {
         this.setState({
           user: null,
           message: '',
+          messageParam: {},
           codeInput: '',
           phoneNumber: '+593',
           confirmResult: null,
@@ -71,7 +80,7 @@ class LoginScreen extends Component<Props, State> {
         if (snapshot.exists()) {
           this.signInWithPhoneNumber(phoneNumber);
         } else {
-          this.setState({ message: i18n.t('screens.login.errors.notAllowed') });
+          this.setState({ message: 'screens.login.errors.notAllowed', messageParam: {} });
         }
       });
   };
@@ -83,9 +92,12 @@ class LoginScreen extends Component<Props, State> {
       confirmResult.confirm(codeInput)
       // eslint-disable-next-line no-unused-vars
         .then((user) => {
-          this.setState({ message: i18n.t('screens.login.codeConfirmed') });
+          this.setState({ message: 'screens.login.codeConfirmed', messageParam: {} });
         })
-        .catch(error => this.setState({ message: i18n.t('screens.login.codeConfirmed', { message: error.message }) }));
+        .catch(error => this.setState({
+          message: 'screens.login.errors.codeConfirm',
+          messageParam: { message: error.message },
+        }));
     }
   };
 
@@ -94,13 +106,13 @@ class LoginScreen extends Component<Props, State> {
   };
 
   signInWithPhoneNumber(phoneNumber) {
-    this.setState({ message: 'Sending code ...' });
+    this.setState({ message: 'screens.login.codeSending', messageParam: {} });
 
     firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => this.setState({ confirmResult, message: i18n.t('screens.login.codeSent') }))
+      .then(confirmResult => this.setState({ confirmResult, message: 'screens.login.codeSent', messageParam: {} }))
       .catch(
         error => this.setState(
-          { message: i18n.t('screens.login.errors.signIn', { message: error.message }) },
+          { message: 'screens.login.errors.signIn', messageParam: { message: error.message } },
         ),
       );
   }
@@ -110,7 +122,7 @@ class LoginScreen extends Component<Props, State> {
 
     return (
       <View style={{ padding: 25 }}>
-        <TWText text={i18n.t('screens.login.form.phoneLabel')} />
+        <TWText i18n="screens.login.form.phoneLabel" />
         <Input
           autoFocus
           containerStyle={{ marginTop: 15, marginBottom: 20 }}
@@ -144,7 +156,7 @@ class LoginScreen extends Component<Props, State> {
   }
 
   renderMessage() {
-    const { message } = this.state;
+    const { message, messageParam } = this.state;
 
     if (!message.length) {
       return null;
@@ -154,7 +166,8 @@ class LoginScreen extends Component<Props, State> {
       <TWText
         color={colors.white}
         style={{ padding: 5, backgroundColor: colors.secondary900 }}
-        text={message}
+        i18n={message}
+        i18nParams={messageParam}
       />
     );
   }
@@ -169,7 +182,7 @@ class LoginScreen extends Component<Props, State> {
           autoFocus
           style={{ height: 40, marginTop: 15, marginBottom: 15 }}
           onChangeText={value => this.setState({ codeInput: value })}
-          placeholder={i18n.t('screens.login.form.code')}
+          placeholder={i18n.t('screens.login.form.codePlaceholder')}
           keyboardType="number-pad"
           leftIcon={(
             <FontAwesome5Pro
@@ -202,7 +215,7 @@ class LoginScreen extends Component<Props, State> {
     const { user, confirmResult } = this.state;
     return (
       <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
-        <TWHeader title={i18n.t('screens.login.title') } onPress={null} />
+        <TWHeader title={i18n.t('screens.login.title<TW')} onPress={null} />
         {!user && !confirmResult ? this.renderPhoneNumberInput() : null}
 
         {this.renderMessage()}

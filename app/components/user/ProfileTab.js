@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import firebase from 'react-native-firebase';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import { Button } from 'react-native-elements';
 import TWText from '../_common/TWText/TWText';
@@ -17,6 +18,7 @@ type State = {};
 
 class Profile extends Component<Props, State> {
   changeUser() {
+    // firebase.auth().signOut();
     const { context } = this.props;
     console.warn(this.props);
     const user = {
