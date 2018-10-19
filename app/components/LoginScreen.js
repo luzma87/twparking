@@ -9,6 +9,7 @@ import colors from '../styles/colors';
 import TWHeader from './_common/TWHeader/TWHeader';
 import navigationHeader from '../navigation/NavigationStylesHelper';
 import TWText from './_common/TWText/TWText';
+import i18n from '../i18n';
 
 type Props = {
   navigation: Object
@@ -70,7 +71,7 @@ class LoginScreen extends Component<Props, State> {
         if (snapshot.exists()) {
           this.signInWithPhoneNumber(phoneNumber);
         } else {
-          this.setState({ message: 'Login not allowed' });
+          this.setState({ message: i18n.t('screens.login.errors.notAllowed') });
         }
       });
   };
@@ -82,9 +83,9 @@ class LoginScreen extends Component<Props, State> {
       confirmResult.confirm(codeInput)
       // eslint-disable-next-line no-unused-vars
         .then((user) => {
-          this.setState({ message: 'Code Confirmed!' });
+          this.setState({ message: i18n.t('screens.login.codeConfirmed') });
         })
-        .catch(error => this.setState({ message: `Code Confirm Error: ${error.message}` }));
+        .catch(error => this.setState({ message: i18n.t('screens.login.codeConfirmed', { message: error.message }) }));
     }
   };
 
@@ -96,10 +97,10 @@ class LoginScreen extends Component<Props, State> {
     this.setState({ message: 'Sending code ...' });
 
     firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => this.setState({ confirmResult, message: 'Code has been sent!' }))
+      .then(confirmResult => this.setState({ confirmResult, message: i18n.t('screens.login.codeSent') }))
       .catch(
         error => this.setState(
-          { message: `Sign In With Phone Number Error: ${error.message}` },
+          { message: i18n.t('screens.login.errors.signIn', { message: error.message }) },
         ),
       );
   }
@@ -109,12 +110,12 @@ class LoginScreen extends Component<Props, State> {
 
     return (
       <View style={{ padding: 25 }}>
-        <TWText text="Enter phone number:" />
+        <TWText text={i18n.t('screens.login.form.phoneLabel')} />
         <Input
           autoFocus
           containerStyle={{ marginTop: 15, marginBottom: 20 }}
           onChangeText={value => this.setState({ phoneNumber: value })}
-          placeholder="Phone number ... "
+          placeholder={i18n.t('screens.login.form.phonePlaceholder')}
           value={phoneNumber}
           keyboardType="number-pad"
           leftIcon={(
@@ -134,7 +135,7 @@ class LoginScreen extends Component<Props, State> {
             />
           )}
           iconRight
-          title="SIGN IN"
+          title={i18n.t('screens.login.buttons.signIn').toUpperCase()}
           onPress={this.signIn}
           style={{ marginTop: 20 }}
         />
@@ -163,12 +164,12 @@ class LoginScreen extends Component<Props, State> {
 
     return (
       <View style={{ marginTop: 25, padding: 25 }}>
-        <TWText text="Enter verification code below:" />
+        <TWText text={i18n.t('screens.login.form.codeLabel')} />
         <Input
           autoFocus
           style={{ height: 40, marginTop: 15, marginBottom: 15 }}
           onChangeText={value => this.setState({ codeInput: value })}
-          placeholder="Code ... "
+          placeholder={i18n.t('screens.login.form.code')}
           keyboardType="number-pad"
           leftIcon={(
             <FontAwesome5Pro
@@ -189,7 +190,7 @@ class LoginScreen extends Component<Props, State> {
               color="white"
             />
           )}
-          title="Confirm Code"
+          title={i18n.t('screens.login.buttons.confirm')}
           onPress={this.confirmCode}
           style={{ marginTop: 20 }}
         />
@@ -201,7 +202,7 @@ class LoginScreen extends Component<Props, State> {
     const { user, confirmResult } = this.state;
     return (
       <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
-        <TWHeader title="TW Parking - Login" onPress={null} />
+        <TWHeader title={i18n.t('screens.login.title') } onPress={null} />
         {!user && !confirmResult ? this.renderPhoneNumberInput() : null}
 
         {this.renderMessage()}

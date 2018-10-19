@@ -1,4 +1,51 @@
 {
   "title": "react-native-languages demo",
-  "current": "The current language is \"{{language}}\""
+  "current": "The current language is \"{{language}}\"",
+  "commons": {
+  },
+  "screens": {
+    "login": {
+      "title": "TW Parking - Login",
+      "errors": {
+        "notAllowed": "Login not allowed",
+        "codeConfirm": "Code Confirm Error: {{message}}",
+        "signIn": "Sign In With Phone Number Error: {{message}}"
+      },
+      "codeConfirmed": "Code Confirmed!",
+      "codeSent": "Code has been sent!",
+      "form": {
+        "phoneLabel": "Enter phone number:",
+        "phonePlaceholder": "Phone number…",
+        "codeLabel": "Enter verification code below:",
+        "codePlaceholder": "Code…"
+      },
+      "buttons": {
+        "signIn": "Sign in",
+        "confirm": "Confirm Code"
+      }
+    },
+    "user": {
+      "home": {
+        "tabs": {
+          "Profile": "Profile",
+          "Car": "Car",
+          "Payments": "Payments",
+          "History": "History",
+          "More": "More"
+        }
+      }
+    },
+    "admin": {
+      "home": {
+        "tabs": {
+          "Admin": "Admin",
+          "Payments": "Payments",
+          "Balance": "Balance",
+          "Parking": "Parking",
+          "Users": "Users",
+          "Tasks": "Tasks"
+        }
+      }
+    }
+  }
 }

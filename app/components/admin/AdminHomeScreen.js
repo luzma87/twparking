@@ -15,6 +15,7 @@ import AdminBalance from './BalanceTab';
 import AdminParkingTab from './ParkingTab';
 import AdminUsers from './UsersTab';
 import AdminTasks from './TasksTab';
+import i18n from '../../i18n';
 
 type Props = {
   navigation: Object
@@ -45,9 +46,9 @@ const getSelectedIcon = iconName => (
   />
 );
 
-const getMenuItem = (name, iconName, menu) => ({
-  key: name,
-  title: name,
+const getMenuItem = (key, iconName, menu) => ({
+  key,
+  title: i18n.t(`screens.admin.home.tabs.${key}`),
   icon: getIcon(iconName),
   selectedIcon: getSelectedIcon(iconName),
   menu,
@@ -65,7 +66,7 @@ class AdminHomeScreen extends Component<Props, State> {
 
   getTitle() {
     const { selectedTab } = this.state;
-    return selectedTab;
+    return i18n.t(`screens.admin.home.tabs.${selectedTab}`);
   }
 
   menuItems() {

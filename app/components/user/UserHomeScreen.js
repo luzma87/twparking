@@ -14,6 +14,7 @@ import MoreTab from './MoreTab';
 import fonts from '../../styles/fonts';
 import deviceHelper from '../../util/deviceHelper';
 import CarTab from './CarTab';
+import i18n from '../../i18n';
 
 type Props = {
   navigation: Object
@@ -44,9 +45,9 @@ const getSelectedIcon = iconName => (
   />
 );
 
-const getMenuItem = (name, iconName, menu) => ({
-  key: name,
-  title: name,
+const getMenuItem = (key, iconName, menu) => ({
+  key,
+  title: i18n.t(`screens.user.home.tabs.${key}`),
   icon: getIcon(iconName),
   selectedIcon: getSelectedIcon(iconName),
   menu,
@@ -62,20 +63,19 @@ class UserHomeScreen extends Component<Props, State> {
     };
   }
 
-
   getTitle() {
     const { selectedTab } = this.state;
-    return selectedTab;
+    return i18n.t(`screens.user.home.tabs.${selectedTab}`);
   }
 
   menuItems() {
     const { navigation } = this.props;
     return [
       getMenuItem('Profile', 'user-ninja', <Profile navigation={navigation} />),
-      getMenuItem('CarTab', 'car-bump', <CarTab />),
+      getMenuItem('Car', 'car-bump', <CarTab />),
       getMenuItem('Payments', 'money-bill-wave', <Payments />),
-      getMenuItem('HistoryTab', 'file-invoice', <HistoryTab />),
-      getMenuItem('MoreTab', 'ellipsis-h', <MoreTab />),
+      getMenuItem('History', 'file-invoice', <HistoryTab />),
+      getMenuItem('More', 'ellipsis-h', <MoreTab />),
     ];
   }
 
