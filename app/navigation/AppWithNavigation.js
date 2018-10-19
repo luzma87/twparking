@@ -11,7 +11,7 @@ import { createStackNavigator } from 'react-navigation';
 import { ThemeProvider } from 'react-native-elements';
 import { StatusBar } from 'react-native';
 import appNavigation from './Routes';
-import { colors } from '../styles/colors';
+import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 const theme = {

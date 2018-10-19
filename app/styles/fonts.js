@@ -40,7 +40,7 @@ const fonts = {
     bold: 'ReenieBeanie',
     italic: {
       regular: 'ReenieBeanie',
-      bold: 'ReenieBeanie'
+      bold: 'ReenieBeanie',
     },
   },
   vt323: {
@@ -51,9 +51,9 @@ const fonts = {
     bold: 'VT323-Regular',
     italic: {
       regular: 'VT323-Regular',
-      bold: 'VT323-Regular'
+      bold: 'VT323-Regular',
     },
-  }
+  },
 };
 
 export default fonts;

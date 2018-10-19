@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import styles from './twHeaderStyles';
 import TWBackButton from './TWBackButton';
 import TWText from '../TWText/TWText';
-import { colors } from '../../../styles/colors';
+import colors from '../../../styles/colors';
 
 type Props = { title: string, onPress: () => void };
 

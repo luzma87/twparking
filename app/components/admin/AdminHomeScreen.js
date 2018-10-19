@@ -4,16 +4,17 @@ import { View } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import { scale } from 'react-native-size-matters';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import colors from '../styles/colors';
-import TWHeader from './_common/TWHeader/TWHeader';
-import navigationHeader from '../navigation/NavigationStylesHelper';
-import Profile from './Profile';
-import Payments from './Payments';
-import History from './History';
-import More from './More';
-import fonts from '../styles/fonts';
-import deviceHelper from '../util/deviceHelper';
-import Car from './Car';
+import colors from '../../styles/colors';
+import TWHeader from '../_common/TWHeader/TWHeader';
+import navigationHeader from '../../navigation/NavigationStylesHelper';
+import fonts from '../../styles/fonts';
+import deviceHelper from '../../util/deviceHelper';
+import AdminProfile from './AdminProfile';
+import AdminPayments from './AdminPayments';
+import AdminBalance from './AdminBalance';
+import AdminParking from './AdminParking';
+import AdminUsers from './AdminUsers';
+import AdminTasks from './AdminTasks';
 
 type Props = {
   navigation: Object
@@ -52,7 +53,7 @@ const getMenuItem = (name, iconName, menu) => ({
   menu,
 });
 
-class HomeScreen extends Component<Props, State> {
+class AdminHomeScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
 
   constructor(props: Props) {
@@ -62,7 +63,6 @@ class HomeScreen extends Component<Props, State> {
     };
   }
 
-
   getTitle() {
     const { selectedTab } = this.state;
     return selectedTab;
@@ -71,11 +71,12 @@ class HomeScreen extends Component<Props, State> {
   menuItems() {
     const { navigation } = this.props;
     return [
-      getMenuItem('Profile', 'user-ninja', <Profile navigation={navigation} />),
-      getMenuItem('Car', 'car-bump', <Car />),
-      getMenuItem('Payments', 'money-bill-wave', <Payments />),
-      getMenuItem('History', 'file-invoice', <History />),
-      getMenuItem('More', 'ellipsis-h', <More />),
+      getMenuItem('Admin', 'user-secret', <AdminProfile navigation={navigation} />),
+      getMenuItem('Payments', 'hand-holding-usd', <AdminPayments />),
+      getMenuItem('Balance', 'abacus', <AdminBalance />),
+      getMenuItem('Parking', 'warehouse', <AdminParking />),
+      getMenuItem('Users', 'user-astronaut', <AdminUsers />),
+      getMenuItem('Tasks', 'unicorn', <AdminTasks />),
     ];
   }
 
@@ -88,21 +89,17 @@ class HomeScreen extends Component<Props, State> {
     return (
       <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
         {deviceHelper.isiPhoneX() ? (
-          <View
-            style={{
-              backgroundColor: colors.primary900,
-              top: 0,
-              right: 0,
-              left: 0,
-              height: 20,
-              zIndex: -1000,
-            }}
+          <View style={{
+            backgroundColor: colors.primary900,
+            top: 0,
+            right: 0,
+            left: 0,
+            height: 20,
+            zIndex: -1000,
+          }}
           />
         ) : null}
-        <TWHeader
-          title={this.getTitle()}
-          onPress={null}
-        />
+        <TWHeader title={this.getTitle()} onPress={null} />
         <TabNavigator tabBarStyle={{ height: scale(65), backgroundColor: colors.primary900 }}>
           {this.menuItems().map(menuItem => (
             <TabNavigator.Item
@@ -127,19 +124,18 @@ class HomeScreen extends Component<Props, State> {
             </TabNavigator.Item>
           ))}
         </TabNavigator>
-        <View
-          style={{
-            backgroundColor: colors.primary900,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            height: deviceHelper.isiPhoneX() ? 25 : 10,
-            zIndex: -1000,
-          }}
+        <View style={{
+          backgroundColor: colors.primary900,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          height: deviceHelper.isiPhoneX() ? 25 : 10,
+          zIndex: -1000,
+        }}
         />
       </View>
     );
   }
 }
 
-export default HomeScreen;
+export default AdminHomeScreen;

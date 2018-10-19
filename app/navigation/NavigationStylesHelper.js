@@ -5,7 +5,7 @@ const noHeader = {
 };
 
 const navigationHeader = {
-  noHeader
+  noHeader,
 };
 
 export default navigationHeader;

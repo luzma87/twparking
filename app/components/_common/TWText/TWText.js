@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Platform, Text } from 'react-native';
 import { scale } from 'react-native-size-matters';
-import { colors } from '../../../styles/colors';
+import colors from '../../../styles/colors';
 import fonts from '../../../styles/fonts';
 
 export type fontSizes = 'big' | 'title' | 'regular' | 'small' | 'tiny';
@@ -26,12 +26,6 @@ const baseFontSize = Platform.OS === 'ios' ? 20 : 19;
 const transformToScale = (factor) => {
   const total = Math.round(baseFontSize * factor);
   return scale(total);
-};
-
-const sizeToScale = (size) => {
-  const adjustedSize = size * 2;
-  const factor = adjustedSize / baseFontSize;
-  return transformToScale(factor);
 };
 
 const getFontSize = (size) => {
@@ -58,6 +52,7 @@ const getFontFamily = (font, weight, italic) => {
   return fonts[font][weight];
 };
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class TWText extends Component<Props, {}> {
   static defaultProps = {
     font: 'almendra',

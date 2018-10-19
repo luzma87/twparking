@@ -5,7 +5,7 @@ import { Button, Input } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import firebase from 'react-native-firebase';
 import appNavigation from '../navigation/Routes';
-import { colors } from '../styles/colors';
+import colors from '../styles/colors';
 import TWHeader from './_common/TWHeader/TWHeader';
 import navigationHeader from '../navigation/NavigationStylesHelper';
 import TWText from './_common/TWText/TWText';
@@ -20,7 +20,7 @@ const inputIconSize = 16;
 class LoginScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.unsubscribe = null;
     this.state = {
@@ -80,6 +80,7 @@ class LoginScreen extends Component<Props, State> {
 
     if (confirmResult && codeInput.length) {
       confirmResult.confirm(codeInput)
+      // eslint-disable-next-line no-unused-vars
         .then((user) => {
           this.setState({ message: 'Code Confirmed!' });
         })

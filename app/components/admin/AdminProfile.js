@@ -3,34 +3,35 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import { Button } from 'react-native-elements';
-import TWText from './_common/TWText/TWText';
-import appNavigation from '../navigation/Routes';
+import TWText from '../_common/TWText/TWText';
+import appNavigation from '../../navigation/Routes';
 
 type Props = {
-  navigation: Object
+  navigation: Object,
 };
 type State = {};
 
-class Profile extends Component<Props, State> {
+class AdminProfile extends Component<Props, State> {
   changeUser() {
     const { navigation } = this.props;
-    navigation.navigate(appNavigation.navigationTree.AdminHome);
+    navigation.navigate(appNavigation.navigationTree.Home);
   }
 
   render() {
     return (
       <View>
-        <TWText text="this is the profile screen" />
+        <TWText text="this is the AdminProfile screen" />
+
         <Button
           icon={(
             <FontAwesome5Pro
               solid
               size={16}
-              name="user-secret"
+              name="user-ninja"
               color="white"
             />
           )}
-          title="Change to admin view"
+          title="Change to normal view"
           onPress={() => {
             this.changeUser();
           }}
@@ -41,4 +42,4 @@ class Profile extends Component<Props, State> {
   }
 }
 
-export default Profile;
+export default AdminProfile;
