@@ -1,9 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import TabNavigator from 'react-native-tab-navigator';
-import { scale } from 'react-native-size-matters';
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import colors from '../../styles/colors';
 import TWHeader from '../_common/TWHeader/TWHeader';
 import navigationHeader from '../../navigation/NavigationStylesHelper';
@@ -11,9 +8,10 @@ import Profile from './ProfileTab';
 import Payments from './PaymentsTab';
 import HistoryTab from './HistoryTab';
 import MoreTab from './MoreTab';
-import fonts from '../../styles/fonts';
 import deviceHelper from '../../util/deviceHelper';
 import CarTab from './CarTab';
+import TWTabBar from '../_common/TWTabBar/TWTabBar';
+import TWTabBarHelper from '../_common/TWTabBar/TWTabBarHelper';
 
 type Props = {
   navigation: Object
@@ -22,35 +20,6 @@ type Props = {
 type State = {
   selectedTab: string,
 };
-
-const iconColor = colors.primary400;
-const selectedIconColor = colors.secondary500;
-
-const getIcon = iconName => (
-  <FontAwesome5Pro
-    light
-    color={iconColor}
-    size={30}
-    name={iconName}
-  />
-);
-
-const getSelectedIcon = iconName => (
-  <FontAwesome5Pro
-    solid
-    color={selectedIconColor}
-    size={30}
-    name={iconName}
-  />
-);
-
-const getMenuItem = (key, iconName, menu) => ({
-  key,
-  title: `screens.user.home.tabs.${key}`,
-  icon: getIcon(iconName),
-  selectedIcon: getSelectedIcon(iconName),
-  menu,
-});
 
 class UserHomeScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
@@ -64,17 +33,17 @@ class UserHomeScreen extends Component<Props, State> {
 
   getTitle() {
     const { selectedTab } = this.state;
-    return `screens.user.home.tabs.${selectedTab}`;
+    return TWTabBarHelper.getTitleCode('user', selectedTab);
   }
 
   menuItems() {
     const { navigation } = this.props;
     return [
-      getMenuItem('Profile', 'user-ninja', <Profile navigation={navigation} />),
-      getMenuItem('Car', 'car-bump', <CarTab />),
-      getMenuItem('Payments', 'money-bill-wave', <Payments />),
-      getMenuItem('History', 'file-invoice', <HistoryTab />),
-      getMenuItem('More', 'ellipsis-h', <MoreTab />),
+      { key: 'Profile', icon: 'user-ninja', content: <Profile navigation={navigation} /> },
+      { key: 'Car', icon: 'car-bump', content: <CarTab /> },
+      { key: 'Payments', icon: 'money-bill-wave', content: <Payments /> },
+      { key: 'History', icon: 'file-invoice', content: <HistoryTab /> },
+      { key: 'More', icon: 'ellipsis-h', content: <MoreTab /> },
     ];
   }
 
@@ -102,30 +71,12 @@ class UserHomeScreen extends Component<Props, State> {
           titleI18n={this.getTitle()}
           onPress={null}
         />
-        <TabNavigator tabBarStyle={{ height: scale(65), backgroundColor: colors.primary900 }}>
-          {this.menuItems().map(menuItem => (
-            <TabNavigator.Item
-              key={menuItem.key}
-              titleStyle={{
-                fontFamily: fonts.vt323.regular,
-                fontSize: scale(15),
-                color: iconColor,
-              }}
-              tabStyle={[{ borderBottomColor: colors.primary300 }]}
-              selectedTitleStyle={{
-                fontSize: scale(15),
-                color: selectedIconColor,
-              }}
-              selected={selectedTab === menuItem.key}
-              title={menuItem.title}
-              renderIcon={() => menuItem.icon}
-              renderSelectedIcon={() => menuItem.selectedIcon}
-              onPress={() => this.changeTab(menuItem.key)}
-            >
-              {menuItem.menu}
-            </TabNavigator.Item>
-          ))}
-        </TabNavigator>
+        <TWTabBar
+          type="user"
+          selectedTab={selectedTab}
+          onChangeTab={key => this.changeTab(key)}
+          menuConfig={this.menuItems()}
+        />
         <View
           style={{
             backgroundColor: colors.primary900,

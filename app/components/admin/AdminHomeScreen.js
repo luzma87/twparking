@@ -1,13 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import TabNavigator from 'react-native-tab-navigator';
-import { scale } from 'react-native-size-matters';
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import colors from '../../styles/colors';
 import TWHeader from '../_common/TWHeader/TWHeader';
 import navigationHeader from '../../navigation/NavigationStylesHelper';
-import fonts from '../../styles/fonts';
 import deviceHelper from '../../util/deviceHelper';
 import AdminProfile from './ProfileTab';
 import AdminPayments from './PaymentsTab';
@@ -15,6 +11,8 @@ import AdminBalance from './BalanceTab';
 import AdminParkingTab from './ParkingTab';
 import AdminUsers from './UsersTab';
 import AdminTasks from './TasksTab';
+import TWTabBarHelper from '../_common/TWTabBar/TWTabBarHelper';
+import TWTabBar from '../_common/TWTabBar/TWTabBar';
 
 type Props = {
   navigation: Object
@@ -23,35 +21,6 @@ type Props = {
 type State = {
   selectedTab: string,
 };
-
-const iconColor = colors.primary400;
-const selectedIconColor = colors.secondary500;
-
-const getIcon = iconName => (
-  <FontAwesome5Pro
-    light
-    color={iconColor}
-    size={30}
-    name={iconName}
-  />
-);
-
-const getSelectedIcon = iconName => (
-  <FontAwesome5Pro
-    solid
-    color={selectedIconColor}
-    size={30}
-    name={iconName}
-  />
-);
-
-const getMenuItem = (key, iconName, menu) => ({
-  key,
-  title: `screens.admin.home.tabs.${key}`,
-  icon: getIcon(iconName),
-  selectedIcon: getSelectedIcon(iconName),
-  menu,
-});
 
 class AdminHomeScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
@@ -65,18 +34,18 @@ class AdminHomeScreen extends Component<Props, State> {
 
   getTitle() {
     const { selectedTab } = this.state;
-    return `screens.admin.home.tabs.${selectedTab}`;
+    return TWTabBarHelper.getTitleCode('admin', selectedTab);
   }
 
   menuItems() {
     const { navigation } = this.props;
     return [
-      getMenuItem('Admin', 'user-secret', <AdminProfile navigation={navigation} />),
-      getMenuItem('Payments', 'hand-holding-usd', <AdminPayments />),
-      getMenuItem('Balance', 'abacus', <AdminBalance />),
-      getMenuItem('Parking', 'warehouse', <AdminParkingTab />),
-      getMenuItem('Users', 'user-astronaut', <AdminUsers />),
-      getMenuItem('Tasks', 'unicorn', <AdminTasks />),
+      { key: 'Admin', icon: 'user-secret', content: <AdminProfile navigation={navigation} /> },
+      { key: 'Payments', icon: 'hand-holding-usd', content: <AdminPayments /> },
+      { key: 'Balance', icon: 'abacus', content: <AdminBalance /> },
+      { key: 'Parking', icon: 'warehouse', content: <AdminParkingTab /> },
+      { key: 'Users', icon: 'user-astronaut', content: <AdminUsers /> },
+      { key: 'Tasks', icon: 'unicorn', content: <AdminTasks /> },
     ];
   }
 
@@ -100,30 +69,12 @@ class AdminHomeScreen extends Component<Props, State> {
           />
         ) : null}
         <TWHeader titleI18n={this.getTitle()} onPress={null} />
-        <TabNavigator tabBarStyle={{ height: scale(65), backgroundColor: colors.primary900 }}>
-          {this.menuItems().map(menuItem => (
-            <TabNavigator.Item
-              key={menuItem.key}
-              titleStyle={{
-                fontFamily: fonts.vt323.regular,
-                fontSize: scale(15),
-                color: iconColor,
-              }}
-              tabStyle={[{ borderBottomColor: colors.primary300 }]}
-              selectedTitleStyle={{
-                fontSize: scale(15),
-                color: selectedIconColor,
-              }}
-              selected={selectedTab === menuItem.key}
-              title={menuItem.title}
-              renderIcon={() => menuItem.icon}
-              renderSelectedIcon={() => menuItem.selectedIcon}
-              onPress={() => this.changeTab(menuItem.key)}
-            >
-              {menuItem.menu}
-            </TabNavigator.Item>
-          ))}
-        </TabNavigator>
+        <TWTabBar
+          type="admin"
+          selectedTab={selectedTab}
+          onChangeTab={key => this.changeTab(key)}
+          menuConfig={this.menuItems()}
+        />
         <View style={{
           backgroundColor: colors.primary900,
           bottom: 0,
