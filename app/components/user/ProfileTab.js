@@ -11,11 +11,15 @@ import i18n from '../../i18n';
 
 type Props = {
   navigation: Object,
-  context: GlobalContext
+  context?: GlobalContext
 };
 type State = {};
 
 class Profile extends Component<Props, State> {
+  static defaultProps = {
+    context: null,
+  };
+
   changeUser() {
     // firebase.auth().signOut();
     const { context } = this.props;
@@ -29,9 +33,10 @@ class Profile extends Component<Props, State> {
   }
 
   render() {
+    const { context } = this.props;
     return (
       <View>
-        <TWText text={`this is the profile screen [${this.props.context.user.name}]`} />
+        <TWText text={`this is the Profile screen [${context ? context.user.name : ''}]`} />
         <TWText text={i18n.t('title')} />
         <TWText text={i18n.t('current', { language: i18n.currentLocale() })} />
         <Button

@@ -10,20 +10,25 @@ import type { GlobalContext } from '../../context/types';
 
 type Props = {
   navigation: Object,
-  context: GlobalContext
+  context?: GlobalContext
 };
 type State = {};
 
 class AdminProfile extends Component<Props, State> {
+  static defaultProps = {
+    context: null,
+  };
+
   changeUser() {
     const { navigation } = this.props;
     navigation.navigate(appNavigation.navigationTree.UserHome);
   }
 
   render() {
+    const { context } = this.props;
     return (
       <View>
-        <TWText text={`this is the AdminProfile screen [${this.props.context.user.name}]`} />
+        <TWText text={`this is the AdminProfile screen [${context ? context.user.name : ''}]`} />
 
         <Button
           icon={(
