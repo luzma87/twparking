@@ -4,9 +4,10 @@ import { View } from 'react-native';
 import type { MenuConfig, MenuType } from '../TWTabBar/TWTabBar';
 import TWTabBarHelper from '../TWTabBar/TWTabBarHelper';
 import colors from '../../../styles/colors';
-import deviceHelper from '../../../util/deviceHelper';
 import TWHeader from '../TWHeader/TWHeader';
 import TWTabBar from '../TWTabBar/TWTabBar';
+import IPhoneXTopSeparator from '../Separators/IPhoneXTopSeparator';
+import BottomSeparator from '../Separators/BottomSeparator';
 
 type Props = {
   type: MenuType,
@@ -40,18 +41,7 @@ class HomeScreen extends Component<Props, State> {
     const { selectedTab } = this.state;
     return (
       <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
-        {deviceHelper.isiPhoneX() ? (
-          <View
-            style={{
-              backgroundColor: colors.primary900,
-              top: 0,
-              right: 0,
-              left: 0,
-              height: 20,
-              zIndex: -1000,
-            }}
-          />
-        ) : null}
+        <IPhoneXTopSeparator />
         <TWHeader
           titleI18n={this.getTitle()}
           onPress={null}
@@ -62,16 +52,7 @@ class HomeScreen extends Component<Props, State> {
           onChangeTab={key => this.changeTab(key)}
           menuConfig={menuConfig}
         />
-        <View
-          style={{
-            backgroundColor: colors.primary900,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            height: deviceHelper.isiPhoneX() ? 25 : 10,
-            zIndex: -1000,
-          }}
-        />
+        <BottomSeparator />
       </View>
     );
   }
