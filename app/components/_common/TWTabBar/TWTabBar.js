@@ -8,17 +8,19 @@ import fonts from '../../../styles/fonts';
 import I18n from '../../../i18n';
 import TWTabBarHelper from './TWTabBarHelper';
 
-type MenuConfigItem = {
+export type MenuType = 'user' | 'admin';
+ type MenuConfigItem = {
   key: string,
   icon: string,
   content: Object
 };
+export type MenuConfig = Array<MenuConfigItem>;
 
 type Props = {
   selectedTab: string,
   onChangeTab: (string) => void,
-  menuConfig: Array<MenuConfigItem>,
-  type: 'user' | 'admin'
+  menuConfig: MenuConfig,
+  type: MenuType
 };
 
 const iconColor = colors.primary400;
