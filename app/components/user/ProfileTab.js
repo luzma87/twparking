@@ -41,7 +41,7 @@ class ProfileTab extends Component<Props, State> {
         <TWText i18n="title" />
         <TWText i18n="current" i18nParams={{ language: i18n.currentLocale() }} />
         <TWButton
-          titleI18n="toggles.toAdmin"
+          i18n="toggles.toAdmin"
           icon="user-secret"
           onPress={() => this.changeUser()}
         />

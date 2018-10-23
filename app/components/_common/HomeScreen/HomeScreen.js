@@ -43,7 +43,7 @@ class HomeScreen extends Component<Props, State> {
       <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
         <IPhoneXTopSeparator />
         <TWHeader
-          titleI18n={this.getTitle()}
+          i18n={this.getTitle()}
           onPress={null}
         />
         <TWTabBar

@@ -6,7 +6,7 @@ import TWButton from '../_common/TWButton/TWButton';
 const AdminUsers = () => (
   <View>
     <TWButton
-      titleI18n="title"
+      i18n="title"
       onPress={() => { console.warn('yay'); }}
     />
   </View>

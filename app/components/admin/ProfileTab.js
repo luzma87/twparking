@@ -31,7 +31,7 @@ class AdminProfile extends Component<Props, State> {
       <View>
         <TWText text={`this is the AdminProfile screen [${context ? context.user.name : ''}]`} />
         <TWButton
-          titleI18n="toggles.toRegular"
+          i18n="toggles.toRegular"
           icon="user-ninja"
           onPress={() => this.changeUser()}
         />

@@ -141,7 +141,7 @@ class LoginScreen extends Component<Props, State> {
         />
         <TWButton
           uppercase
-          titleI18n="screens.login.buttons.signIn"
+          i18n="screens.login.buttons.signIn"
           icon="sign-in"
           iconSize={inputIconSize}
           onPress={() => this.signIn()}
@@ -191,7 +191,7 @@ class LoginScreen extends Component<Props, State> {
         />
         <TWButton
           uppercase
-          titleI18n="screens.login.buttons.confirm"
+          i18n="screens.login.buttons.confirm"
           icon="paw"
           onPress={() => this.confirmCode()}
         />
@@ -203,7 +203,7 @@ class LoginScreen extends Component<Props, State> {
     const { user, confirmResult } = this.state;
     return (
       <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
-        <TWHeader title={i18n.t('screens.login.title<TW')} onPress={null} />
+        <TWHeader i18n="screens.login.title" onPress={null} />
         {!user && !confirmResult ? this.renderPhoneNumberInput() : null}
 
         {this.renderMessage()}

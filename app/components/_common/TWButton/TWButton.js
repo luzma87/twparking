@@ -2,14 +2,15 @@
 import React, { Component } from 'react';
 import { Button } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import i18n from '../../../i18n';
+import I18n from '../../../i18n';
 import colors from '../../../styles/colors';
 import fonts from '../../../styles/fonts';
 
 type Props = {
-  titleI18n: string,
+  i18n: string,
   onPress: () => void,
 
+  i18nParams?: Object,
   icon?: string,
   iconSize?: number,
   iconColor?: string,
@@ -21,6 +22,7 @@ type Props = {
 // eslint-disable-next-line react/prefer-stateless-function
 class TWButton extends Component<Props, {}> {
   static defaultProps: Props = {
+    i18nParams: {},
     icon: null,
     iconSize: 16,
     buttonColor: colors.secondary500,
@@ -31,7 +33,8 @@ class TWButton extends Component<Props, {}> {
 
   render() {
     const {
-      titleI18n,
+      i18n,
+      i18nParams,
       onPress,
       icon,
       iconSize,
@@ -51,7 +54,7 @@ class TWButton extends Component<Props, {}> {
       fontSize: 24,
     };
 
-    let shownText = i18n.t(titleI18n);
+    let shownText = I18n.t(i18n, i18nParams);
     if (uppercase) {
       shownText = shownText.toUpperCase();
     }
