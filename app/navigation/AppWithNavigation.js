@@ -25,16 +25,6 @@ const theme = {
   Input: {
     inputStyle: { fontFamily: fonts.vt323.regular, fontSize: 24 },
   },
-  Button: {
-    titleStyle: {
-      fontFamily: fonts.vt323.regular,
-      fontSize: 24,
-    },
-    buttonStyle: {
-      backgroundColor: colors.secondary500,
-      borderRadius: 5,
-    },
-  },
 };
 
 const RootStack = createStackNavigator(appNavigation.routes,

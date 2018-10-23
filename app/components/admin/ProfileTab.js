@@ -7,6 +7,7 @@ import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
 import { withContext } from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
+import TWButton from "../_common/TWButton/TWButton";
 
 type Props = {
   navigation: Object,
@@ -29,21 +30,10 @@ class AdminProfile extends Component<Props, State> {
     return (
       <View>
         <TWText text={`this is the AdminProfile screen [${context ? context.user.name : ''}]`} />
-
-        <Button
-          icon={(
-            <FontAwesome5Pro
-              solid
-              size={16}
-              name="user-ninja"
-              color="white"
-            />
-          )}
-          title="Change to normal view"
-          onPress={() => {
-            this.changeUser();
-          }}
-          style={{ marginTop: 20 }}
+        <TWButton
+          titleI18n="toggles.toRegular"
+          icon="user-ninja"
+          onPress={() => this.changeUser()}
         />
       </View>
     );

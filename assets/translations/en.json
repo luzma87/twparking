@@ -1,6 +1,10 @@
 {
   "title": "react-native-languages demo",
   "current": "The current language is \"{{language}}\"",
+  "toggles": {
+    "toAdmin": "change to admin view",
+    "toRegular": "change to regular view"
+  },
   "commons": {
   },
   "screens": {
@@ -11,7 +15,7 @@
         "codeConfirm": "Code Confirm Error: {{message}}",
         "signIn": "Sign In With Phone Number Error: {{message}}"
       },
-      "codeSending":"Sending code…",
+      "codeSending": "Sending code…",
       "codeConfirmed": "Code Confirmed!",
       "codeSent": "Code has been sent!",
       "form": {

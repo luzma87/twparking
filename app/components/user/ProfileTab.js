@@ -8,6 +8,7 @@ import appNavigation from '../../navigation/Routes';
 import { withContext } from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
 import i18n from '../../i18n';
+import TWButton from "../_common/TWButton/TWButton";
 
 type Props = {
   navigation: Object,
@@ -23,7 +24,7 @@ class ProfileTab extends Component<Props, State> {
   changeUser() {
     // firebase.auth().signOut();
     const { context } = this.props;
-    console.warn(this.props);
+    // console.warn(this.props);
     const user = {
       name: 'Pepe',
     };
@@ -39,20 +40,10 @@ class ProfileTab extends Component<Props, State> {
         <TWText text={`this is the Profile screen [${context ? context.user.name : ''}]`} />
         <TWText text={i18n.t('title')} />
         <TWText text={i18n.t('current', { language: i18n.currentLocale() })} />
-        <Button
-          icon={(
-            <FontAwesome5Pro
-              solid
-              size={16}
-              name="user-secret"
-              color="white"
-            />
-          )}
-          title="Change to admin view"
-          onPress={() => {
-            this.changeUser();
-          }}
-          style={{ marginTop: 20 }}
+        <TWButton
+          titleI18n="toggles.toAdmin"
+          icon="user-secret"
+          onPress={() => this.changeUser()}
         />
       </View>
     );

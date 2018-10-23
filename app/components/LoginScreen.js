@@ -10,6 +10,7 @@ import TWHeader from './_common/TWHeader/TWHeader';
 import navigationHeader from '../navigation/NavigationStylesHelper';
 import TWText from './_common/TWText/TWText';
 import i18n from '../i18n';
+import TWButton from './_common/TWButton/TWButton';
 
 type Props = {
   navigation: Object
@@ -138,18 +139,12 @@ class LoginScreen extends Component<Props, State> {
             />
           )}
         />
-        <Button
-          icon={(
-            <FontAwesome5Pro
-              size={inputIconSize}
-              name="sign-in"
-              color="white"
-            />
-          )}
-          iconRight
-          title={i18n.t('screens.login.buttons.signIn').toUpperCase()}
-          onPress={this.signIn}
-          style={{ marginTop: 20 }}
+        <TWButton
+          uppercase
+          titleI18n="screens.login.buttons.signIn"
+          icon="sign-in"
+          iconSize={inputIconSize}
+          onPress={() => this.signIn()}
         />
       </View>
     );
@@ -194,18 +189,11 @@ class LoginScreen extends Component<Props, State> {
           )}
           value={codeInput}
         />
-        <Button
-          icon={(
-            <FontAwesome5Pro
-              solid
-              size={inputIconSize}
-              name="paw"
-              color="white"
-            />
-          )}
-          title={i18n.t('screens.login.buttons.confirm')}
-          onPress={this.confirmCode}
-          style={{ marginTop: 20 }}
+        <TWButton
+          uppercase
+          titleI18n="screens.login.buttons.confirm"
+          icon="paw"
+          onPress={() => this.confirmCode()}
         />
       </View>
     );

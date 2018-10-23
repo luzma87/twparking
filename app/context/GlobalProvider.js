@@ -19,7 +19,7 @@ class GlobalProvider extends Component<Props, GlobalContext> {
   }
 
   updateUser(user: User) {
-    this.setState({ user }, () => console.warn('updated user', user));
+    this.setState({ user }, () => {});
   }
 
   render() {

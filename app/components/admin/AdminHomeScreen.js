@@ -24,7 +24,7 @@ class AdminHomeScreen extends Component<Props, {}> {
       { key: 'Balance', icon: 'abacus', content: <BalanceTab /> },
       { key: 'Parking', icon: 'warehouse', content: <ParkingTab /> },
       { key: 'Users', icon: 'user-astronaut', content: <UsersTab /> },
-      { key: 'Tasks', icon: 'unicorn', content: <TasksTab /> },
+      { key: 'Tasks', icon: 'cogs', content: <TasksTab /> },
     ];
     return <HomeScreen type="admin" menuConfig={menuConfig} />;
   }
