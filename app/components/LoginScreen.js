@@ -172,7 +172,7 @@ class LoginScreen extends Component<Props, State> {
 
     return (
       <View style={{ marginTop: 25, padding: 25 }}>
-        <TWText text={i18n.t('screens.login.form.codeLabel')} />
+        <TWText i18n="screens.login.form.codeLabel" />
         <Input
           autoFocus
           style={{ height: 40, marginTop: 15, marginBottom: 15 }}

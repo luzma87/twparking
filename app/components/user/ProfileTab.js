@@ -38,8 +38,8 @@ class ProfileTab extends Component<Props, State> {
     return (
       <View>
         <TWText text={`this is the Profile screen [${context ? context.user.name : ''}]`} />
-        <TWText text={i18n.t('title')} />
-        <TWText text={i18n.t('current', { language: i18n.currentLocale() })} />
+        <TWText i18n="title" />
+        <TWText i18n="current" i18nParams={{ language: i18n.currentLocale() }} />
         <TWButton
           titleI18n="toggles.toAdmin"
           icon="user-secret"
