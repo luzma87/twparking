@@ -6,6 +6,7 @@
     "toRegular": "change to regular view"
   },
   "commons": {
+    "logout": "Logout"
   },
   "screens": {
     "login": {

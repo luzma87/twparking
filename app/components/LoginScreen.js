@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Button, Input } from 'react-native-elements';
+import { Input } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import firebase from 'react-native-firebase';
 import appNavigation from '../navigation/Routes';

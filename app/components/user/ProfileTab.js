@@ -1,14 +1,14 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import { Button } from 'react-native-elements';
+import firebase from 'react-native-firebase';
 import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
 import { withContext } from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
 import i18n from '../../i18n';
-import TWButton from "../_common/TWButton/TWButton";
+import TWButton from '../_common/TWButton/TWButton';
+import colors from '../../styles/colors';
 
 type Props = {
   navigation: Object,
@@ -33,6 +33,13 @@ class ProfileTab extends Component<Props, State> {
     navigation.navigate(appNavigation.navigationTree.AdminHome);
   }
 
+  signOut() {
+    const { navigation } = this.props;
+    firebase.auth().signOut().then(() => {
+      navigation.navigate(appNavigation.navigationTree.Login);
+    });
+  }
+
   render() {
     const { context } = this.props;
     return (
@@ -44,6 +51,13 @@ class ProfileTab extends Component<Props, State> {
           i18n="toggles.toAdmin"
           icon="user-secret"
           onPress={() => this.changeUser()}
+          style={{ marginTop: 20 }}
+        />
+        <TWButton
+          i18n="commons.logout"
+          buttonColor={colors.primary700}
+          onPress={() => this.signOut()}
+          style={{ marginTop: 40 }}
         />
       </View>
     );
