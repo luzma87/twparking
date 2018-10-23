@@ -15,7 +15,7 @@ type Props = {
 };
 type State = {};
 
-class Profile extends Component<Props, State> {
+class ProfileTab extends Component<Props, State> {
   static defaultProps = {
     context: null,
   };
@@ -59,4 +59,4 @@ class Profile extends Component<Props, State> {
   }
 }
 
-export default withContext(Profile);
+export default withContext(ProfileTab);

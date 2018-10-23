@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 import navigationHeader from '../../navigation/NavigationStylesHelper';
 import AdminProfile from './ProfileTab';
-import AdminPayments from './PaymentsTab';
-import AdminBalance from './BalanceTab';
-import AdminParkingTab from './ParkingTab';
-import AdminUsers from './UsersTab';
-import AdminTasks from './TasksTab';
+import PaymentsTab from './PaymentsTab';
+import BalanceTab from './BalanceTab';
+import ParkingTab from './ParkingTab';
+import UsersTab from './UsersTab';
+import TasksTab from './TasksTab';
 import HomeScreen from '../_common/HomeScreen/HomeScreen';
 
 type Props = {
@@ -20,11 +20,11 @@ class AdminHomeScreen extends Component<Props, {}> {
     const { navigation } = this.props;
     const menuConfig = [
       { key: 'Admin', icon: 'user-secret', content: <AdminProfile navigation={navigation} /> },
-      { key: 'Payments', icon: 'hand-holding-usd', content: <AdminPayments /> },
-      { key: 'Balance', icon: 'abacus', content: <AdminBalance /> },
-      { key: 'Parking', icon: 'warehouse', content: <AdminParkingTab /> },
-      { key: 'Users', icon: 'user-astronaut', content: <AdminUsers /> },
-      { key: 'Tasks', icon: 'unicorn', content: <AdminTasks /> },
+      { key: 'Payments', icon: 'hand-holding-usd', content: <PaymentsTab /> },
+      { key: 'Balance', icon: 'abacus', content: <BalanceTab /> },
+      { key: 'Parking', icon: 'warehouse', content: <ParkingTab /> },
+      { key: 'Users', icon: 'user-astronaut', content: <UsersTab /> },
+      { key: 'Tasks', icon: 'unicorn', content: <TasksTab /> },
     ];
     return <HomeScreen type="admin" menuConfig={menuConfig} />;
   }
