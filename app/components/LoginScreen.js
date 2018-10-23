@@ -145,6 +145,7 @@ class LoginScreen extends Component<Props, State> {
           icon="sign-in"
           iconSize={inputIconSize}
           onPress={() => this.signIn()}
+          style={{ marginTop: 20 }}
         />
       </View>
     );
@@ -194,6 +195,7 @@ class LoginScreen extends Component<Props, State> {
           i18n="screens.login.buttons.confirm"
           icon="paw"
           onPress={() => this.confirmCode()}
+          style={{ marginTop: 20 }}
         />
       </View>
     );

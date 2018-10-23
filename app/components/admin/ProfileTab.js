@@ -7,7 +7,7 @@ import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
 import { withContext } from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
-import TWButton from "../_common/TWButton/TWButton";
+import TWButton from '../_common/TWButton/TWButton';
 
 type Props = {
   navigation: Object,

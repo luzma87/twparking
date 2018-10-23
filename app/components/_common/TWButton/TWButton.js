@@ -72,7 +72,6 @@ class TWButton extends Component<Props, {}> {
         title={shownText}
         titleStyle={titleStyle}
         onPress={onPress}
-        style={{ marginTop: 20 }}
         buttonStyle={buttonStyle}
         {...attributes}
       />
