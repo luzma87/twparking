@@ -1,9 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
-import TWText from '../../_common/TWText/TWText';
-import TWInput from '../../_common/TWFormControls/TWInput';
+import { View, Image, ScrollView } from 'react-native';
+import _ from 'lodash';
 import InputForm from '../../_common/InputForm/InputForm';
+import Plate from './Plate';
 
 type Props = {};
 type State = {
@@ -37,50 +37,49 @@ class CarTab extends Component<Props, State> {
       plate, brand, model, year,
     } = this.state;
     return (
-      <View
+      <ScrollView
         style={{
-          flex: 1,
-          alignItems: 'center',
           paddingHorizontal: '10%',
         }}
       >
-        <View
-          style={{
-            marginTop: 40,
-          }}
-        >
-          <Image source={vehicles[1]} />
+
+        <View style={{ alignItems: 'center' }}>
+          <View style={{ marginTop: 40 }}>
+            <Image source={_.sample(vehicles)} />
+          </View>
+
+          <InputForm
+            field={plate}
+            i18nLabel="screens.cars.form.plate"
+            i18nPlaceholder="screens.cars.form.platePlaceholder"
+            onChangeText={value => this.setState({ plate: value })}
+          />
+
+          <InputForm
+            field={brand}
+            i18nLabel="screens.cars.form.brand"
+            i18nPlaceholder="screens.cars.form.brandPlaceholder"
+            onChangeText={value => this.setState({ brand: value })}
+          />
+
+          <InputForm
+            field={model}
+            i18nLabel="screens.cars.form.model"
+            i18nPlaceholder="screens.cars.form.modelPlaceholder"
+            onChangeText={value => this.setState({ model: value })}
+          />
+
+          <InputForm
+            field={year}
+            i18nLabel="screens.cars.form.year"
+            i18nPlaceholder="screens.cars.form.yearPlaceholder"
+            onChangeText={value => this.setState({ year: value })}
+          />
+
+          <Plate plate={plate} />
         </View>
 
-        <InputForm
-          field={plate}
-          i18nLabel="screens.cars.form.plate"
-          i18nPlaceholder="screens.cars.form.platePlaceholder"
-          onChangeText={value => this.setState({ plate: value })}
-        />
-
-        <InputForm
-          field={brand}
-          i18nLabel="screens.cars.form.brand"
-          i18nPlaceholder="screens.cars.form.brandPlaceholder"
-          onChangeText={value => this.setState({ brand: value })}
-        />
-
-        <InputForm
-          field={model}
-          i18nLabel="screens.cars.form.model"
-          i18nPlaceholder="screens.cars.form.modelPlaceholder"
-          onChangeText={value => this.setState({ model: value })}
-        />
-
-        <InputForm
-          field={year}
-          i18nLabel="screens.cars.form.year"
-          i18nPlaceholder="screens.cars.form.yearPlaceholder"
-          onChangeText={value => this.setState({ year: value })}
-        />
-
-      </View>
+      </ScrollView>
     );
   }
 }
