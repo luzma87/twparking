@@ -7,7 +7,7 @@ import appNavigation from '../../navigation/Routes';
 import { withContext } from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
 import i18n from '../../i18n';
-import TWButton from '../_common/TWButton/TWButton';
+import TWButton from '../_common/TWFormControls/TWButton';
 import colors from '../../styles/colors';
 
 type Props = {

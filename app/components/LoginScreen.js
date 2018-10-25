@@ -10,7 +10,7 @@ import TWHeader from './_common/TWHeader/TWHeader';
 import navigationHeader from '../navigation/NavigationStylesHelper';
 import TWText from './_common/TWText/TWText';
 import i18n from '../i18n';
-import TWButton from './_common/TWButton/TWButton';
+import TWButton from './_common/TWFormControls/TWButton';
 
 type Props = {
   navigation: Object

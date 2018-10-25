@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import { View } from 'react-native';
-import TWButton from '../_common/TWButton/TWButton';
+import TWButton from '../_common/TWFormControls/TWButton';
 
 const AdminUsers = () => (
   <View>
