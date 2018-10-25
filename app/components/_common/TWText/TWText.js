@@ -9,7 +9,7 @@ import I18n from '../../../i18n';
 export type fontSizes = 'big' | 'title' | 'regular' | 'small' | 'tiny';
 
 type Props = {
-  font?: 'almendra' | 'comingSoon' | 'cormorantUpright' | 'reenieBeanie' | 'vt323',
+  font?: 'almendra' | 'bree' | 'comingSoon' | 'cormorantUpright' | 'noticiaText' | 'reenieBeanie' | 'vt323',
   weight?: 'light' | 'regular' | 'medium' | 'semibold' | 'bold',
   size?: fontSizes,
   color?: string,
@@ -112,7 +112,7 @@ export default class TWText extends Component<Props, {}> {
     let shadowStyle = {};
     if (shadow) {
       shadowStyle = {
-        textShadowColor: colors.grayAlpha,
+        textShadowColor: colors.gray2,
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 3,
       };
