@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import navigationHeader from '../../navigation/NavigationStylesHelper';
-import ProfileTab from './ProfileTab';
+import ProfileTab from './ProfileTab/ProfileTab';
 import PaymentsTab from './PaymentsTab';
 import HistoryTab from './HistoryTab';
 import MoreTab from './MoreTab';
