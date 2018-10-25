@@ -120,6 +120,7 @@ export default class TWText extends Component<Props, {}> {
 
     return (
       <Text
+        numberOfLines={1}
         style={[
           {
             fontFamily: getFontFamily(usableFont, weight, italic),

@@ -9,7 +9,7 @@ type Props = {
   onChangeText: (string) => void,
   i18nPlaceholder?: string,
   i18nPlaceholderParams?: Object,
-  icon?: string,
+  icon?: ?string,
   iconSize?: number,
   iconColor?: string,
   value?: string,

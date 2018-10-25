@@ -50,29 +50,29 @@ class CarTab extends Component<Props, State> {
 
           <InputForm
             field={plate}
-            i18nLabel="screens.cars.form.plate"
-            i18nPlaceholder="screens.cars.form.platePlaceholder"
+            i18nLabel="screens.user.cars.form.plate"
+            i18nPlaceholder="screens.user.cars.form.platePlaceholder"
             onChangeText={value => this.setState({ plate: value })}
           />
 
           <InputForm
             field={brand}
-            i18nLabel="screens.cars.form.brand"
-            i18nPlaceholder="screens.cars.form.brandPlaceholder"
+            i18nLabel="screens.user.cars.form.brand"
+            i18nPlaceholder="screens.user.cars.form.brandPlaceholder"
             onChangeText={value => this.setState({ brand: value })}
           />
 
           <InputForm
             field={model}
-            i18nLabel="screens.cars.form.model"
-            i18nPlaceholder="screens.cars.form.modelPlaceholder"
+            i18nLabel="screens.user.cars.form.model"
+            i18nPlaceholder="screens.user.cars.form.modelPlaceholder"
             onChangeText={value => this.setState({ model: value })}
           />
 
           <InputForm
             field={year}
-            i18nLabel="screens.cars.form.year"
-            i18nPlaceholder="screens.cars.form.yearPlaceholder"
+            i18nLabel="screens.user.cars.form.year"
+            i18nPlaceholder="screens.user.cars.form.yearPlaceholder"
             onChangeText={value => this.setState({ year: value })}
           />
 

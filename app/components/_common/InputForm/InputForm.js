@@ -19,12 +19,10 @@ class InputForm extends Component<Props, State> {
       field, onChangeText, i18nLabel, i18nPlaceholder,
     } = this.props;
     return (
-      <View
-        style={styles.container}
-      >
-        <TWText i18n={i18nLabel} />
+      <View style={styles.container}>
+        <TWText i18n={i18nLabel} style={{ width: 55, marginRight: 5 }} align="right" />
         <TWInput
-          value={field}
+          value={field.toString()}
           containerStyle={styles.inputContainer}
           onChangeText={value => onChangeText(value)}
           i18nPlaceholder={i18nPlaceholder}

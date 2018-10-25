@@ -40,6 +40,32 @@
           "History": "History",
           "More": "More"
         }
+      },
+      "cars": {
+        "form": {
+          "plate": "Plate",
+          "platePlaceholder": "Plate…",
+          "brand": "Brand",
+          "brandPlaceholder": "Brand…",
+          "model": "Model",
+          "modelPlaceholder": "Model…",
+          "year": "Year",
+          "yearPlaceholder": "Year…"
+        }
+      },
+      "profile": {
+        "form": {
+          "name": "Name",
+          "namePlaceholder": "Name…",
+          "phone": "Phone",
+          "phonePlaceholder": "Phone…",
+          "ci": "Id",
+          "ciPlaceholder": "Id…",
+          "bank": "Bank",
+          "bankPlaceholder": "Bank…",
+          "username": "User",
+          "usernamePlaceholder": "User…"
+        }
       }
     },
     "admin": {
@@ -52,18 +78,6 @@
           "Users": "Users",
           "Tasks": "Tasks"
         }
-      }
-    },
-    "cars": {
-      "form": {
-        "plate": "Plate",
-        "platePlaceholder": "Plate…",
-        "brand": "Brand",
-        "brandPlaceholder": "Brand…",
-        "model": "Model",
-        "modelPlaceholder": "Model…",
-        "year": "Year",
-        "yearPlaceholder": "Year…"
       }
     }
   }
