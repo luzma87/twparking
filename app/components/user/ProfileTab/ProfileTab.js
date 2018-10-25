@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Avatar } from 'react-native-elements';
+import _ from 'lodash';
 import appNavigation from '../../../navigation/Routes';
 import type { GlobalContext } from '../../../context/types';
 import withContext from '../../../context/WithContext';
 import TWCornerRibbon from '../../_common/TWCornerRibbon/TWCornerRibbon';
 import InputForm from '../../_common/InputForm/InputForm';
-import _ from "lodash";
 
 const crown = require('./images/crown_champ.png');
 const skull1 = require('./images/skull1.png');
@@ -24,7 +24,9 @@ const skull10 = require('./images/skull10.png');
 const skull11 = require('./images/skull11.png');
 const skull12 = require('./images/skull12.png');
 
-const avatars = [skull1, skull2, skull3, skull4, skull5, skull6, skull7, skull8, skull9, skull10, skull11, skull12];
+const avatars = [
+  skull1, skull2, skull3, skull4, skull5, skull6, skull7, skull8, skull9, skull10, skull11, skull12,
+];
 
 type Props = {
   navigation: Object,
@@ -35,7 +37,8 @@ type State = {
   phone: string,
   ci: string,
   bank: string,
-  username: string
+  username: string,
+  user: Object
 };
 
 class ProfileTab extends Component<Props, State> {
@@ -51,8 +54,26 @@ class ProfileTab extends Component<Props, State> {
       ci: '',
       bank: '',
       username: '',
+      user: {},
     };
   }
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      const { phoneNumber } = user.toJSON();
+      firebase.database()
+        .ref('people')
+        .orderByChild('phone')
+        .equalTo(phoneNumber)
+        .once('value')
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            this.setState({ user: snapshot.val()[1] }, () => console.warn(this.state.user));
+          }
+        });
+    });
+  }
+
 
   changeUser() {
     // firebase.auth().signOut();
@@ -82,7 +103,9 @@ class ProfileTab extends Component<Props, State> {
       ci,
       bank,
       username,
+      user,
     } = this.state;
+
     return (
       <ScrollView>
         <View style={{
@@ -118,31 +141,31 @@ class ProfileTab extends Component<Props, State> {
           </View>
           <View style={{ paddingLeft: 40, paddingRight: 20 }}>
             <InputForm
-              field={name}
+              field={user.name}
               i18nLabel="screens.user.profile.form.name"
               i18nPlaceholder="screens.user.profile.form.namePlaceholder"
               onChangeText={(value) => { this.setState({ name: value }); }}
             />
             <InputForm
-              field={phone}
+              field={user.phone}
               i18nLabel="screens.user.profile.form.phone"
               i18nPlaceholder="screens.user.profile.form.phonePlaceholder"
               onChangeText={(value) => { this.setState({ phone: value }); }}
             />
             <InputForm
-              field={ci}
+              field={user.ci}
               i18nLabel="screens.user.profile.form.ci"
               i18nPlaceholder="screens.user.profile.form.ciPlaceholder"
               onChangeText={(value) => { this.setState({ ci: value }); }}
             />
             <InputForm
-              field={bank}
+              field={user.bank}
               i18nLabel="screens.user.profile.form.bank"
               i18nPlaceholder="screens.user.profile.form.bankPlaceholder"
               onChangeText={(value) => { this.setState({ bank: value }); }}
             />
             <InputForm
-              field={username}
+              field={user.user}
               i18nLabel="screens.user.profile.form.username"
               i18nPlaceholder="screens.user.profile.form.usernamePlaceholder"
               onChangeText={(value) => { this.setState({ username: value }); }}
