@@ -10,6 +10,17 @@ const fonts = {
       bold: 'Almendra-BoldItalic',
     },
   },
+  bree: {
+    light: 'BreeSerif-Regular',
+    regular: 'BreeSerif-Regular',
+    medium: 'BreeSerif-Regular',
+    semibold: 'BreeSerif-Regular',
+    bold: 'BreeSerif-Regular',
+    italic: {
+      regular: 'BreeSerif-Regular',
+      bold: 'BreeSerif-Regular',
+    },
+  },
   comingSoon: {
     light: 'ComingSoon-Regular',
     regular: 'ComingSoon-Regular',
@@ -30,6 +41,17 @@ const fonts = {
     italic: {
       regular: 'CormorantUpright-Regular',
       bold: 'CormorantUpright-Bold',
+    },
+  },
+  noticiaText: {
+    light: 'NoticiaText-Regular',
+    regular: 'NoticiaText-Regular',
+    medium: 'NoticiaText-Regular',
+    semibold: 'NoticiaText-Bold',
+    bold: 'NoticiaText-Bold',
+    italic: {
+      regular: 'NoticiaText-Italic',
+      bold: 'NoticiaText-BoldItalic',
     },
   },
   reenieBeanie: {
