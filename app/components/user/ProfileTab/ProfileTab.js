@@ -46,14 +46,13 @@ class ProfileTab extends Component<Props, State> {
   }
 
   render() {
-    const { context } = this.props;
     return (
       <View style={{
         alignItems: 'center',
         overflow: 'hidden',
       }}
       >
-        <TWCornerRibbon i18n="commons.champion" cornerRadius={100} />
+        <TWCornerRibbon i18n="commons.champion" />
         <View style={{
           alignItems: 'center',
           marginTop: 70,

@@ -13,13 +13,14 @@ type State = {};
 
 class TWCornerRibbon extends Component<Props, State> {
   static defaultProps = {
-    cornerRadius: 36,
+    cornerRadius: 100,
     side: 'right',
   };
 
   render() {
     const { i18n, cornerRadius, side } = this.props;
-    const labelHeight = Math.sqrt((cornerRadius ** 2) / 2);
+    const usableCornerRadius = cornerRadius || 95;
+    const labelHeight = Math.sqrt((usableCornerRadius ** 2) / 2);
     const labelWidth = labelHeight * 2;
     const originOffset = Math.sqrt(((labelHeight / 2) ** 2) / 2);
     const labelHorizontalPosition = -labelWidth / 2 + originOffset;
@@ -55,7 +56,7 @@ class TWCornerRibbon extends Component<Props, State> {
         },
         ]}
         >
-          <TWText i18n={i18n} />
+          <TWText font="cormorantUpright" i18n={i18n} weight="bold" color={colors.secondary900} />
         </View>
       </View>
     );
