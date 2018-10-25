@@ -6,6 +6,8 @@ import { Avatar } from 'react-native-elements';
 import appNavigation from '../../../navigation/Routes';
 import type { GlobalContext } from '../../../context/types';
 import withContext from '../../../context/WithContext';
+import colors from '../../../styles/colors';
+import TWCornerRibbon from '../../_common/TWCornerRibbon/TWCornerRibbon';
 
 // eslint-disable-next-line import/no-unresolved
 const skull1 = require('./images/skull1.png');
@@ -48,8 +50,10 @@ class ProfileTab extends Component<Props, State> {
     return (
       <View style={{
         alignItems: 'center',
+        overflow: 'hidden',
       }}
       >
+        <TWCornerRibbon i18n="commons.champion" cornerRadius={100} />
         <View style={{
           alignItems: 'center',
           marginTop: 70,
