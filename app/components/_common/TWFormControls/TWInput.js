@@ -7,14 +7,13 @@ import colors from '../../../styles/colors';
 
 type Props = {
   onChangeText: (string) => void,
-
   i18nPlaceholder?: string,
   i18nPlaceholderParams?: Object,
   icon?: string,
   iconSize?: number,
   iconColor?: string,
   value?: string,
-  type?: 'text' | 'number',
+  type?: 'string',
 };
 
 class TWInput extends Component<Props, {}> {
@@ -53,13 +52,13 @@ class TWInput extends Component<Props, {}> {
         placeholder={I18n.t(i18nPlaceholder, i18nPlaceholderParams)}
         value={value}
         keyboardType={keyboardType}
-        leftIcon={(
+        leftIcon={icon ? (
           <FontAwesome5Pro
             size={iconSize}
             color={iconColor}
             name={icon}
           />
-        )}
+        ) : null}
         {...attributes}
       />
     );

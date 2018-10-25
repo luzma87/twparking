@@ -54,7 +54,16 @@
       }
     },
     "cars": {
-      "plate": "Plate"
+      "form": {
+        "plate": "Plate",
+        "platePlaceholder": "Plate…",
+        "brand": "Brand",
+        "brandPlaceholder": "Brand…",
+        "model": "Model",
+        "modelPlaceholder": "Model…",
+        "year": "Year",
+        "yearPlaceholder": "Year…"
+      }
     }
   }
 }
