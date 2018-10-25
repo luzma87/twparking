@@ -13,7 +13,7 @@ type Props = {
   iconSize?: number,
   iconColor?: string,
   value?: string,
-  type?: 'string',
+  type?: 'text' | 'number',
 };
 
 class TWInput extends Component<Props, {}> {
@@ -40,7 +40,7 @@ class TWInput extends Component<Props, {}> {
       ...attributes
     } = this.props;
 
-    let keyboardType = 'text';
+    let keyboardType = 'default';
     if (type === 'number') {
       keyboardType = 'number-pad';
     }

@@ -33,6 +33,7 @@ export default class Plate extends Component<Props, State> {
   }
 
   render() {
+    const antSize = 15;
     return (
       <View
         style={{
@@ -55,9 +56,16 @@ export default class Plate extends Component<Props, State> {
             borderRadius: 15,
           }}
         >
-          <View style={{ position: 'absolute' }}>
-            <Image source={antLogo} />
-          </View>
+          <Image
+            source={antLogo}
+            style={{
+              width: antSize,
+              height: antSize,
+              position: 'absolute',
+              top: 3,
+              left: 25,
+            }}
+          />
           {this.getRivet('left')}
           {this.getRivet('right')}
 
