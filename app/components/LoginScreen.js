@@ -14,12 +14,12 @@ type Props = {
   navigation: Object
 };
 type State = {
-  user: Object,
+  user: ?Object,
   message: string,
   messageParam: Object,
   codeInput: string,
   phoneNumber: string,
-  confirmResult: Object
+  confirmResult: ?Object
 };
 
 const inputIconSize = 16;
@@ -68,6 +68,8 @@ class LoginScreen extends Component<Props, State> {
     }
   }
 
+  unsubscribe = () => {};
+
   signIn = () => {
     const { phoneNumber } = this.state;
 
@@ -81,7 +83,7 @@ class LoginScreen extends Component<Props, State> {
         } else {
           this.setState({ message: 'screens.login.errors.notAllowed', messageParam: {} });
         }
-      });
+      }, () => {});
   };
 
   confirmCode = () => {
@@ -104,7 +106,7 @@ class LoginScreen extends Component<Props, State> {
     firebase.auth().signOut();
   };
 
-  signInWithPhoneNumber(phoneNumber) {
+  signInWithPhoneNumber(phoneNumber: string) {
     this.setState({ message: 'screens.login.codeSending', messageParam: {} });
 
     firebase.auth().signInWithPhoneNumber(phoneNumber)

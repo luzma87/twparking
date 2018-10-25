@@ -9,7 +9,7 @@ type Props = {
 };
 
 class GlobalProvider extends Component<Props, GlobalContext> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       user: {

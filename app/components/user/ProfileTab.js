@@ -28,7 +28,9 @@ class ProfileTab extends Component<Props, State> {
     const user = {
       name: 'Pepe',
     };
-    context.updateUser(user);
+    if (context) {
+      context.updateUser(user);
+    }
     const { navigation } = this.props;
     navigation.navigate(appNavigation.navigationTree.AdminHome);
   }

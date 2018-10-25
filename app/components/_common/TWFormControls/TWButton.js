@@ -11,7 +11,7 @@ type Props = {
   onPress: () => void,
 
   i18nParams?: Object,
-  icon?: string,
+  icon?: ?string,
   iconSize?: number,
   iconColor?: string,
   buttonColor?: string,
@@ -20,7 +20,7 @@ type Props = {
 };
 
 class TWButton extends Component<Props, {}> {
-  static defaultProps: Props = {
+  static defaultProps = {
     i18nParams: {},
     icon: null,
     iconSize: 16,

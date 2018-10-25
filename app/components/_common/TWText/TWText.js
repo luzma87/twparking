@@ -14,7 +14,7 @@ type Props = {
   size?: fontSizes,
   color?: string,
   align?: 'left' | 'center' | 'right' | 'justify',
-  i18n?: string,
+  i18n?: ?string,
   i18nParams?: Object,
   text?: string,
   lineHeight?: number,

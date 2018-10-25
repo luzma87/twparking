@@ -39,7 +39,7 @@ class AppWithNavigation extends Component<{}, {}> {
     RNLanguages.removeEventListener('change', this.onLanguagesChange);
   }
 
-  onLanguagesChange = ({ language }) => {
+  onLanguagesChange = ({ language }: Object) => {
     i18n.locale = language;
   };
 

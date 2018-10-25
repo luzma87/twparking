@@ -9,7 +9,7 @@ import colors from '../../../styles/colors';
 
 type Props = {
   i18n: string,
-  onPress: () => void
+  onPress: ?() => void
 };
 
 const TWHeader = ({ i18n, onPress }: Props) => {
@@ -26,7 +26,7 @@ const TWHeader = ({ i18n, onPress }: Props) => {
         otherStyles,
       ]}
     >
-      {hasBackButton ? <TWBackButton onPress={() => onPress()} /> : null}
+      {hasBackButton ? <TWBackButton onPress={() => onPress && onPress()} /> : null}
       <TWText
         i18n={i18n}
         style={{ paddingTop: 20 }}

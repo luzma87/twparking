@@ -18,7 +18,7 @@ type Props = {
 };
 
 class TWInput extends Component<Props, {}> {
-  static defaultProps: Props = {
+  static defaultProps = {
     i18nPlaceholder: null,
     i18nPlaceholderParams: {},
     icon: null,
