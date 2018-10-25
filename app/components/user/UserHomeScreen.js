@@ -5,7 +5,7 @@ import ProfileTab from './ProfileTab/ProfileTab';
 import PaymentsTab from './PaymentsTab';
 import HistoryTab from './HistoryTab';
 import MoreTab from './MoreTab';
-import CarTab from './CarTab';
+import CarTab from './CarTab/CarTab';
 import HomeScreen from '../_common/HomeScreen/HomeScreen';
 
 type Props = {

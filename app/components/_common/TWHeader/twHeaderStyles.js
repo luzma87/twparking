@@ -9,7 +9,6 @@ const twHeaderStyles = ScaledSheet.create({
     borderTopColor: colors.transparent,
     borderLeftColor: colors.transparent,
     borderRightColor: colors.transparent,
-    marginBottom: 10,
     borderWidth: 0.25,
     justifyContent: 'center',
     ...Platform.select({
