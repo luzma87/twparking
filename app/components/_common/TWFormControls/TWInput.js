@@ -17,7 +17,6 @@ type Props = {
   type?: 'text' | 'number',
 };
 
-// eslint-disable-next-line react/prefer-stateless-function
 class TWInput extends Component<Props, {}> {
   static defaultProps: Props = {
     i18nPlaceholder: null,

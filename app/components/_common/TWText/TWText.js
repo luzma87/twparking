@@ -55,7 +55,6 @@ const getFontFamily = (font, weight, italic) => {
   return fonts[font][weight];
 };
 
-// eslint-disable-next-line react/prefer-stateless-function
 export default class TWText extends Component<Props, {}> {
   static defaultProps = {
     font: 'almendra',

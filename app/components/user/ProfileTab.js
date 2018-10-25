@@ -4,11 +4,11 @@ import { View } from 'react-native';
 import firebase from 'react-native-firebase';
 import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
-import { withContext } from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
 import i18n from '../../i18n';
 import TWButton from '../_common/TWFormControls/TWButton';
 import colors from '../../styles/colors';
+import withContext from '../../context/WithContext';
 
 type Props = {
   navigation: Object,

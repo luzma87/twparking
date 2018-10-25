@@ -7,7 +7,7 @@ const AdminUsers = () => (
   <View>
     <TWButton
       i18n="title"
-      onPress={() => { console.warn('yay'); }}
+      onPress={() => { }}
     />
   </View>
 );

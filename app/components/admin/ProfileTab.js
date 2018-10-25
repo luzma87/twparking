@@ -1,11 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import { Button } from 'react-native-elements';
 import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
-import { withContext } from '../../context/WithContext';
+import withContext from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
 import TWButton from '../_common/TWFormControls/TWButton';
 

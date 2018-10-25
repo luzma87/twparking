@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* @flow */
 import React, { Component } from 'react';
 import MyContext from './MyContext';
