@@ -1,16 +1,14 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Input } from 'react-native-elements';
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import firebase from 'react-native-firebase';
 import appNavigation from '../navigation/Routes';
 import colors from '../styles/colors';
 import TWHeader from './_common/TWHeader/TWHeader';
 import navigationHeader from '../navigation/NavigationStylesHelper';
 import TWText from './_common/TWText/TWText';
-import i18n from '../i18n';
 import TWButton from './_common/TWFormControls/TWButton';
+import TWInput from './_common/TWFormControls/TWInput';
 
 type Props = {
   navigation: Object
@@ -124,20 +122,14 @@ class LoginScreen extends Component<Props, State> {
     return (
       <View style={{ padding: 25 }}>
         <TWText i18n="screens.login.form.phoneLabel" />
-        <Input
-          autoFocus
+        <TWInput
+          value={phoneNumber}
           containerStyle={{ marginTop: 15, marginBottom: 20 }}
           onChangeText={value => this.setState({ phoneNumber: value })}
-          placeholder={i18n.t('screens.login.form.phonePlaceholder')}
-          value={phoneNumber}
-          keyboardType="number-pad"
-          leftIcon={(
-            <FontAwesome5Pro
-              size={inputIconSize}
-              color={colors.primary300}
-              name="mobile-android-alt"
-            />
-          )}
+          i18nPlaceholder="screens.login.form.phonePlaceholder"
+          type="number"
+          icon="mobile-android-alt"
+          iconSize={inputIconSize}
         />
         <TWButton
           uppercase
@@ -174,21 +166,14 @@ class LoginScreen extends Component<Props, State> {
     return (
       <View style={{ marginTop: 25, padding: 25 }}>
         <TWText i18n="screens.login.form.codeLabel" />
-        <Input
-          autoFocus
-          style={{ height: 40, marginTop: 15, marginBottom: 15 }}
-          onChangeText={value => this.setState({ codeInput: value })}
-          placeholder={i18n.t('screens.login.form.codePlaceholder')}
-          keyboardType="number-pad"
-          leftIcon={(
-            <FontAwesome5Pro
-              solid
-              size={inputIconSize}
-              color={colors.primary300}
-              name="paw"
-            />
-          )}
+        <TWInput
           value={codeInput}
+          containerStyle={{ marginTop: 15, marginBottom: 20 }}
+          onChangeText={value => this.setState({ codeInput: value })}
+          i18nPlaceholder="screens.login.form.codePlaceholder"
+          type="number"
+          icon="paw"
+          iconSize={inputIconSize}
         />
         <TWButton
           uppercase
