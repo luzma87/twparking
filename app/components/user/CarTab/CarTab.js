@@ -8,6 +8,7 @@ import TWText from '../../_common/TWText/TWText';
 
 type Props = {};
 type State = {
+  vehicle: number,
   plate: string,
   brand: string,
   model: string,
@@ -26,6 +27,7 @@ class CarTab extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      vehicle: _.sample(vehicles),
       plate: '',
       brand: '',
       model: '',
@@ -35,7 +37,7 @@ class CarTab extends Component<Props, State> {
 
   render() {
     const {
-      plate, brand, model, year,
+      vehicle, plate, brand, model, year,
     } = this.state;
     return (
       <ScrollView
@@ -46,7 +48,7 @@ class CarTab extends Component<Props, State> {
 
         <View style={{ alignItems: 'center' }}>
           <View style={{ height: 130, marginTop: 40 }}>
-            <Image source={_.sample(vehicles)} />
+            <Image source={vehicle} />
           </View>
 
           <Plate plate={plate} />

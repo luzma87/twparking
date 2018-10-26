@@ -20,7 +20,7 @@ class InputForm extends Component<Props, State> {
     } = this.props;
     return (
       <View style={styles.container}>
-        <TWText i18n={i18nLabel} style={{ width: 55, marginRight: 5 }} align="right" />
+        <TWText i18n={i18nLabel} style={{ width: 56, marginRight: 5 }} align="right" />
         <TWInput
           value={field ? field.toString() : ''}
           containerStyle={styles.inputContainer}

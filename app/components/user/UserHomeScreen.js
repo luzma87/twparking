@@ -18,8 +18,8 @@ class UserHomeScreen extends Component<Props, {}> {
   render() {
     const { navigation } = this.props;
     const menuConfig = [
-      { key: 'Profile', icon: 'user-ninja', content: <ProfileTab navigation={navigation} /> },
       { key: 'Car', icon: 'car-bump', content: <CarTab /> },
+      { key: 'Profile', icon: 'user-ninja', content: <ProfileTab navigation={navigation} /> },
       { key: 'Payments', icon: 'money-bill-wave', content: <PaymentsTab /> },
       { key: 'History', icon: 'file-invoice', content: <HistoryTab /> },
       { key: 'More', icon: 'ellipsis-h', content: <MoreTab /> },

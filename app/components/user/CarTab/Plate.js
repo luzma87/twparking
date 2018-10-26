@@ -1,11 +1,12 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
+import _ from 'lodash';
 import TWText from '../../_common/TWText/TWText';
 import colors from '../../../styles/colors';
 
 type Props = {
-  plate: ?string,
+  plate: string,
 
 };
 type State = {};
@@ -37,68 +38,64 @@ export default class Plate extends Component<Props, State> {
   render() {
     const antSize = 15;
     const { plate } = this.props;
+    const shownPlate = _.isEmpty(plate) ? ' ' : plate;
     return (
-      plate
-        ? (
-          <View
+      <View
+        style={{
+          width: '90%',
+          backgroundColor: 'white',
+          marginTop: 15,
+          marginBottom: 30,
+          marginLeft: 10,
+          padding: 5,
+          borderRadius: 15,
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: 'white',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderColor: 'black',
+            borderWidth: 5,
+            borderRadius: 15,
+          }}
+        >
+          <Image
+            source={antLogo}
             style={{
-              width: '90%',
-              backgroundColor: 'white',
-              marginTop: 15,
-              marginBottom: 30,
-              marginLeft: 10,
-              padding: 5,
-              borderRadius: 15,
+              width: antSize,
+              height: antSize,
+              position: 'absolute',
+              top: 3,
+              left: 25,
             }}
-          >
-            <View
-              style={{
-                backgroundColor: 'white',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderColor: 'black',
-                borderWidth: 5,
-                borderRadius: 15,
-              }}
-            >
-              <Image
-                source={antLogo}
-                style={{
-                  width: antSize,
-                  height: antSize,
-                  position: 'absolute',
-                  top: 3,
-                  left: 25,
-                }}
-              />
-              {this.getRivet('left')}
-              {this.getRivet('right')}
+          />
+          {this.getRivet('left')}
+          {this.getRivet('right')}
 
-              <TWText
-                text="Ecuador"
-                weight="bold"
-                size="small"
-                style={{ marginVertical: 7 }}
-                font="bree"
-                color={colors.black}
-                shadow
-                uppercase
-              />
-              <TWText
-                text={plate}
-                weight="bold"
-                font="noticiaText"
-                shadow
-                uppercase
-                color={colors.black}
-                size="big"
-              />
-            </View>
+          <TWText
+            text="Ecuador"
+            weight="bold"
+            size="small"
+            style={{ marginVertical: 7 }}
+            font="bree"
+            color={colors.black}
+            shadow
+            uppercase
+          />
+          <TWText
+            text={shownPlate}
+            weight="bold"
+            font="noticiaText"
+            shadow
+            uppercase
+            color={colors.black}
+            size="big"
+          />
+        </View>
 
-          </View>
-        )
-        : null
-
+      </View>
     );
   }
 }
