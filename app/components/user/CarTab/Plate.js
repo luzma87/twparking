@@ -18,79 +18,87 @@ export default class Plate extends Component<Props, State> {
     const horizontalPosition = side === 'left' ? { left: 10 } : { right: 10 };
     return (
       <View
-        style={[{
-          width: rivetSize,
-          height: rivetSize,
-          backgroundColor: colors.gray3,
-          position: 'absolute',
-          borderRadius: rivetSize,
-          borderWidth: 2,
-          borderColor: colors.gray1,
-          top: 3,
-        }, horizontalPosition]}
+        style={[
+          {
+            width: rivetSize,
+            height: rivetSize,
+            backgroundColor: colors.gray3,
+            position: 'absolute',
+            borderRadius: rivetSize,
+            borderWidth: 2,
+            borderColor: colors.gray1,
+            top: 3,
+          }, horizontalPosition,
+        ]}
       />
     );
   }
 
   render() {
     const antSize = 15;
+    const { plate } = this.props;
     return (
-      <View
-        style={{
-          width: '90%',
-          backgroundColor: 'white',
-          marginTop: 15,
-          marginBottom: 100,
-          marginLeft: 10,
-          padding: 5,
-          borderRadius: 15,
-        }}
-      >
-        <View
-          style={{
-            backgroundColor: 'white',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderColor: 'black',
-            borderWidth: 5,
-            borderRadius: 15,
-          }}
-        >
-          <Image
-            source={antLogo}
+      plate
+        ? (
+          <View
             style={{
-              width: antSize,
-              height: antSize,
-              position: 'absolute',
-              top: 3,
-              left: 25,
+              width: '90%',
+              backgroundColor: 'white',
+              marginTop: 15,
+              marginBottom: 30,
+              marginLeft: 10,
+              padding: 5,
+              borderRadius: 15,
             }}
-          />
-          {this.getRivet('left')}
-          {this.getRivet('right')}
+          >
+            <View
+              style={{
+                backgroundColor: 'white',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderColor: 'black',
+                borderWidth: 5,
+                borderRadius: 15,
+              }}
+            >
+              <Image
+                source={antLogo}
+                style={{
+                  width: antSize,
+                  height: antSize,
+                  position: 'absolute',
+                  top: 3,
+                  left: 25,
+                }}
+              />
+              {this.getRivet('left')}
+              {this.getRivet('right')}
 
-          <TWText
-            text="Ecuador"
-            weight="bold"
-            size="small"
-            style={{ marginVertical: 7 }}
-            font="bree"
-            color={colors.black}
-            shadow
-            uppercase
-          />
-          <TWText
-            text="PPO-1234"
-            weight="bold"
-            font="noticiaText"
-            shadow
-            uppercase
-            color={colors.black}
-            size="big"
-          />
-        </View>
+              <TWText
+                text="Ecuador"
+                weight="bold"
+                size="small"
+                style={{ marginVertical: 7 }}
+                font="bree"
+                color={colors.black}
+                shadow
+                uppercase
+              />
+              <TWText
+                text={plate}
+                weight="bold"
+                font="noticiaText"
+                shadow
+                uppercase
+                color={colors.black}
+                size="big"
+              />
+            </View>
 
-      </View>
+          </View>
+        )
+        : null
+
     );
   }
 }

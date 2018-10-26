@@ -4,6 +4,7 @@ import { View, Image, ScrollView } from 'react-native';
 import _ from 'lodash';
 import InputForm from '../../_common/InputForm/InputForm';
 import Plate from './Plate';
+import TWText from '../../_common/TWText/TWText';
 
 type Props = {};
 type State = {
@@ -44,9 +45,11 @@ class CarTab extends Component<Props, State> {
       >
 
         <View style={{ alignItems: 'center' }}>
-          <View style={{ marginTop: 40 }}>
+          <View style={{ height: 130, marginTop: 40 }}>
             <Image source={_.sample(vehicles)} />
           </View>
+
+          <Plate plate={plate} />
 
           <InputForm
             field={plate}
@@ -76,7 +79,7 @@ class CarTab extends Component<Props, State> {
             onChangeText={value => this.setState({ year: value })}
           />
 
-          <Plate plate={plate} />
+          <TWText weight="light" font="reenieBeanie" text="Pico y placa el dia Martes" size="title" style={{ marginVertical: 40 }} />
         </View>
 
       </ScrollView>
