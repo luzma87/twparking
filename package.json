@@ -9,7 +9,7 @@
     "flow": "./node_modules/.bin/flow check"
   },
   "dependencies": {
-    "i18n-js": "^3.0.11",
+    "i18n-js": "^3.1.0",
     "lodash": "^4.17.11",
     "react": "16.5.0",
     "react-native": "0.57.0",
