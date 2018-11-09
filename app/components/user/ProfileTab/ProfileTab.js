@@ -9,6 +9,8 @@ import type { GlobalContext } from '../../../context/types';
 import withContext from '../../../context/WithContext';
 import TWCornerRibbon from '../../_common/TWCornerRibbon/TWCornerRibbon';
 import InputForm from '../../_common/InputForm/InputForm';
+import TWButton from '../../_common/TWFormControls/TWButton';
+import colors from '../../../styles/colors';
 
 const crown = require('./images/crown_champ.png');
 const skull1 = require('./images/skull1.png');
@@ -33,11 +35,6 @@ type Props = {
   context?: GlobalContext
 };
 type State = {
-  name: string,
-  phone: string,
-  ci: string,
-  bank: string,
-  username: string,
   user: Object
 };
 
@@ -49,31 +46,30 @@ class ProfileTab extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      phone: '',
-      ci: '',
-      bank: '',
-      username: '',
       user: {},
     };
   }
 
   componentDidMount() {
+    this.loadUser();
+  }
+
+  loadUser() {
     firebase.auth().onAuthStateChanged((user) => {
       const { phoneNumber } = user.toJSON();
       firebase.database()
         .ref('people')
         .orderByChild('phone')
         .equalTo(phoneNumber)
-        .once('value')
-        .then((snapshot) => {
+        .once('value', (snapshot) => {
           if (snapshot.exists()) {
-            this.setState({ user: snapshot.val()[1] }, () => console.warn(this.state.user));
+            const keys = Object.keys(snapshot.val());
+            const key = keys[0];
+            this.setState({ user: snapshot.val()[key] });
           }
-        });
+        }, () => {});
     });
   }
-
 
   changeUser() {
     // firebase.auth().signOut();
@@ -96,23 +92,19 @@ class ProfileTab extends Component<Props, State> {
     });
   }
 
+  mergeUser(newData) {
+    const { user } = this.state;
+    const newUser = { ...user, ...newData };
+    this.setState({ user: newUser });
+  }
+
   render() {
     const {
-      name,
-      phone,
-      ci,
-      bank,
-      username,
       user,
     } = this.state;
-
     return (
       <ScrollView>
-        <View style={{
-          alignItems: 'center',
-          overflow: 'hidden',
-        }}
-        >
+        <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <TWCornerRibbon i18n="commons.champion" />
           <View style={{
             alignItems: 'center',
@@ -144,48 +136,47 @@ class ProfileTab extends Component<Props, State> {
               field={user.name}
               i18nLabel="screens.user.profile.form.name"
               i18nPlaceholder="screens.user.profile.form.namePlaceholder"
-              onChangeText={(value) => { this.setState({ name: value }); }}
+              onChangeText={(value) => { this.mergeUser({ name: value }); }}
             />
             <InputForm
               field={user.phone}
               i18nLabel="screens.user.profile.form.phone"
               i18nPlaceholder="screens.user.profile.form.phonePlaceholder"
-              onChangeText={(value) => { this.setState({ phone: value }); }}
-            />
-            <InputForm
-              field={user.ci}
-              i18nLabel="screens.user.profile.form.ci"
-              i18nPlaceholder="screens.user.profile.form.ciPlaceholder"
-              onChangeText={(value) => { this.setState({ ci: value }); }}
+              onChangeText={(value) => { this.mergeUser({ phone: value }); }}
             />
             <InputForm
               field={user.bank}
               i18nLabel="screens.user.profile.form.bank"
               i18nPlaceholder="screens.user.profile.form.bankPlaceholder"
-              onChangeText={(value) => { this.setState({ bank: value }); }}
+              onChangeText={(value) => { this.mergeUser({ bank: value }); }}
+            />
+            <InputForm
+              field={user.ci}
+              i18nLabel="screens.user.profile.form.ci"
+              inputProps={{ editable: false }}
+              i18nPlaceholder="screens.user.profile.form.ciPlaceholder"
+              onChangeText={(value) => { this.mergeUser({ ci: value }); }}
             />
             <InputForm
               field={user.user}
               i18nLabel="screens.user.profile.form.username"
+              inputProps={{ editable: false }}
               i18nPlaceholder="screens.user.profile.form.usernamePlaceholder"
-              onChangeText={(value) => { this.setState({ username: value }); }}
+              onChangeText={(value) => { this.mergeUser({ username: value }); }}
             />
           </View>
-          {/* <TWText text={`this is the Profile screen [${context ? context.user.name : ''}]`} /> */}
-          {/* <TWText i18n="title" /> */}
-          {/* <TWText i18n="current" i18nParams={{ language: i18n.currentLocale() }} /> */}
-          {/* <TWButton */}
-          {/* i18n="toggles.toAdmin" */}
-          {/* icon="user-secret" */}
-          {/* onPress={() => this.changeUser()} */}
-          {/* style={{ marginTop: 20 }} */}
-          {/* /> */}
-          {/* <TWButton */}
-          {/* i18n="commons.logout" */}
-          {/* buttonColor={colors.primary700} */}
-          {/* onPress={() => this.signOut()} */}
-          {/* style={{ marginTop: 40 }} */}
-          {/* /> */}
+          <TWButton
+            i18n="toggles.toAdmin"
+            buttonColor={colors.primary700}
+            onPress={() => this.changeUser()}
+            style={{ marginVertical: 40 }}
+          />
+          <TWButton
+            i18n="commons.logout"
+            buttonColor={colors.primary700}
+            onPress={() => this.signOut()}
+            style={{ marginVertical: 10 }}
+          />
         </View>
       </ScrollView>
     );

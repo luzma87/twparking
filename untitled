@@ -1,0 +1,81 @@
+ /*
+      admin: true,
+      bank: 'Pichincha',
+      champion:false,
+      ci:'1234567890',
+      parkingStars:4,
+      phone: '+593999744558',
+      user:'lmunda
+      car: {
+        brand: 'Chevrolet',
+        color: 'dark gray',
+        model:'Aveo',
+        plate:'pcq8088',
+        size:'small'
+      }
+
+
+      chilennial 593992567670
+      schubert 593982092865
+    */
+    const luzData = {
+      admin: true,
+      bank: 'Pichincha',
+      champion: false,
+      ci: '1234567890',
+      parkingStars: 4,
+      phone: '+593999744558',
+      user: 'lmunda',
+      car: {
+        brand: 'Chevrolet',
+        color: 'dark gray',
+        model: 'Aveo',
+        plate: 'aaa1234',
+        size: 'small',
+      },
+    };
+    const chilennialData = {
+      admin: true,
+      bank: 'Produbanco',
+      champion: true,
+      ci: '1234567891',
+      parkingStars: 3,
+      phone: '+593992567670',
+      user: 'jcarrillo',
+      car: {
+        brand: 'Mazda',
+        color: 'green',
+        model: '3',
+        plate: 'abc3241',
+        size: 'medium',
+      },
+    };
+    const schubertData = {
+      admin: true,
+      bank: 'Guayaquil',
+      champion: true,
+      ci: '1234567892',
+      parkingStars: 3,
+      phone: '+593982092865',
+      user: 'scrodrig',
+      car: {
+        brand: 'Kia',
+        color: 'black',
+        model: 'Rio',
+        plate: 'bcd4321',
+        size: 'big',
+      },
+    };
+
+    // Get a key for a new Post.
+    const luzKey = firebase.database().ref('people').push().key;
+    const chilennialKey = firebase.database().ref('people').push().key;
+    const schubertKey = firebase.database().ref('people').push().key;
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    const updates = {};
+    updates[`/people/${luzKey}`] = luzData;
+    updates[`/people/${chilennialKey}`] = chilennialData;
+    updates[`/people/${schubertKey}`] = schubertData;
+
+    return firebase.database().ref().update(updates);

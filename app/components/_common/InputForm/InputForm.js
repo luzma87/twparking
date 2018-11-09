@@ -9,14 +9,19 @@ type Props = {
   field: string | number,
   onChangeText: (string) => void,
   i18nLabel: string,
-  i18nPlaceholder: string
+  i18nPlaceholder: string,
+  inputProps?: Object
 };
 type State = {};
 
 class InputForm extends Component<Props, State> {
+  static defaultProps = {
+    inputProps: {},
+  };
+
   render() {
     const {
-      field, onChangeText, i18nLabel, i18nPlaceholder,
+      field, onChangeText, i18nLabel, i18nPlaceholder, inputProps,
     } = this.props;
     return (
       <View style={styles.container}>
@@ -26,6 +31,7 @@ class InputForm extends Component<Props, State> {
           containerStyle={styles.inputContainer}
           onChangeText={value => onChangeText(value)}
           i18nPlaceholder={i18nPlaceholder}
+          {...inputProps}
         />
       </View>
     );

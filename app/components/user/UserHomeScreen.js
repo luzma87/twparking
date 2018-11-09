@@ -22,7 +22,7 @@ class UserHomeScreen extends Component<Props, {}> {
       { key: 'Car', icon: 'car-bump', content: <CarTab /> },
       { key: 'Payments', icon: 'money-bill-wave', content: <PaymentsTab /> },
       { key: 'History', icon: 'file-invoice', content: <HistoryTab /> },
-      { key: 'More', icon: 'ellipsis-h', content: <MoreTab /> },
+      { key: 'More', icon: 'unicorn', content: <MoreTab /> },
     ];
     return <HomeScreen type="user" menuConfig={menuConfig} />;
   }
