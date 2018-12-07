@@ -19,7 +19,7 @@
     "react-native-size-matters": "^0.1.4",
     "react-native-tab-navigator": "^0.3.4",
     "react-native-vector-icons": "git+https://github.com/oblador/react-native-vector-icons.git#68f4a33ca98a543ccd7f3a2fd30223f83375f0ef",
-    "react-navigation": "^2.16.0"
+    "react-navigation": "^3.0.6"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
