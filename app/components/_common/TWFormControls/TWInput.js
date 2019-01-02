@@ -24,6 +24,7 @@ class TWInput extends Component<Props, {}> {
     iconSize: 0,
     iconColor: colors.primary300,
     value: '',
+    uppercase: false,
     type: 'text',
   };
 
@@ -37,6 +38,7 @@ class TWInput extends Component<Props, {}> {
       iconColor,
       value,
       type,
+      uppercase,
       ...attributes
     } = this.props;
 
@@ -45,12 +47,17 @@ class TWInput extends Component<Props, {}> {
       keyboardType = 'number-pad';
     }
 
+    let transformValue = value;
+    if (uppercase) {
+      transformValue = value.toUpperCase();
+    }
+
     return (
       <Input
         autoFocus
         onChangeText={text => onChangeText(text)}
         placeholder={I18n.t(i18nPlaceholder, i18nPlaceholderParams)}
-        value={value}
+        value={transformValue}
         keyboardType={keyboardType}
         leftIcon={icon ? (
           <FontAwesome5Pro

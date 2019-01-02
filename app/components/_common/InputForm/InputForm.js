@@ -10,6 +10,7 @@ type Props = {
   onChangeText: (string) => void,
   i18nLabel: string,
   i18nPlaceholder: string,
+  uppercase: boolean,
   inputProps?: Object
 };
 type State = {};
@@ -21,16 +22,21 @@ class InputForm extends Component<Props, State> {
 
   render() {
     const {
-      field, onChangeText, i18nLabel, i18nPlaceholder, inputProps,
+      field, onChangeText, i18nLabel, i18nPlaceholder, inputProps, uppercase,
     } = this.props;
     return (
       <View style={styles.container}>
-        <TWText i18n={i18nLabel} style={{ width: 56, marginRight: 5 }} align="right" />
+        <TWText
+          i18n={i18nLabel}
+          style={{ width: 56, marginRight: 5 }}
+          align="right"
+        />
         <TWInput
           value={field ? field.toString() : ''}
           containerStyle={styles.inputContainer}
           onChangeText={value => onChangeText(value)}
           i18nPlaceholder={i18nPlaceholder}
+          uppercase={uppercase}
           {...inputProps}
         />
       </View>

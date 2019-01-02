@@ -49,8 +49,8 @@
           "brandPlaceholder": "Brand…",
           "model": "Model",
           "modelPlaceholder": "Model…",
-          "year": "Year",
-          "yearPlaceholder": "Year…"
+          "size": "Size",
+          "sizePlaceholder": "Size…"
         }
       },
       "profile": {

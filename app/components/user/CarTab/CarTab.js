@@ -2,17 +2,17 @@
 import React, { Component } from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import _ from 'lodash';
+import withContext from '../../../context/WithContext';
 import InputForm from '../../_common/InputForm/InputForm';
 import Plate from './Plate';
 import TWText from '../../_common/TWText/TWText';
+import type { GlobalContext } from '../../../context/types';
 
-type Props = {};
+type Props = {
+  context?: GlobalContext,
+};
 type State = {
-  vehicle: number,
-  plate: string,
-  brand: string,
-  model: string,
-  year: string,
+  car: Object,
 };
 
 const carSampleOne = require('./images/car_sample_1.png');
@@ -24,21 +24,28 @@ const carSampleFive = require('./images/car_sample_5.png');
 const vehicles = [carSampleOne, carSampleTwo, carSampleThree, carSampleFour, carSampleFive];
 
 class CarTab extends Component<Props, State> {
+  static defaultProps = {
+    context: null,
+  };
+
   constructor(props: Props) {
     super(props);
     this.state = {
-      vehicle: _.sample(vehicles),
-      plate: '',
-      brand: '',
-      model: '',
-      year: '',
+      car: {},
     };
   }
 
+  componentDidMount() {
+    const { context } = this.props;
+    const { user } = context;
+    const { car } = user;
+    car.vehicle = _.sample(vehicles);
+    this.setState({ car });
+    console.warn('car', car);
+  }
+
   render() {
-    const {
-      vehicle, plate, brand, model, year,
-    } = this.state;
+    const { car } = this.state;
     return (
       <ScrollView
         style={{
@@ -48,37 +55,46 @@ class CarTab extends Component<Props, State> {
 
         <View style={{ alignItems: 'center' }}>
           <View style={{ height: 130, marginTop: 40 }}>
-            <Image source={vehicle} />
+            <Image source={car.vehicle} />
           </View>
 
-          <Plate plate={plate} />
+          <Plate plate={car.plate} />
 
           <InputForm
-            field={plate}
+            uppercase
+            field={car.plate}
             i18nLabel="screens.user.cars.form.plate"
             i18nPlaceholder="screens.user.cars.form.platePlaceholder"
-            onChangeText={value => this.setState({ plate: value })}
+            onChangeText={(value) => {
+              this.setState({ car: { ...car, plate: value } });
+            }}
           />
 
           <InputForm
-            field={brand}
+            field={car.brand}
             i18nLabel="screens.user.cars.form.brand"
             i18nPlaceholder="screens.user.cars.form.brandPlaceholder"
-            onChangeText={value => this.setState({ brand: value })}
+            onChangeText={(value) => {
+              this.setState({ car: { ...car, brand: value } });
+            }}
           />
 
           <InputForm
-            field={model}
+            field={car.model}
             i18nLabel="screens.user.cars.form.model"
             i18nPlaceholder="screens.user.cars.form.modelPlaceholder"
-            onChangeText={value => this.setState({ model: value })}
+            onChangeText={(value) => {
+              this.setState({ car: { ...car, model: value } });
+            }}
           />
 
           <InputForm
-            field={year}
-            i18nLabel="screens.user.cars.form.year"
-            i18nPlaceholder="screens.user.cars.form.yearPlaceholder"
-            onChangeText={value => this.setState({ year: value })}
+            field={car.size}
+            i18nLabel="screens.user.cars.form.size"
+            i18nPlaceholder="screens.user.cars.form.sizePlaceholder"
+            onChangeText={(value) => {
+              this.setState({ car: { ...car, size: value } });
+            }}
           />
 
           <TWText weight="light" font="reenieBeanie" text="Pico y placa el dia Martes" size="title" style={{ marginVertical: 40 }} />
@@ -89,4 +105,4 @@ class CarTab extends Component<Props, State> {
   }
 }
 
-export default CarTab;
+export default withContext(CarTab);
