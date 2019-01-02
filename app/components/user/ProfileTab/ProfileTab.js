@@ -55,6 +55,7 @@ class ProfileTab extends Component<Props, State> {
   }
 
   loadUser() {
+    const { context } = this.props;
     firebase.auth().onAuthStateChanged((user) => {
       const { phoneNumber } = user.toJSON();
       firebase.database()
@@ -66,8 +67,9 @@ class ProfileTab extends Component<Props, State> {
             const keys = Object.keys(snapshot.val());
             const key = keys[0];
             this.setState({ user: snapshot.val()[key] });
+            context.updateUser(snapshot.val()[key]);
           }
-        }, () => {});
+        }, () => { });
     });
   }
 

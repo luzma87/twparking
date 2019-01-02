@@ -14,7 +14,7 @@ type State = {};
 const antLogo = require('./images/ant.png');
 
 export default class Plate extends Component<Props, State> {
-  getRivet(side: 'left' | 'right') {
+  static getRivet(side: 'left' | 'right') {
     const rivetSize = 10;
     const horizontalPosition = side === 'left' ? { left: 10 } : { right: 10 };
     return (
@@ -71,8 +71,8 @@ export default class Plate extends Component<Props, State> {
               left: 25,
             }}
           />
-          {this.getRivet('left')}
-          {this.getRivet('right')}
+          {Plate.getRivet('left')}
+          {Plate.getRivet('right')}
 
           <TWText
             text="Ecuador"
