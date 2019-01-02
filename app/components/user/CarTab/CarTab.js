@@ -99,7 +99,7 @@ class CarTab extends Component<Props, State> {
             }}
           />
 
-          <View style={{ width: scale(200) }}>
+          <View style={{ width: scale(150) }}>
             <TWButton
               i18n="commons.buttons.save"
               icon="save"
