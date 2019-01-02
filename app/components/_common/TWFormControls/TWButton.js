@@ -9,7 +9,6 @@ import fonts from '../../../styles/fonts';
 type Props = {
   i18n: string,
   onPress: () => void,
-
   i18nParams?: Object,
   icon?: ?string,
   iconSize?: number,

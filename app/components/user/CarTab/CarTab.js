@@ -2,11 +2,13 @@
 import React, { Component } from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import _ from 'lodash';
+import { scale } from 'react-native-size-matters';
 import withContext from '../../../context/WithContext';
 import InputForm from '../../_common/InputForm/InputForm';
 import Plate from './Plate';
 import TWText from '../../_common/TWText/TWText';
 import type { GlobalContext } from '../../../context/types';
+import TWButton from '../../_common/TWFormControls/TWButton';
 
 type Props = {
   context?: GlobalContext,
@@ -41,10 +43,10 @@ class CarTab extends Component<Props, State> {
     const { car } = user;
     car.vehicle = _.sample(vehicles);
     this.setState({ car });
-    console.warn('car', car);
   }
 
   render() {
+    const { context } = this.props;
     const { car } = this.state;
     return (
       <ScrollView
@@ -96,6 +98,15 @@ class CarTab extends Component<Props, State> {
               this.setState({ car: { ...car, size: value } });
             }}
           />
+
+          <View style={{ width: scale(200) }}>
+            <TWButton
+              i18n="commons.buttons.save"
+              icon="save"
+              uppercase
+              onPress={() => { context.updateCar(car); }}
+            />
+          </View>
 
           <TWText weight="light" font="reenieBeanie" text="Pico y placa el dia Martes" size="title" style={{ marginVertical: 40 }} />
         </View>
