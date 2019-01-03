@@ -52,14 +52,11 @@ class CarTab extends Component<Props, State> {
     const { car } = this.state;
     return (
       <ScrollView
-        style={{
-          paddingRight: '10%',
-          paddingLeft: '10%',
-        }}
+        style={styles.scrollContainer}
       >
 
         <View style={{ alignItems: 'center' }}>
-          <View style={{ height: 130, marginTop: 40 }}>
+          <View style={styles.carImage}>
             <Image source={car.vehicle} />
           </View>
 

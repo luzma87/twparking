@@ -5,6 +5,14 @@ const carStyles = ScaledSheet.create({
     flexDirection: 'row',
     marginVertical: 40,
   },
+  scrollContainer: {
+    paddingRight: '10%',
+    paddingLeft: '10%',
+  },
+  carImage: {
+    height: 130,
+    marginTop: 40,
+  },
 });
 
 export default carStyles;
