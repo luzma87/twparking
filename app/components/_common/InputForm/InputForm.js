@@ -10,7 +10,7 @@ type Props = {
   onChangeText: (string) => void,
   i18nLabel: string,
   i18nPlaceholder: string,
-  uppercase: boolean,
+  uppercase?: boolean,
   inputProps?: Object
 };
 type State = {};
@@ -18,6 +18,7 @@ type State = {};
 class InputForm extends Component<Props, State> {
   static defaultProps = {
     inputProps: {},
+    uppercase: false,
   };
 
   render() {

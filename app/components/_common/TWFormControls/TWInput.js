@@ -13,6 +13,7 @@ type Props = {
   iconSize?: number,
   iconColor?: string,
   value?: string,
+  uppercase?: boolean,
   type?: 'text' | 'number',
 };
 
