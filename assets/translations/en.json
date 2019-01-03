@@ -54,6 +54,14 @@
           "modelPlaceholder": "Model…",
           "size": "Size",
           "sizePlaceholder": "Size…"
+        },
+        "restriction": {
+          "M": "Traffic restriction on Monday",
+          "Tu": "Traffic restriction on Tuesday",
+          "W": "Traffic restriction on Wednesday",
+          "Th": "Traffic restriction on Thursday",
+          "F": "Traffic restriction on Friday",
+          "None": "No Traffic restriction is applied"
         }
       },
       "profile": {
@@ -71,6 +79,7 @@
         }
       }
     },
+
     "admin": {
       "home": {
         "tabs": {

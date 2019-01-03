@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import { View, Image, ScrollView } from 'react-native';
 import _ from 'lodash';
 import { scale } from 'react-native-size-matters';
+import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import withContext from '../../../context/WithContext';
 import InputForm from '../../_common/InputForm/InputForm';
 import Plate from './Plate';
 import TWText from '../../_common/TWText/TWText';
 import type { GlobalContext } from '../../../context/types';
 import TWButton from '../../_common/TWFormControls/TWButton';
+import carHelper from '../../../util/carHelper';
+import colors from '../../../styles/colors';
 
 type Props = {
   context?: GlobalContext,
@@ -51,7 +54,8 @@ class CarTab extends Component<Props, State> {
     return (
       <ScrollView
         style={{
-          paddingHorizontal: '10%',
+          paddingRight: '10%',
+          paddingLeft: '10%',
         }}
       >
 
@@ -104,11 +108,22 @@ class CarTab extends Component<Props, State> {
               i18n="commons.buttons.save"
               icon="save"
               uppercase
-              onPress={() => { context.updateCar(car); }}
+              onPress={() => {
+                context.updateCar(car);
+              }}
             />
           </View>
 
-          <TWText weight="light" font="reenieBeanie" text="Pico y placa el dia Martes" size="title" style={{ marginVertical: 40 }} />
+          <View style={{ flexDirection: 'row', marginVertical: 40 }}>
+            <FontAwesome5Pro
+              solid
+              inverted
+              size={20}
+              name="engine-warning"
+              color={colors.secondary500}
+            />
+            <TWText weight="regular" i18n={`screens.user.cars.restriction.${carHelper.dayForTrafficRestriction(car.plate)}`} size="regular" style={{ marginLeft: 10 }} />
+          </View>
         </View>
 
       </ScrollView>
