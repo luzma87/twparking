@@ -1,7 +1,8 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
-import _ from 'lodash';
+// noinspection ES6CheckImport
+import { isEmpty } from 'lodash';
 import TWText from '../../_common/TWText/TWText';
 import colors from '../../../styles/colors';
 
@@ -38,7 +39,7 @@ export default class Plate extends Component<Props, State> {
   render() {
     const antSize = 15;
     const { plate } = this.props;
-    const shownPlate = _.isEmpty(plate) ? ' ' : plate;
+    const shownPlate = isEmpty(plate) ? ' ' : plate;
     return (
       <View
         style={{

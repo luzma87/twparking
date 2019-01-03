@@ -2,7 +2,8 @@
 import React from 'react';
 import { Image, View } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import _ from 'lodash';
+// noinspection ES6CheckImport
+import { sample } from 'lodash';
 
 const crown = require('./images/crown_champ.png');
 const skull1 = require('./images/skull1.png');
@@ -38,7 +39,7 @@ const UserAvatar = (props: Props) => {
       <Avatar
         rounded
         size="xlarge"
-        source={_.sample(avatars)}
+        source={sample(avatars)}
         imageProps={{
           resizeMode: 'contain',
         }}

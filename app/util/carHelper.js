@@ -1,4 +1,5 @@
-import _ from 'lodash';
+// noinspection ES6CheckImport
+import { findKey, last, includes } from 'lodash';
 
 const days = {
   M: ['1', '2'],
@@ -9,8 +10,8 @@ const days = {
 };
 
 const dayForTrafficRestriction = (plate) => {
-  const lastDigit = _.last(plate);
-  return _.findKey(days, day => _.includes(day, lastDigit)) || 'None';
+  const lastDigit = last(plate);
+  return findKey(days, day => includes(day, lastDigit)) || 'None';
 };
 
 const carHelper = {

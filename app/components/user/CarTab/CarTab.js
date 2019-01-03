@@ -1,16 +1,16 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View, Image, ScrollView } from 'react-native';
-import _ from 'lodash';
-import { scale } from 'react-native-size-matters';
+// noinspection ES6CheckImport
+import { sample } from 'lodash';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import withContext from '../../../context/WithContext';
 import InputForm from '../../_common/InputForm/InputForm';
 import Plate from './Plate';
 import TWText from '../../_common/TWText/TWText';
 import type { GlobalContext } from '../../../context/types';
-import TWButton from '../../_common/TWFormControls/TWButton';
 import carHelper from '../../../util/carHelper';
+import styles from './carStyles';
 import colors from '../../../styles/colors';
 
 type Props = {
@@ -44,12 +44,11 @@ class CarTab extends Component<Props, State> {
     const { context } = this.props;
     const { user } = context;
     const { car } = user;
-    car.vehicle = _.sample(vehicles);
+    car.vehicle = sample(vehicles);
     this.setState({ car });
   }
 
   render() {
-    const { context } = this.props;
     const { car } = this.state;
     return (
       <ScrollView
@@ -79,6 +78,7 @@ class CarTab extends Component<Props, State> {
 
           <InputForm
             field={car.brand}
+            inputProps={{ editable: false }}
             i18nLabel="screens.user.cars.form.brand"
             i18nPlaceholder="screens.user.cars.form.brandPlaceholder"
             onChangeText={(value) => {
@@ -88,6 +88,7 @@ class CarTab extends Component<Props, State> {
 
           <InputForm
             field={car.model}
+            inputProps={{ editable: false }}
             i18nLabel="screens.user.cars.form.model"
             i18nPlaceholder="screens.user.cars.form.modelPlaceholder"
             onChangeText={(value) => {
@@ -97,6 +98,7 @@ class CarTab extends Component<Props, State> {
 
           <InputForm
             field={car.size}
+            inputProps={{ editable: false }}
             i18nLabel="screens.user.cars.form.size"
             i18nPlaceholder="screens.user.cars.form.sizePlaceholder"
             onChangeText={(value) => {
@@ -104,18 +106,7 @@ class CarTab extends Component<Props, State> {
             }}
           />
 
-          <View style={{ width: scale(150) }}>
-            <TWButton
-              i18n="commons.buttons.save"
-              icon="save"
-              uppercase
-              onPress={() => {
-                context.updateCar(car);
-              }}
-            />
-          </View>
-
-          <View style={{ flexDirection: 'row', marginVertical: 40 }}>
+          <View style={styles.warningMessage}>
             <FontAwesome5Pro
               solid
               inverted
