@@ -67,6 +67,7 @@ class CarTab extends Component<Props, State> {
           <Plate plate={car.plate} />
 
           <InputForm
+            inputProps={{ editable: false }}
             uppercase
             field={car.plate}
             i18nLabel="screens.user.cars.form.plate"
