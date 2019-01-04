@@ -9,7 +9,8 @@
     "logout": "Logout",
     "champion": "Champion",
     "buttons": {
-      "save": "Save"
+      "save": "Save",
+      "delete": "Delete"
     }
   },
   "screens": {
@@ -69,7 +70,10 @@
           "year": "Year",
           "yearPlaceholder": "Year",
           "month": "Month",
-          "monthPlaceholder": "Month"
+          "monthPlaceholder": "Month",
+          "bankAccount": "Bank Account",
+          "payment": "Pay",
+          "History": "History"
         }
       },
       "profile": {
