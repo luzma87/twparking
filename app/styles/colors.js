@@ -14,6 +14,17 @@ const colors = {
   primary800: '#37474F',
   primary900: '#263238',
 
+  green50: '#E8F5E9',
+  green100: '#C8E6C9',
+  green200: '#A5D6A7',
+  green300: '#81C784',
+  green400: '#66BB6A',
+  green500: '#4CAF50',
+  green600: '#43A047',
+  green700: '#388E3C',
+  green800: '#2E7D32',
+  green900: '#1B5E20',
+
   secondary50: '#FCE4EC',
   secondary100: '#F8BBD0',
   secondary200: '#F48FB1',

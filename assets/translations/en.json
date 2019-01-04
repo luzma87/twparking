@@ -8,7 +8,7 @@
   "commons": {
     "logout": "Logout",
     "champion": "Champion",
-    "buttons":{
+    "buttons": {
       "save": "Save"
     }
   },
@@ -64,6 +64,14 @@
           "None": "No Traffic restriction is applied"
         }
       },
+      "payments": {
+        "form": {
+          "year": "Year",
+          "yearPlaceholder": "Year",
+          "month": "Month",
+          "monthPlaceholder": "Month"
+        }
+      },
       "profile": {
         "form": {
           "name": "Name",
@@ -79,7 +87,6 @@
         }
       }
     },
-
     "admin": {
       "home": {
         "tabs": {

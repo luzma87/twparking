@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import navigationHeader from '../../navigation/NavigationStylesHelper';
 import ProfileTab from './ProfileTab/ProfileTab';
-import PaymentsTab from './PaymentsTab';
+import PaymentsTab from './PaymentsTab/PaymentsTab';
 import HistoryTab from './HistoryTab';
 import MoreTab from './MoreTab';
 import CarTab from './CarTab/CarTab';

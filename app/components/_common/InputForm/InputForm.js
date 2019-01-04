@@ -1,13 +1,14 @@
 /* @flow */
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { scale } from 'react-native-size-matters';
 import TWText from '../TWText/TWText';
 import TWInput from '../TWFormControls/TWInput';
 import styles from './inputFormStyles';
 
 type Props = {
   field: string | number,
-  onChangeText: (string) => void,
+  onChangeText?: (string) => void,
   i18nLabel: string,
   i18nPlaceholder: string,
   uppercase?: boolean,
@@ -19,6 +20,7 @@ class InputForm extends Component<Props, State> {
   static defaultProps = {
     inputProps: {},
     uppercase: false,
+    onChangeText: () => {},
   };
 
   render() {
@@ -29,7 +31,7 @@ class InputForm extends Component<Props, State> {
       <View style={styles.container}>
         <TWText
           i18n={i18nLabel}
-          style={{ width: 56, marginRight: 5 }}
+          style={{ width: scale(60), marginRight: 5 }}
           align="right"
         />
         <TWInput

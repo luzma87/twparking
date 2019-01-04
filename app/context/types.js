@@ -11,5 +11,4 @@ export type Car = {
 export type GlobalContext = {
   user: User,
   updateUser: (User) => void,
-  updateCar: (Car) => void
 };

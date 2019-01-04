@@ -18,17 +18,12 @@ class GlobalProvider extends Component<Props, GlobalContext> {
           plate: '',
         },
       },
-      updateUser: this.updateUser.bind(this),
-      updateCar: this.updateCar.bind(this),
+      updateUser: user => this.updateUser(user),
     };
   }
 
   updateUser(user: User) {
     this.setState({ user }, () => {});
-  }
-
-  updateCar(car: Car) {
-    this.setState({ car }, () => {});
   }
 
   render() {
