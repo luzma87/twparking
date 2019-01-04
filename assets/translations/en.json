@@ -2,8 +2,8 @@
   "title": "react-native-languages demo",
   "current": "The current language is \"{{language}}\"",
   "toggles": {
-    "toAdmin": "change to admin view",
-    "toRegular": "change to regular view"
+    "toAdmin": "Change to admin view",
+    "toRegular": "Change to regular view"
   },
   "commons": {
     "logout": "Logout",

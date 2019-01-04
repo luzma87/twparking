@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import firebase from 'react-native-firebase';
+import { Rating } from 'react-native-elements';
 import appNavigation from '../../../navigation/Routes';
 import type { GlobalContext } from '../../../context/types';
 import withContext from '../../../context/WithContext';
@@ -10,6 +11,10 @@ import InputForm from '../../_common/InputForm/InputForm';
 import TWButton from '../../_common/TWFormControls/TWButton';
 import colors from '../../../styles/colors';
 import UserAvatar from './UserAvatar';
+
+const CAR_RATING_IMAGE = require('../../../../assets/images/car1.png');
+
+const isEmpty = (object: Object) => Object.keys(object).length === 0;
 
 type Props = {
   navigation: Object,
@@ -37,22 +42,27 @@ class ProfileTab extends Component<Props, State> {
 
   loadUser() {
     const { context } = this.props;
-    firebase.auth().onAuthStateChanged((user) => {
-      const { phoneNumber } = user.toJSON();
-      firebase.database()
-        .ref('people')
-        .orderByChild('phone')
-        .equalTo(phoneNumber)
-        .once('value', (snapshot) => {
-          if (snapshot.exists()) {
-            const keys = Object.keys(snapshot.val());
-            const key = keys[0];
-            this.setState({ user: snapshot.val()[key] });
-            context.updateUser(snapshot.val()[key]);
-          }
-        }, () => {
-        });
-    });
+    if (context) {
+      firebase.auth().onAuthStateChanged((authUser) => {
+        const { phoneNumber } = authUser.toJSON();
+        firebase.database()
+          .ref('people')
+          .orderByChild('phone')
+          .equalTo(phoneNumber)
+          .once('value', (snapshot) => {
+            if (snapshot.exists()) {
+              const keys = Object.keys(snapshot.val());
+              const key = keys[0];
+              const { user } = this.state;
+              if (isEmpty(user)) {
+                this.setState({ user: snapshot.val()[key] });
+                context.updateUser(snapshot.val()[key]);
+              }
+            }
+          }, () => {
+          });
+      });
+    }
   }
 
   changeUser() {
@@ -61,6 +71,9 @@ class ProfileTab extends Component<Props, State> {
     // console.warn(this.props);
     const user = {
       name: 'Pepe',
+      car: {
+        plate: 'AAA-000',
+      },
     };
     if (context) {
       context.updateUser(user);
@@ -86,12 +99,29 @@ class ProfileTab extends Component<Props, State> {
     const {
       user,
     } = this.state;
+    if (isEmpty(user)) {
+      return null;
+    }
+    const parkingStars = parseInt(user.parkingStars, 10);
     return (
       <ScrollView>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           {user.champion ? <TWCornerRibbon i18n="commons.champion" /> : null}
           <UserAvatar isAdmin={user.admin} style={{ marginTop: 60 }} />
-          <View style={{ paddingLeft: 40, paddingRight: 20 }}>
+          <View style={{
+            paddingLeft: 40, paddingRight: 20, width: '100%',
+          }}
+          >
+            <Rating
+              type="custom"
+              ratingImage={CAR_RATING_IMAGE}
+              ratingColor={colors.secondary500}
+              ratingBackgroundColor={colors.primary200}
+              startingValue={parkingStars}
+              readonly
+              imageSize={40}
+              style={{ marginTop: 16 }}
+            />
             <InputForm
               field={user.name}
               i18nLabel="screens.user.profile.form.name"
@@ -138,18 +168,22 @@ class ProfileTab extends Component<Props, State> {
               }}
             />
           </View>
-          <TWButton
-            i18n="toggles.toAdmin"
-            buttonColor={colors.primary700}
-            onPress={() => this.changeUser()}
-            style={{ marginVertical: 40 }}
-          />
-          <TWButton
-            i18n="commons.logout"
-            buttonColor={colors.primary700}
-            onPress={() => this.signOut()}
-            style={{ marginVertical: 10 }}
-          />
+          <View style={{ marginBottom: 30 }}>
+            {user.admin ? (
+              <TWButton
+                i18n="toggles.toAdmin"
+                buttonColor={colors.primary700}
+                onPress={() => this.changeUser()}
+                style={{ marginVertical: 40 }}
+              />
+            ) : null}
+            <TWButton
+              i18n="commons.logout"
+              buttonColor={colors.primary700}
+              onPress={() => this.signOut()}
+              style={{ marginVertical: 10 }}
+            />
+          </View>
         </View>
       </ScrollView>
     );

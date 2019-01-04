@@ -2,7 +2,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import MyContext from './MyContext';
-import type { GlobalContext, User } from './types';
+import type { Car, GlobalContext, User } from './types';
 
 type Props = {
   children: any
