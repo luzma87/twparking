@@ -77,6 +77,7 @@
           "History": "History"
         },
         "bank":{
+          "bank": "Bank",
           "account": "Account",
           "type": "Type",
           "id": "ID",

@@ -29,6 +29,13 @@ const carSampleFive = require('./images/car_sample_5.png');
 const vehicles = [carSampleOne, carSampleTwo, carSampleThree, carSampleFour, carSampleFive];
 
 class CarTab extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      car: {},
+    };
+  }
+
   componentDidMount() {
     const { context } = this.props;
     const { user } = context;
