@@ -61,7 +61,7 @@ const colors = {
   secondary700: '#C2185B',
   secondary800: '#AD1457',
   secondary900: '#880E4F',
-  
+
   blueGray50: '#ECEFF1',
   blueGray100: '#CFD8DC',
   blueGray200: '#B0BEC5',
