@@ -10,7 +10,6 @@ import IPhoneXTopSeparator from '../../_common/Separators/IPhoneXTopSeparator';
 import TWHeader from '../../_common/TWHeader/TWHeader';
 import InputForm from '../../_common/InputForm/InputForm';
 import TWClose from '../../_common/TWClose/TWClose';
-import styles from '../CarTab/carStyles';
 import colors from '../../../styles/colors';
 
 type Props = {
