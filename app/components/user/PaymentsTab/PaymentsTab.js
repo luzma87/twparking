@@ -10,77 +10,103 @@ import MoneyCauldron from './MoneyCauldron';
 import TWButton from '../../_common/TWFormControls/TWButton';
 import paymentStyles from './paymentStyles';
 import appNavigation from '../../../navigation/Routes';
+import TWModal from '../../_common/TWModal/TWModal';
 
 type Props = {
   navigation: Object,
 };
-type State = {};
+type State = {
+  isVisible: boolean,
+};
 
 class Payments extends Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false,
+    };
+  }
+
   render() {
     const { navigation } = this.props;
+    const { isVisible } = this.state;
     const buttonSpacing = { paddingVertical: 15 };
     const iconSize = 23;
     return (
-      <ScrollView>
-        <View>
-          <View style={paymentStyles.header}>
-            <MoneyCauldron size={scale(130)} />
-            <View style={paymentStyles.headerTag}>
-              <TWText weight="bold" text="$33.50" size="big" color={colors.green800} />
-              <TWTag color={colors.yellow800} label="Pending" fontColor="white" />
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }}>
+          <View>
+            <View style={paymentStyles.header}>
+              <MoneyCauldron size={scale(130)} />
+              <View style={paymentStyles.headerTag}>
+                <TWText
+                  weight="bold"
+                  text="$33.50"
+                  size="big"
+                  color={colors.green800}
+                />
+                <TWTag
+                  color={colors.yellow800}
+                  label="Pending"
+                  fontColor="white"
+                />
+              </View>
+            </View>
+
+            <View style={paymentStyles.form}>
+              <InputForm
+                field={2018}
+                inputProps={{ editable: false }}
+                i18nLabel="screens.user.payments.form.year"
+                i18nPlaceholder="screens.user.payments.form.yearPlaceholder"
+              />
+
+              <InputForm
+                field="October"
+                inputProps={{ editable: false }}
+                i18nLabel="screens.user.payments.form.month"
+                i18nPlaceholder="screens.user.payments.form.monthPlaceholder"
+              />
+
+              <View className="buttonsContainer">
+                <TWButton
+                  i18n="screens.user.payments.form.bankAccount"
+                  icon="piggy-bank"
+                  iconSize={iconSize}
+                  style={buttonSpacing}
+                  buttonColor={colors.yellow800}
+                  onPress={() => {
+                    navigation.navigate(appNavigation.navigationTree.BankInformation);
+                  }}
+                />
+
+                <TWButton
+                  i18n="screens.user.payments.form.payment"
+                  icon="usd-circle"
+                  style={buttonSpacing}
+                  iconSize={iconSize}
+                  buttonColor={colors.green400}
+                  onPress={() => {
+                    this.setState({ isVisible: true });
+                  }}
+                />
+
+                <TWButton
+                  i18n="screens.user.payments.form.undo"
+                  icon="undo"
+                  iconSize={iconSize}
+                  buttonColor={colors.secondary500}
+                  style={buttonSpacing}
+                  onPress={() => {
+                  }}
+                  disabledC="white"
+                />
+              </View>
             </View>
           </View>
-
-          <View style={paymentStyles.form}>
-            <InputForm
-              field={2018}
-              inputProps={{ editable: false }}
-              i18nLabel="screens.user.payments.form.year"
-              i18nPlaceholder="screens.user.payments.form.yearPlaceholder"
-            />
-
-            <InputForm
-              field="October"
-              inputProps={{ editable: false }}
-              i18nLabel="screens.user.payments.form.month"
-              i18nPlaceholder="screens.user.payments.form.monthPlaceholder"
-            />
-
-            <View className="buttonsContainer">
-              <TWButton
-                i18n="screens.user.payments.form.bankAccount"
-                icon="piggy-bank"
-                iconSize={iconSize}
-                style={buttonSpacing}
-                buttonColor={colors.yellow800}
-                onPress={() => {
-                  navigation.navigate(appNavigation.navigationTree.BankInformation);
-                }}
-              />
-
-              <TWButton
-                i18n="screens.user.payments.form.payment"
-                icon="usd-circle"
-                style={buttonSpacing}
-                iconSize={iconSize}
-                buttonColor={colors.green400}
-                onPress={() => {}}
-              />
-
-              <TWButton
-                i18n="screens.user.payments.form.undo"
-                icon="undo"
-                iconSize={iconSize}
-                buttonColor={colors.secondary500}
-                style={buttonSpacing}
-                onPress={() => {}}
-                disabledC="white"
-              />
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+        <TWModal isVisible={isVisible} />
+      </View>
     );
   }
 }
