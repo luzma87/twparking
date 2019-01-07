@@ -8,16 +8,16 @@ import withContext from '../../../context/WithContext';
 import InputForm from '../../_common/InputForm/InputForm';
 import Plate from './Plate';
 import TWText from '../../_common/TWText/TWText';
-import type { GlobalContext } from '../../../context/types';
+import type { Car, GlobalContext } from '../../../context/types';
 import carHelper from '../../../util/carHelper';
 import styles from './carStyles';
 import colors from '../../../styles/colors';
 
 type Props = {
-  context?: GlobalContext,
+  context: GlobalContext,
 };
 type State = {
-  car: Object,
+  car: Car,
 };
 
 const carSampleOne = require('./images/car_sample_1.png');
@@ -29,17 +29,6 @@ const carSampleFive = require('./images/car_sample_5.png');
 const vehicles = [carSampleOne, carSampleTwo, carSampleThree, carSampleFour, carSampleFive];
 
 class CarTab extends Component<Props, State> {
-  static defaultProps = {
-    context: null,
-  };
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      car: {},
-    };
-  }
-
   componentDidMount() {
     const { context } = this.props;
     const { user } = context;

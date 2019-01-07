@@ -1,7 +1,11 @@
 /* @flow */
 
 export type Car = {
-  plate: string
+  plate: string,
+  vehicle?: string | number,
+  brand?: string,
+  model?: string,
+  size?: string
 }
 
 export type User = {

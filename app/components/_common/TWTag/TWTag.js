@@ -5,9 +5,9 @@ import TWText from '../TWText/TWText';
 import colors from '../../../styles/colors';
 
 type Props = {
-  color?: String,
-  fontColor?: String,
-  label: String
+  color?: string,
+  fontColor?: string,
+  label: string
 };
 type State = {};
 

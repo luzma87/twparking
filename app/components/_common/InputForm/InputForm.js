@@ -29,7 +29,7 @@ class InputForm extends Component<Props, State> {
     const {
       field, onChangeText, i18nLabel, i18nPlaceholder, inputProps, uppercase, labelPadding,
     } = this.props;
-    const paddingRight = labelPadding > 60 ? '18%' : '10%';
+    const paddingRight = labelPadding || 0 > 60 ? '18%' : '10%';
     return (
       <View style={styles.container}>
         <TWText
@@ -40,7 +40,7 @@ class InputForm extends Component<Props, State> {
         <TWInput
           value={field ? field.toString() : ''}
           containerStyle={[styles.inputContainer, { paddingRight }]}
-          onChangeText={value => onChangeText(value)}
+          onChangeText={value => (onChangeText ? onChangeText(value) : null)}
           i18nPlaceholder={i18nPlaceholder}
           uppercase={uppercase}
           {...inputProps}
