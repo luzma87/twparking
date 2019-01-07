@@ -47,35 +47,37 @@ class Payments extends Component<Props, State> {
               i18nPlaceholder="screens.user.payments.form.monthPlaceholder"
             />
 
-            <TWButton
-              i18n="screens.user.payments.form.bankAccount"
-              icon="piggy-bank"
-              iconSize={iconSize}
-              style={buttonSpacing}
-              buttonColor={colors.yellow800}
-              onPress={() => {
-                navigation.navigate(appNavigation.navigationTree.BankInformation);
-              }}
-            />
+            <View className="buttonsContainer">
+              <TWButton
+                i18n="screens.user.payments.form.bankAccount"
+                icon="piggy-bank"
+                iconSize={iconSize}
+                style={buttonSpacing}
+                buttonColor={colors.yellow800}
+                onPress={() => {
+                  navigation.navigate(appNavigation.navigationTree.BankInformation);
+                }}
+              />
 
-            <TWButton
-              i18n="screens.user.payments.form.payment"
-              icon="usd-circle"
-              style={buttonSpacing}
-              iconSize={iconSize}
-              buttonColor={colors.green400}
-              onPress={() => {}}
-            />
+              <TWButton
+                i18n="screens.user.payments.form.payment"
+                icon="usd-circle"
+                style={buttonSpacing}
+                iconSize={iconSize}
+                buttonColor={colors.green400}
+                onPress={() => {}}
+              />
 
-            <TWButton
-              i18n="commons.buttons.delete"
-              icon="backspace"
-              iconSize={iconSize}
-              buttonColor={colors.secondary500}
-              style={buttonSpacing}
-              onPress={() => {}}
-              disabledC="white"
-            />
+              <TWButton
+                i18n="screens.user.payments.form.undo"
+                icon="undo"
+                iconSize={iconSize}
+                buttonColor={colors.secondary500}
+                style={buttonSpacing}
+                onPress={() => {}}
+                disabledC="white"
+              />
+            </View>
           </View>
         </View>
       </ScrollView>

@@ -74,6 +74,7 @@
           "bankAccount": "Bank Account",
           "bankAccountInformation": "Bank Account Information",
           "payment": "Pay",
+          "undo": "Undo payment",
           "History": "History"
         },
         "bank":{
