@@ -47,18 +47,45 @@ class BankAccountInformationScreen extends Component<Props, State> {
             inputProps={{ editable: false }}
             uppercase
             labelPadding={70}
-            field="asas"
+            field="2200123123"
             i18nLabel="screens.user.payments.bank.account"
             i18nPlaceholder="screens.user.payments.bank.account"
           />
-        </View>
 
-        <TWButton
-          i18n="screens.user.payments.form.bankAccount"
-          buttonColor={colors.primary700}
-          onPress={() => navigation.navigate(appNavigation.navigationTree.UserHome)}
-          style={{ marginVertical: 40 }}
-        />
+          <InputForm
+            inputProps={{ editable: false }}
+            uppercase
+            labelPadding={70}
+            field="Savings"
+            i18nLabel="screens.user.payments.bank.type"
+            i18nPlaceholder="screens.user.payments.bank.type"
+          />
+
+          <InputForm
+            inputProps={{ editable: false }}
+            uppercase
+            labelPadding={70}
+            field="17132671811"
+            i18nLabel="screens.user.payments.bank.id"
+            i18nPlaceholder="screens.user.payments.bank.id"
+          />
+
+          <InputForm
+            inputProps={{ editable: false }}
+            uppercase
+            labelPadding={70}
+            field="Luzma"
+            i18nLabel="screens.user.payments.bank.beneficiary"
+            i18nPlaceholder="screens.user.payments.bank.beneficiary"
+          />
+
+          <TWButton
+            i18n="screens.user.payments.form.bankAccount"
+            buttonColor={colors.primary700}
+            onPress={() => navigation.navigate(appNavigation.navigationTree.UserHome)}
+            style={{ marginVertical: 40 }}
+          />
+        </View>
       </View>
     );
   }
