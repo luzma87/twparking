@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import deviceHelper from '../../../util/deviceHelper';
 import colors from '../../../styles/colors';
 
 type Props = {
@@ -17,7 +16,7 @@ class TWClose extends Component<Props, State> {
       <View style={{
         position: 'absolute',
         right: 10,
-        top: deviceHelper.isiPhoneX() ? 100 : 60,
+        top: 10,
         zIndex: 1001,
       }}
       >

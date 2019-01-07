@@ -81,7 +81,8 @@
           "account": "Account",
           "type": "Type",
           "id": "ID",
-          "beneficiary": "Beneficiary"
+          "beneficiary": "Beneficiary",
+          "changePayment": "Change your bank if you paid from a different one"
         }
       },
       "profile": {

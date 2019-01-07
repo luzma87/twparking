@@ -19,6 +19,7 @@ type Props = {
   text?: string,
   lineHeight?: number,
   uppercase?: boolean,
+  multiline?: boolean,
   italic?: boolean,
   shadow?: boolean,
   style?: any,
@@ -68,6 +69,7 @@ export default class TWText extends Component<Props, {}> {
     i18nParams: {},
     style: null,
     italic: false,
+    multiline: false,
     shadow: false,
     uppercase: false,
   };
@@ -86,6 +88,7 @@ export default class TWText extends Component<Props, {}> {
       style,
       italic,
       uppercase,
+      multiline,
       shadow,
       ...attributes
     } = this.props;
@@ -117,10 +120,14 @@ export default class TWText extends Component<Props, {}> {
         textShadowRadius: 3,
       };
     }
+    let numberOfLines = 1;
+    if (multiline) {
+      numberOfLines = null;
+    }
 
     return (
       <Text
-        numberOfLines={1}
+        numberOfLines={numberOfLines}
         style={[
           {
             fontFamily: getFontFamily(usableFont, weight, italic),
