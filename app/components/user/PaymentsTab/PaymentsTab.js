@@ -9,12 +9,16 @@ import TWTag from '../../_common/TWTag/TWTag';
 import MoneyCauldron from './MoneyCauldron';
 import TWButton from '../../_common/TWFormControls/TWButton';
 import paymentStyles from './paymentStyles';
+import appNavigation from '../../../navigation/Routes';
 
-type Props = {};
+type Props = {
+  navigation: Object,
+};
 type State = {};
 
 class Payments extends Component<Props, State> {
   render() {
+    const { navigation } = this.props;
     const buttonSpacing = { paddingVertical: 15 };
     const iconSize = 23;
     return (
@@ -49,7 +53,9 @@ class Payments extends Component<Props, State> {
               iconSize={iconSize}
               style={buttonSpacing}
               buttonColor={colors.yellow800}
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate(appNavigation.navigationTree.BankInformation);
+              }}
             />
 
             <TWButton

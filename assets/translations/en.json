@@ -72,8 +72,15 @@
           "month": "Month",
           "monthPlaceholder": "Month",
           "bankAccount": "Bank Account",
+          "bankAccountInformation": "Bank Account Information",
           "payment": "Pay",
           "History": "History"
+        },
+        "bank":{
+          "account": "Account",
+          "type": "Type",
+          "id": "ID",
+          "beneficiary": "Beneficiary"
         }
       },
       "profile": {

@@ -10,7 +10,6 @@ const inputFormStyles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 20,
     marginLeft: 10,
-    paddingRight: '10%',
   },
 });
 
