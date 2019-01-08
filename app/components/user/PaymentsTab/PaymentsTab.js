@@ -11,6 +11,7 @@ import TWButton from '../../_common/TWFormControls/TWButton';
 import paymentStyles from './paymentStyles';
 import appNavigation from '../../../navigation/Routes';
 import TWModal from '../../_common/TWModal/TWModal';
+import type { payments } from '../../../context/types';
 
 type Props = {
   navigation: Object,
@@ -18,7 +19,7 @@ type Props = {
 type State = {
   isConfirmationPaymentVisible: boolean,
   isUndoPaymentVisible: boolean,
-  paymentStatus: string,
+  paymentStatus: payments,
   labelColor: string,
 };
 
@@ -38,7 +39,7 @@ class Payments extends Component<Props, State> {
   }
 
   confirmPayment() {
-    this.setState({ isConfirmationPaymentVisible: false, paymentStatus: 'Paid', labelColor: colors.green800 });
+    this.setState({ isConfirmationPaymentVisible: false, paymentStatus: 'Paid', labelColor: colors.green500 });
   }
 
   undoPayment() {

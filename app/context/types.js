@@ -13,6 +13,8 @@ export type User = {
   car: Car
 }
 
+export type payments = 'Pending' | 'Paid'
+
 export type GlobalContext = {
   user: User,
   updateUser: (User) => void,
