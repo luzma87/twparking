@@ -8,9 +8,12 @@
   "commons": {
     "logout": "Logout",
     "champion": "Champion",
+    "confirmation": "Confirmation",
     "buttons": {
       "save": "Save",
-      "delete": "Delete"
+      "delete": "Delete",
+      "yes": "Yes",
+      "no": "No"
     }
   },
   "screens": {
@@ -84,6 +87,10 @@
           "id": "ID",
           "beneficiary": "Beneficiary",
           "changePayment": "Change your bank if you paid from a different one"
+        },
+        "messages": {
+          "confirmPayment": "Make sure to have been done the transfer, Are you sure you want to confirm your payment?",
+          "undoPayment": "You made a mistake to mark as paid, Are you sure you want to undo your payment confirmation?"
         }
       },
       "profile": {

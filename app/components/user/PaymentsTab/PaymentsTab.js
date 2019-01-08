@@ -16,20 +16,40 @@ type Props = {
   navigation: Object,
 };
 type State = {
-  isVisible: boolean,
+  isConfirmationPaymentVisible: boolean,
+  isUndoPaymentVisible: boolean,
+  paymentStatus: string,
+  labelColor: string,
 };
 
 class Payments extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false,
+      isConfirmationPaymentVisible: false,
+      isUndoPaymentVisible: false,
+      paymentStatus: 'Pending',
+      labelColor: colors.yellow800,
     };
+  }
+
+  hideModal() {
+    this.setState({ isConfirmationPaymentVisible: false, isUndoPaymentVisible: false });
+  }
+
+  confirmPayment() {
+    this.setState({ isConfirmationPaymentVisible: false, paymentStatus: 'Paid', labelColor: colors.green800 });
+  }
+
+  undoPayment() {
+    this.setState({ isUndoPaymentVisible: false, paymentStatus: 'Pending', labelColor: colors.yellow800 });
   }
 
   render() {
     const { navigation } = this.props;
-    const { isVisible } = this.state;
+    const {
+      isUndoPaymentVisible, isConfirmationPaymentVisible, paymentStatus, labelColor,
+    } = this.state;
     const buttonSpacing = { paddingVertical: 15 };
     const iconSize = 23;
     return (
@@ -46,13 +66,12 @@ class Payments extends Component<Props, State> {
                   color={colors.green800}
                 />
                 <TWTag
-                  color={colors.yellow800}
-                  label="Pending"
+                  color={labelColor}
+                  label={paymentStatus}
                   fontColor="white"
                 />
               </View>
             </View>
-
             <View style={paymentStyles.form}>
               <InputForm
                 field={2018}
@@ -84,28 +103,41 @@ class Payments extends Component<Props, State> {
                   i18n="screens.user.payments.form.payment"
                   icon="usd-circle"
                   style={buttonSpacing}
+                  disabled={paymentStatus === 'Paid'}
                   iconSize={iconSize}
                   buttonColor={colors.green400}
-                  onPress={() => {
-                    this.setState({ isVisible: true });
-                  }}
+                  onPress={() => this.setState({ isConfirmationPaymentVisible: true })}
                 />
 
                 <TWButton
                   i18n="screens.user.payments.form.undo"
                   icon="undo"
+                  disabled={paymentStatus === 'Pending'}
                   iconSize={iconSize}
                   buttonColor={colors.secondary500}
                   style={buttonSpacing}
-                  onPress={() => {
-                  }}
-                  disabledC="white"
+                  onPress={() => this.setState({ isUndoPaymentVisible: true })}
                 />
               </View>
             </View>
           </View>
         </ScrollView>
-        <TWModal isVisible={isVisible} />
+
+        <TWModal
+          i18nHeader="commons.confirmation"
+          i18n="screens.user.payments.messages.confirmPayment"
+          isVisible={isConfirmationPaymentVisible}
+          onPressYes={() => this.confirmPayment()}
+          onPressNo={() => this.hideModal()}
+        />
+
+        <TWModal
+          i18nHeader="commons.confirmation"
+          i18n="screens.user.payments.messages.undoPayment"
+          isVisible={isUndoPaymentVisible}
+          onPressYes={() => this.undoPayment()}
+          onPressNo={() => this.hideModal()}
+        />
       </View>
     );
   }

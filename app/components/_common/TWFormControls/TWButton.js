@@ -14,8 +14,10 @@ type Props = {
   iconSize?: number,
   iconColor?: string,
   buttonColor?: string,
+  buttonDisabledColor?: string,
   titleColor?: string,
-  uppercase?: boolean
+  uppercase?: boolean,
+  disabled?: boolean,
 };
 
 class TWButton extends Component<Props, {}> {
@@ -27,6 +29,8 @@ class TWButton extends Component<Props, {}> {
     iconColor: colors.white,
     titleColor: colors.white,
     uppercase: false,
+    disabled: false,
+    buttonDisabledColor: colors.blueGray400,
   };
 
   render() {
@@ -39,6 +43,8 @@ class TWButton extends Component<Props, {}> {
       buttonColor,
       iconColor,
       titleColor,
+      disabled,
+      buttonDisabledColor,
       uppercase,
       ...attributes
     } = this.props;
@@ -57,6 +63,13 @@ class TWButton extends Component<Props, {}> {
       shownText = shownText.toUpperCase();
     }
 
+    let disableStyles = {};
+    if (disabled) {
+      disableStyles = {
+        backgroundColor: buttonDisabledColor,
+      };
+    }
+
     return (
       <Button
         icon={(
@@ -66,7 +79,9 @@ class TWButton extends Component<Props, {}> {
             name={icon}
             color={iconColor}
           />
-          )}
+        )}
+        disabled={disabled}
+        disabledStyle={disableStyles}
         title={shownText}
         titleStyle={titleStyle}
         onPress={onPress}

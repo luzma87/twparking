@@ -13,16 +13,16 @@ const twModalStyles = ScaledSheet.create({
     bottom: Dimensions.get('window').height / 3,
     borderRadius: 50,
     width: '80%',
-    minHeight: 280,
+    minHeight: 260,
     borderColor: 'rgba(0, 0, 0, 0.1)',
   },
 
   content: {
     backgroundColor: colors.blueGray300,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     width: '95%',
     alignItems: 'center',
-    height: 270,
+    height: 250,
     borderRadius: 50,
   },
 });
