@@ -6,6 +6,7 @@ import appNavigation from '../../navigation/Routes';
 import withContext from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
 import TWButton from '../_common/TWFormControls/TWButton';
+import colors from '../../styles/colors';
 
 type Props = {
   navigation: Object,
@@ -26,13 +27,18 @@ class AdminProfile extends Component<Props, State> {
   render() {
     const { context } = this.props;
     return (
-      <View>
+      <View style={{ alignItems: 'center', padding: 16 }}>
         <TWText text={`this is the AdminProfile screen [${context ? context.user.name : ''}]`} />
-        <TWButton
-          i18n="toggles.toRegular"
-          icon="user-ninja"
-          onPress={() => this.changeUser()}
-        />
+
+        <View style={{ paddingHorizontal: 16 }}>
+          <TWButton
+            i18n="toggles.toRegular"
+            icon="user"
+            buttonColor={colors.primary700}
+            onPress={() => this.changeUser()}
+            style={{ marginVertical: 40 }}
+          />
+        </View>
       </View>
     );
   }

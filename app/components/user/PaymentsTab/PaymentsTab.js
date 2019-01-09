@@ -24,7 +24,7 @@ type State = {
 };
 
 class Payments extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       isConfirmationPaymentVisible: false,
@@ -88,7 +88,7 @@ class Payments extends Component<Props, State> {
                 i18nPlaceholder="screens.user.payments.form.monthPlaceholder"
               />
 
-              <View className="buttonsContainer">
+              <View>
                 <TWButton
                   i18n="screens.user.payments.form.bankAccount"
                   icon="piggy-bank"

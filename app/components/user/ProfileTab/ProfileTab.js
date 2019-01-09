@@ -172,6 +172,7 @@ class ProfileTab extends Component<Props, State> {
             {user.admin ? (
               <TWButton
                 i18n="toggles.toAdmin"
+                icon="user-ninja"
                 buttonColor={colors.primary700}
                 onPress={() => this.changeUser()}
                 style={{ marginVertical: 40 }}
@@ -179,6 +180,7 @@ class ProfileTab extends Component<Props, State> {
             ) : null}
             <TWButton
               i18n="commons.logout"
+              icon="sign-out"
               buttonColor={colors.primary700}
               onPress={() => this.signOut()}
               style={{ marginVertical: 10 }}

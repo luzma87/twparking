@@ -51,6 +51,7 @@ class TWButton extends Component<Props, {}> {
     const buttonStyle = {
       backgroundColor: buttonColor,
       borderRadius: 5,
+      paddingHorizontal: 10,
     };
     const titleStyle = {
       color: titleColor,
