@@ -5,7 +5,6 @@ import TWText from '../_common/TWText/TWText';
 import appNavigation from '../../navigation/Routes';
 import withContext from '../../context/WithContext';
 import type { GlobalContext } from '../../context/types';
-import TWButton from '../_common/TWFormControls/TWButton';
 import TWMetroButton from '../_common/TWFormControls/TWMetroButton';
 
 type Props = {
@@ -25,6 +24,10 @@ class AdminProfile extends Component<Props, State> {
   }
 
   render() {
+    /*
+    CRUDS
+    logistics fees (cuentas, heroku, transferencias interbancarias, etc.)
+     */
     const { context } = this.props;
     return (
       <ScrollView>
@@ -32,149 +35,51 @@ class AdminProfile extends Component<Props, State> {
           flexDirection: 'row',
           flexWrap: 'wrap',
           padding: 10,
+          marginBottom: 16,
         }}
         >
           <TWText text={`this is the AdminProfile screen [${context ? context.user.name : ''}]`} />
           <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="hat-wizard"
-            iconSize={20}
-            tint="primary"
-          />
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="hat-wizard"
-            iconSize={20}
-            tint="primary"
-          />
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="hat-wizard"
-            iconSize={20}
-            tint="primary"
-          />
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="hat-wizard"
-            iconSize={20}
-            tint="primary"
-          />
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="alicorn"
-            iconSize={20}
-            tint="secondary"
-            widthRatio={2}
-            uppercase
-          />
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="unicorn"
-            iconSize={20}
-            tint="green"
-            widthRatio={2}
-            heightRatio={2}
-            uppercase
-          />
-          <View>
-            <TWMetroButton
-              i18n="commons.buttons.save"
-              onPress={() => {}}
-              icon="spider-black-widow"
-              iconSize={20}
-              tint="blue"
-            />
-            <TWMetroButton
-              i18n="commons.buttons.save"
-              onPress={() => {}}
-              icon="hat-witch"
-              iconSize={20}
-              tint="yellow"
-            />
-          </View>
-
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="hat-witch"
-            iconSize={20}
-            tint="blueGray"
-            widthRatio={1}
-            heightRatio={3}
-          />
-          <View>
-            <View style={{ flexDirection: 'row' }}>
-              <TWMetroButton
-                i18n="commons.buttons.save"
-                onPress={() => {}}
-                icon="spider-black-widow"
-                iconSize={20}
-                tint="blue"
-              />
-              <TWMetroButton
-                i18n="commons.buttons.save"
-                onPress={() => {}}
-                icon="spider-black-widow"
-                iconSize={20}
-                tint="blue"
-              />
-            </View>
-            <TWMetroButton
-              i18n="commons.buttons.save"
-              onPress={() => {}}
-              icon="hat-witch"
-              iconSize={20}
-              tint="secondary"
-              widthRatio={2}
-            />
-            <View style={{ flexDirection: 'row' }}>
-              <TWMetroButton
-                i18n="commons.buttons.save"
-                onPress={() => {}}
-                icon="hat-witch"
-                iconSize={20}
-                tint="yellow"
-              />
-              <TWMetroButton
-                i18n="commons.buttons.save"
-                onPress={() => {}}
-                icon="hat-witch"
-                iconSize={20}
-                tint="yellow"
-              />
-            </View>
-          </View>
-
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="hat-witch"
-            iconSize={20}
-            tint="blueGray"
-            widthRatio={3}
-          />
-
-          <TWMetroButton
-            i18n="commons.buttons.save"
-            onPress={() => {}}
-            icon="hat-witch"
-            iconSize={20}
-            tint="blueGray"
-            widthRatio={3}
-            heightRatio={3}
-          />
-
-          <TWButton
             i18n="toggles.toRegular"
-            icon="user"
             onPress={() => this.changeUser()}
-            style={{ marginVertical: 40 }}
+            icon="user"
+            tint="deepPurple"
+            tintBase={300}
+            widthRatio={3}
+          />
+          <TWMetroButton
+            i18n="screens.admin.home.tabs.Parking"
+            onPress={() => {}}
+            icon="warehouse"
+            widthRatio={2}
+            tint="blue"
+          />
+          <TWMetroButton
+            i18n="screens.admin.home.tabs.Owners"
+            onPress={() => {}}
+            icon="hat-wizard"
+            tint="green"
+          />
+          <TWMetroButton
+            i18n="screens.admin.home.tabs.Users"
+            onPress={() => {}}
+            tintBase={300}
+            icon="user-astronaut"
+            tint="secondary"
+          />
+          <TWMetroButton
+            i18n="screens.admin.home.tabs.Cars"
+            onPress={() => {}}
+            icon="space-shuttle"
+            widthRatio={2}
+            tint="cyan"
+          />
+          <TWMetroButton
+            i18n="screens.admin.home.tabs.Fees"
+            onPress={() => {}}
+            icon="hand-holding-magic"
+            tint="primary"
+            widthRatio={3}
           />
         </View>
       </ScrollView>

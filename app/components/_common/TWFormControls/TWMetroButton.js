@@ -15,7 +15,6 @@ const buttonSize = (usableWidth - buttonMargin * 4) / 3;
 
 const defaultWidth = buttonSize;
 const defaultHeight = buttonSize;
-const colorBase = 500;
 const contrastBase = 200;
 const iconColorBase = 400;
 
@@ -27,8 +26,8 @@ type Props = {
   iconSize?: number,
   uppercase?: boolean,
   disabled?: boolean,
-
   tint?: string,
+  tintBase?: number,
   widthRatio?: number,
   heightRatio?: number,
 };
@@ -37,9 +36,10 @@ class TWMetroButton extends Component<Props, {}> {
   static defaultProps = {
     i18nParams: {},
     icon: null,
-    iconSize: 16,
+    iconSize: 20,
     uppercase: false,
     disabled: false,
+    tintBase: 500,
     tint: 'primary',
     widthRatio: 1,
     heightRatio: 1,
@@ -55,6 +55,7 @@ class TWMetroButton extends Component<Props, {}> {
       disabled,
       uppercase,
       tint,
+      tintBase,
       widthRatio,
       heightRatio,
       ...attributes
@@ -63,15 +64,16 @@ class TWMetroButton extends Component<Props, {}> {
     const usableWidthRatio = widthRatio || 1;
     const usableHeightRatio = heightRatio || 1;
     const usableTint = tint || 'primary';
+    const usableTintBase = tintBase || 500;
 
     let width = usableWidthRatio * defaultWidth;
     width += (usableWidthRatio - 1) * (buttonMargin + 2);
     let height = usableHeightRatio * defaultHeight;
     height += (usableHeightRatio - 1) * (buttonMargin + 2);
 
-    const color1Number = `${usableTint}${colorBase}`;
-    const color2Number = `${usableTint}${colorBase + contrastBase}`;
-    const color3Number = `${usableTint}${colorBase + iconColorBase}`;
+    const color1Number = `${usableTint}${usableTintBase}`;
+    const color2Number = `${usableTint}${usableTintBase + contrastBase}`;
+    const color3Number = `${usableTint}${usableTintBase + iconColorBase}`;
     const color1 = colors[color1Number];
     const color2 = colors[color2Number];
     const color3 = colors[color3Number];

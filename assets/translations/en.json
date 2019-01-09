@@ -80,7 +80,7 @@
           "undo": "Undo payment",
           "History": "History"
         },
-        "bank":{
+        "bank": {
           "bank": "Bank",
           "account": "Account",
           "type": "Type",
@@ -112,11 +112,18 @@
       "home": {
         "tabs": {
           "Admin": "Admin",
-          "Payments": "Payments",
-          "Balance": "Balance",
+          "Logistics": "Logistics",
           "Parking": "Parking",
           "Users": "Users",
-          "Tasks": "Tasks"
+          "Cars": "Cars",
+          "Owners": "Owners",
+          "Fees": "Fees"
+        },
+        "logistics": {
+          "Balance": "Balance",
+          "Assignments": "Assignments",
+          "MonthlyPayments": "Monthly Payments",
+          "OwnerPayments": "Owner Payments"
         }
       }
     }
