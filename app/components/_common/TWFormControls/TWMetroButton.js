@@ -1,13 +1,20 @@
 /* @flow */
 import React, { Component } from 'react';
+import { Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import I18n from '../../../i18n';
 import colors from '../../../styles/colors';
 import fonts from '../../../styles/fonts';
 
-const defaultWidth = 115;
-const defaultHeight = 115;
+const buttonMargin = 2;
+const windowWidth = Dimensions.get('window').width;
+
+const usableWidth = windowWidth - 25;
+const buttonSize = (usableWidth - buttonMargin * 4) / 3;
+
+const defaultWidth = buttonSize;
+const defaultHeight = buttonSize;
 const colorBase = 500;
 const contrastBase = 200;
 const iconColorBase = 400;
@@ -57,8 +64,10 @@ class TWMetroButton extends Component<Props, {}> {
     const usableHeightRatio = heightRatio || 1;
     const usableTint = tint || 'primary';
 
-    const width = usableWidthRatio * defaultWidth;
-    const height = usableHeightRatio * defaultHeight;
+    let width = usableWidthRatio * defaultWidth;
+    width += (usableWidthRatio - 1) * (buttonMargin + 2);
+    let height = usableHeightRatio * defaultHeight;
+    height += (usableHeightRatio - 1) * (buttonMargin + 2);
 
     const color1Number = `${usableTint}${colorBase}`;
     const color2Number = `${usableTint}${colorBase + contrastBase}`;
@@ -75,7 +84,7 @@ class TWMetroButton extends Component<Props, {}> {
       backgroundColor: colors.secondary500,
       borderRadius: 0,
       paddingHorizontal: 10,
-      margin: 2,
+      margin: buttonMargin,
       borderWidth: 4,
     };
 
