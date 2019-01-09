@@ -1,8 +1,8 @@
 /* @flow */
 import React, { Component } from 'react';
 import navigationHeader from '../../navigation/NavigationStylesHelper';
-import AdminProfile from './ProfileTab';
-import PaymentsTab from './PaymentsTab';
+import AdminMetroMenu from './AdminMetroMenu';
+import PaymentsMetroMenu from './PaymentsMetroMenu';
 import HomeScreen from '../_common/HomeScreen/HomeScreen';
 
 type Props = {
@@ -15,8 +15,8 @@ class AdminHomeScreen extends Component<Props, {}> {
   render() {
     const { navigation } = this.props;
     const menuConfig = [
-      { key: 'Admin', icon: 'user-secret', content: <AdminProfile navigation={navigation} /> },
-      { key: 'Logistics', icon: 'hand-holding-usd', content: <PaymentsTab /> },
+      { key: 'Payments', icon: 'hand-holding-usd', content: <PaymentsMetroMenu navigation={navigation} /> },
+      { key: 'Admin', icon: 'user-secret', content: <AdminMetroMenu navigation={navigation} /> },
     ];
     return <HomeScreen type="admin" menuConfig={menuConfig} />;
   }

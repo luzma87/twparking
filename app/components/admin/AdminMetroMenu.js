@@ -13,7 +13,7 @@ type Props = {
 };
 type State = {};
 
-class AdminProfile extends Component<Props, State> {
+class AdminMetroMenu extends Component<Props, State> {
   static defaultProps = {
     context: null,
   };
@@ -38,7 +38,7 @@ class AdminProfile extends Component<Props, State> {
           marginBottom: 16,
         }}
         >
-          <TWText text={`this is the AdminProfile screen [${context ? context.user.name : ''}]`} />
+          <TWText text={`this is the Admin screen [${context ? context.user.name : ''}]`} />
           <TWMetroButton
             i18n="toggles.toRegular"
             onPress={() => this.changeUser()}
@@ -87,4 +87,4 @@ class AdminProfile extends Component<Props, State> {
   }
 }
 
-export default withContext(AdminProfile);
+export default withContext(AdminMetroMenu);

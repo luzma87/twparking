@@ -1,11 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
-import TWText from '../_common/TWText/TWText';
-import appNavigation from '../../navigation/Routes';
+import { ScrollView, View } from 'react-native';
 import withContext from '../../context/WithContext';
-import type { GlobalContext } from '../../context/types';
 import TWMetroButton from '../_common/TWFormControls/TWMetroButton';
+import type { GlobalContext } from '../../context/types';
 
 type Props = {
   navigation: Object,
@@ -13,15 +11,10 @@ type Props = {
 };
 type State = {};
 
-class AdminPayments extends Component<Props, State> {
+class PaymentsMetroMenu extends Component<Props, State> {
   static defaultProps = {
     context: null,
   };
-
-  changeUser() {
-    const { navigation } = this.props;
-    navigation.navigate(appNavigation.navigationTree.UserHome);
-  }
 
   render() {
     /*
@@ -30,7 +23,6 @@ class AdminPayments extends Component<Props, State> {
     generar cuota para este mes
     registro pago a owners
      */
-    const { context } = this.props;
     return (
       <ScrollView>
         <View style={{
@@ -75,4 +67,4 @@ class AdminPayments extends Component<Props, State> {
   }
 }
 
-export default withContext(AdminPayments);
+export default withContext(PaymentsMetroMenu);
