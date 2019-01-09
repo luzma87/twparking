@@ -84,7 +84,7 @@
           "bank": "Bank",
           "account": "Account",
           "type": "Type",
-          "id": "ID",
+          "id": "CC",
           "beneficiary": "Beneficiary",
           "changePayment": "Change your bank if you paid from a different one"
         },

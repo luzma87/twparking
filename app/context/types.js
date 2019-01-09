@@ -13,6 +13,13 @@ export type User = {
   car: Car
 }
 
+export type Account = {
+  account: string,
+  bank: string,
+  beneficiary: string,
+  id: string,
+}
+
 export type payments = 'Pending' | 'Paid'
 
 export type GlobalContext = {
