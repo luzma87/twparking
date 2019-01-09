@@ -14,7 +14,7 @@ import styles from './carStyles';
 import colors from '../../../styles/colors';
 
 type Props = {
-  context: GlobalContext,
+  context?: GlobalContext,
 };
 type State = {
   car: Car,
@@ -29,6 +29,10 @@ const carSampleFive = require('./images/car_sample_5.png');
 const vehicles = [carSampleOne, carSampleTwo, carSampleThree, carSampleFour, carSampleFive];
 
 class CarTab extends Component<Props, State> {
+  static defaultProps = {
+    context: null,
+  };
+
   constructor(props: Props) {
     super(props);
     this.state = {
