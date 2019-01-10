@@ -13,6 +13,11 @@ export type User = {
   car: Car
 }
 
+export type Owner = {
+  name: string,
+  email: string
+}
+
 export type Account = {
   account: string,
   bank: string,

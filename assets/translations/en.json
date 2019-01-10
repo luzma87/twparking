@@ -127,7 +127,16 @@
         }
       },
       "owners": {
-        "empty": "There are no owners yet!\nCreate one..."
+        "empty": "There are no owners yet!\nCreate one...",
+        "create": {
+          "title": "Create owner",
+          "form" : {
+            "name": "Name",
+            "namePlaceholder": "Name…",
+            "email": "Email",
+            "emailPlaceholder": "Email…"
+          }
+        }
       }
     }
   }
