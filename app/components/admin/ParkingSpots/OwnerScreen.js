@@ -6,6 +6,25 @@ import navigationHeader from '../../../navigation/NavigationStylesHelper';
 import OwnerList from './OwnerList';
 import CreateOwner from './CreateOwner';
 
+const compareOwners = (a, b) => {
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
+  return 0;
+};
+
+const ownerArrayFromObject = (owners) => {
+  const ownersArray = [];
+  Object.keys(owners).forEach((ownerKey) => {
+    const owner = {
+      id: ownerKey,
+      ...owners[ownerKey],
+    };
+    ownersArray.push(owner);
+  });
+  ownersArray.sort(compareOwners);
+  return ownersArray;
+};
+
 type Props = {
   navigation: any
 };
@@ -32,9 +51,10 @@ class OwnerScreen extends Component<Props, State> {
         .ref('owners')
         .once('value', (snapshot) => {
           if (snapshot.exists()) {
-            this.setState({ owners: snapshot.val() });
+            const owners = snapshot.val();
+            this.setState({ owners: ownerArrayFromObject(owners) });
           }
-        }, () => { console.warn('??'); });
+        }, (error) => { console.warn('??', error); });
     });
   }
 

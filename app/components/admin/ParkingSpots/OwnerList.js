@@ -13,10 +13,7 @@ type Props = {
 
 const ownersList = owners => (
   <View>
-    {Object.keys(owners).map((ownerKey) => {
-      const owner = owners[ownerKey];
-      return <TWText text={`${owner.name} - ${owner.email}`} />;
-    })}
+    {owners.map(owner => <TWText text={`${owner.name} - ${owner.email}`} />)}
   </View>
 );
 
