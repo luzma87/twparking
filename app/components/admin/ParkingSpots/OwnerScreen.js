@@ -3,9 +3,12 @@ import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import { isEmpty } from 'lodash';
+import ActionButton from 'react-native-action-button';
+import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import TWText from '../../_common/TWText/TWText';
 import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
+import colors from '../../../styles/colors';
 
 const noOwners = () => (
   <View style={{
@@ -17,7 +20,7 @@ const noOwners = () => (
 );
 
 type Props = {
-  navigation?: any
+  navigation: any
 };
 type State = {
   owners: any
@@ -25,10 +28,6 @@ type State = {
 
 class OwnerScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
-
-  static defaultProps = {
-    navigation: undefined,
-  };
 
   constructor(props: Props) {
     super(props);
@@ -56,7 +55,7 @@ class OwnerScreen extends Component<Props, State> {
   }
 
   ownersList() {
-
+    return (<TWText text="list of owners goes here" />);
   }
 
   render() {
@@ -68,6 +67,18 @@ class OwnerScreen extends Component<Props, State> {
         i18nTitle="screens.admin.home.tabs.Owners"
       >
         {owners.length === 0 ? noOwners() : this.ownersList()}
+        <ActionButton
+          buttonColor={colors.secondary500}
+          onPress={() => { console.warn('hi'); }}
+          renderIcon={() => (
+            <FontAwesome5Pro
+              solid
+              size={16}
+              name="user-plus"
+              color={colors.white}
+            />
+          )}
+        />
       </TWScreenWithNavigationBar>
     );
   }
