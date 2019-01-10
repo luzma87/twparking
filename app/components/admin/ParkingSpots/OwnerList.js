@@ -26,7 +26,7 @@ const ownersList = owners => (
 
 const noOwners = () => (
   <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-    <TWText i18n="screens.admin.owners.empty" weight="bold" multiline align="center" />
+    <TWText i18n="screens.admin.owners.empty" weight="bold" multiline align="center" font="vt323" size="title" />
   </View>
 );
 

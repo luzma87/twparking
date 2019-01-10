@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { Card } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import TWText from '../../_common/TWText/TWText';
@@ -13,10 +13,7 @@ type Props = {
 
 const header = owner => (
   <View>
-    <View style={{
-      flexDirection: 'row',
-    }}
-    >
+    <View style={{ flexDirection: 'row' }}>
       <FontAwesome5Pro
         solid
         size={16}
@@ -36,11 +33,18 @@ const header = owner => (
 const OwnerItem = (props: Props) => {
   const { owner } = props;
   return (
-    <TouchableOpacity>
-      <Card title={header(owner)}>
+    <Card title={header(owner)}>
+      <View style={{ flexDirection: 'row' }}>
+        <FontAwesome5Pro
+          solid
+          size={16}
+          name="at"
+          color={colors.primary800}
+          style={{ marginRight: 8 }}
+        />
         <TWText text={owner.email} />
-      </Card>
-    </TouchableOpacity>
+      </View>
+    </Card>
   );
 };
 
