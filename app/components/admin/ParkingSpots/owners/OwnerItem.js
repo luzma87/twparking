@@ -3,9 +3,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { Card } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import TWText from '../../_common/TWText/TWText';
-import type { Owner } from '../../../context/types';
-import colors from '../../../styles/colors';
+import TWText from '../../../_common/TWText/TWText';
+import type { Owner } from '../../../../context/types';
+import colors from '../../../../styles/colors';
 
 type Props = {
   owner: Owner

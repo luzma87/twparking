@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'react-native-firebase';
-import InputForm from '../../_common/InputForm/InputForm';
-import type { Owner } from '../../../context/types';
-import TWButton from '../../_common/TWFormControls/TWButton';
+import InputForm from '../../../_common/InputForm/InputForm';
+import type { Owner } from '../../../../context/types';
+import TWButton from '../../../_common/TWFormControls/TWButton';
 
 type Props = {
   onSaveDone: () => void

@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
 import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
-import OwnerList from './OwnerList';
-import CreateOwner from './CreateOwner';
+import OwnerList from './owners/OwnerList';
+import CreateOwner from './owners/CreateOwner';
 
 const compareOwners = (a, b) => {
   if (a.name < b.name) return -1;

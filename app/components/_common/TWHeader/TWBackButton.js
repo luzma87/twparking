@@ -1,10 +1,9 @@
 /* @flow */
 import React from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import styles from './twHeaderStyles';
-
-// eslint-disable-next-line import/no-unresolved
-const leftIcon = require('./images/btn_back.png');
+import colors from '../../../styles/colors';
 
 type Props = { onPress: any };
 
@@ -13,7 +12,12 @@ const TWBackButton = ({ onPress }: Props) => (
     style={styles.backButton}
     onPress={() => onPress()}
   >
-    <Image source={leftIcon} />
+    <FontAwesome5Pro
+      solid
+      size={30}
+      name="chevron-left"
+      color={colors.secondary500}
+    />
   </TouchableOpacity>
 );
 

@@ -3,8 +3,8 @@ import React from 'react';
 import { FlatList, View } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import colors from '../../../styles/colors';
-import TWText from '../../_common/TWText/TWText';
+import colors from '../../../../styles/colors';
+import TWText from '../../../_common/TWText/TWText';
 import OwnerItem from './OwnerItem';
 
 type Props = {
