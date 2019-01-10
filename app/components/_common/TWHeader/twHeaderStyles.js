@@ -45,6 +45,7 @@ const twHeaderStyles = ScaledSheet.create({
   backButton: {
     marginLeft: 15,
     paddingHorizontal: 15,
+    marginTop: 22,
     height: '100%',
     justifyContent: 'center',
     ...Platform.select({

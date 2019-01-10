@@ -28,7 +28,7 @@ class AdminMetroMenu extends Component<Props, State> {
     CRUDS
     logistics fees (cuentas, heroku, transferencias interbancarias, etc.)
      */
-    const { context } = this.props;
+    const { context, navigation } = this.props;
     return (
       <ScrollView>
         <View style={{
@@ -56,7 +56,7 @@ class AdminMetroMenu extends Component<Props, State> {
           />
           <TWMetroButton
             i18n="screens.admin.home.tabs.Owners"
-            onPress={() => {}}
+            onPress={() => navigation.navigate(appNavigation.navigationTree.OwnersScreen)}
             icon="hat-wizard"
             tint="green"
           />

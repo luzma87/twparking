@@ -6,6 +6,7 @@ import styles from './twHeaderStyles';
 import TWBackButton from './TWBackButton';
 import TWText from '../TWText/TWText';
 import colors from '../../../styles/colors';
+import deviceHelper from "../../../util/deviceHelper";
 
 type Props = {
   i18n: string,
@@ -15,11 +16,12 @@ type Props = {
 const TWHeader = ({ i18n, onPress }: Props) => {
   const hasBackButton = onPress !== null;
   const otherStyles = hasBackButton ? styles.containerWithBackButton : {};
+  const height = deviceHelper.isiPhoneX() ? 95 : 75;
   return (
     <View
       style={[
         {
-          height: 75,
+          height,
           backgroundColor: colors.primary900,
         },
         styles.container,

@@ -9,12 +9,11 @@ import { isEmpty } from 'lodash';
 import TWText from '../../_common/TWText/TWText';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
 import appNavigation from '../../../navigation/Routes';
-import IPhoneXTopSeparator from '../../_common/Separators/IPhoneXTopSeparator';
-import TWHeader from '../../_common/TWHeader/TWHeader';
 import InputForm from '../../_common/InputForm/InputForm';
 import TWClose from '../../_common/TWClose/TWClose';
 import colors from '../../../styles/colors';
 import type { Account } from '../../../context/types';
+import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 
 type Props = {
   navigation: Object,
@@ -60,12 +59,7 @@ class BankAccountInformationScreen extends Component<Props, State> {
   render() {
     const { account } = this.state;
     return (
-      <View>
-        <IPhoneXTopSeparator />
-        <TWHeader
-          i18n="screens.user.payments.form.bankAccount"
-          onPress={null}
-        />
+      <TWScreenWithNavigationBar i18nTitle="screens.user.payments.form.bankAccount">
         <ScrollView>
           <View>
 
@@ -147,7 +141,7 @@ class BankAccountInformationScreen extends Component<Props, State> {
             </View>
           </View>
         </ScrollView>
-      </View>
+      </TWScreenWithNavigationBar>
     );
   }
 }

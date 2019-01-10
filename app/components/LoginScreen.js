@@ -9,6 +9,7 @@ import navigationHeader from '../navigation/NavigationStylesHelper';
 import TWText from './_common/TWText/TWText';
 import TWButton from './_common/TWFormControls/TWButton';
 import TWInput from './_common/TWFormControls/TWInput';
+import TWScreenWithNavigationBar from './_common/TWScreenWithNavigationBar';
 
 type Props = {
   navigation: Object
@@ -191,16 +192,12 @@ class LoginScreen extends Component<Props, State> {
   render() {
     const { user, confirmResult } = this.state;
     return (
-      <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
-        <TWHeader i18n="screens.login.title" onPress={null} />
+      <TWScreenWithNavigationBar i18nTitle="screens.login.title">
         {!user && !confirmResult ? this.renderPhoneNumberInput() : null}
-
         {this.renderMessage()}
-
         {!user && confirmResult ? this.renderVerificationCodeInput() : null}
-
         {user ? <View /> : null}
-      </View>
+      </TWScreenWithNavigationBar>
     );
   }
 }

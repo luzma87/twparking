@@ -15,8 +15,8 @@ class AdminHomeScreen extends Component<Props, {}> {
   render() {
     const { navigation } = this.props;
     const menuConfig = [
-      { key: 'Payments', icon: 'hand-holding-usd', content: <PaymentsMetroMenu navigation={navigation} /> },
       { key: 'Admin', icon: 'user-secret', content: <AdminMetroMenu navigation={navigation} /> },
+      { key: 'Payments', icon: 'hand-holding-usd', content: <PaymentsMetroMenu navigation={navigation} /> },
     ];
     return <HomeScreen type="admin" menuConfig={menuConfig} />;
   }

@@ -1,13 +1,9 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import type { MenuConfig, MenuType } from '../TWTabBar/TWTabBar';
-import TWTabBarHelper from '../TWTabBar/TWTabBarHelper';
-import colors from '../../../styles/colors';
-import TWHeader from '../TWHeader/TWHeader';
 import TWTabBar from '../TWTabBar/TWTabBar';
-import IPhoneXTopSeparator from '../Separators/IPhoneXTopSeparator';
-import BottomSeparator from '../Separators/BottomSeparator';
+import TWTabBarHelper from '../TWTabBar/TWTabBarHelper';
+import TWScreenWithNavigationBar from '../TWScreenWithNavigationBar';
 
 type Props = {
   type: MenuType,
@@ -40,20 +36,14 @@ class HomeScreen extends Component<Props, State> {
     const { type, menuConfig } = this.props;
     const { selectedTab } = this.state;
     return (
-      <View style={{ flex: 1, backgroundColor: colors.primary100 }}>
-        <IPhoneXTopSeparator />
-        <TWHeader
-          i18n={this.getTitle()}
-          onPress={null}
-        />
+      <TWScreenWithNavigationBar i18nTitle={this.getTitle()} bottomSeparator>
         <TWTabBar
           type={type}
           selectedTab={selectedTab}
           onChangeTab={key => this.changeTab(key)}
           menuConfig={menuConfig}
         />
-        <BottomSeparator />
-      </View>
+      </TWScreenWithNavigationBar>
     );
   }
 }
