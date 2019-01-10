@@ -1,20 +1,27 @@
 /* @flow */
 import React from 'react';
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import colors from '../../../styles/colors';
 import TWText from '../../_common/TWText/TWText';
+import OwnerItem from './OwnerItem';
 
 type Props = {
   owners: any,
   onCreateClicked: () => void
 };
 
+const keyExtractor = owner => owner.id;
+
+const renderItem = owner => (<OwnerItem owner={owner.item} />);
+
 const ownersList = owners => (
-  <View>
-    {owners.map(owner => <TWText text={`${owner.name} - ${owner.email}`} />)}
-  </View>
+  <FlatList
+    data={owners}
+    keyExtractor={keyExtractor}
+    renderItem={renderItem}
+  />
 );
 
 const noOwners = () => (
@@ -26,7 +33,7 @@ const noOwners = () => (
 const OwnerList = (props: Props) => {
   const { owners, onCreateClicked } = props;
   return (
-    <View style={{ flex: 1, padding: '5%' }}>
+    <View style={{ flex: 1, marginBottom: 20 }}>
       {owners.length === 0 ? noOwners() : ownersList(owners)}
       <ActionButton
         buttonColor={colors.secondary500}
