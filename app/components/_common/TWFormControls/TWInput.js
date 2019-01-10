@@ -14,7 +14,7 @@ type Props = {
   iconColor?: string,
   value?: string,
   uppercase?: boolean,
-  type?: 'text' | 'number',
+  type?: 'text' | 'number' | 'email',
 };
 
 class TWInput extends Component<Props, {}> {
@@ -47,10 +47,13 @@ class TWInput extends Component<Props, {}> {
     if (type === 'number') {
       keyboardType = 'number-pad';
     }
+    if (type === 'email') {
+      keyboardType = 'email-address';
+    }
 
-    let transformValue = value;
+    let transformValue = value || '';
     if (uppercase) {
-      transformValue = value.toUpperCase();
+      transformValue = transformValue.toUpperCase();
     }
 
     return (
