@@ -125,6 +125,9 @@
           "MonthlyPayments": "Monthly Payments",
           "OwnerPayments": "Owner Payments"
         }
+      },
+      "owners": {
+        "empty": "There are no owners yet!\nCreate one..."
       }
     }
   }
