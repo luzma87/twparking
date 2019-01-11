@@ -10,17 +10,20 @@ const twHeaderStyles = ScaledSheet.create({
     borderLeftColor: colors.transparent,
     borderRightColor: colors.transparent,
     borderWidth: 0.25,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
+    paddingLeft: 0,
     ...Platform.select({
       ios: {
         shadowOpacity: 0.5,
         shadowRadius: 3,
         shadowColor: colors.gray1,
         shadowOffset: { height: 2, width: 0 },
-        alignItems: 'center',
+        justifyContent: 'space-between',
       },
       android: {
-        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
         paddingLeft: '20@s',
         elevation: 8,
       },

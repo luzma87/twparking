@@ -15,7 +15,7 @@ type Props = {
 
 const TWHeader = ({ i18n, onPress }: Props) => {
   const hasBackButton = onPress !== null;
-  const otherStyles = hasBackButton ? styles.containerWithBackButton : {};
+  const otherStyles = {};
   const height = deviceHelper.isiPhoneX() ? 95 : 75;
   return (
     <View
@@ -28,18 +28,17 @@ const TWHeader = ({ i18n, onPress }: Props) => {
         otherStyles,
       ]}
     >
-      {hasBackButton ? <TWBackButton onPress={() => onPress && onPress()} /> : null}
+      <TWBackButton onPress={() => onPress && onPress()} visible={hasBackButton} />
       <TWText
         i18n={i18n}
         style={{ paddingTop: 20 }}
         uppercase
-        // shadow
         weight="bold"
         font="vt323"
         size="title"
         color={colors.secondary500}
       />
-      {hasBackButton ? <View style={{ width: 35 }} /> : null}
+      <TWBackButton onPress={null} visible={false} />
     </View>
   );
 };
