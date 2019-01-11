@@ -134,7 +134,9 @@
             "name": "Name",
             "namePlaceholder": "Name…",
             "email": "Email",
-            "emailPlaceholder": "Email…"
+            "emailPlaceholder": "Email…",
+            "bank": "Bank",
+            "bankPlaceholder": "Bank…"
           }
         }
       }

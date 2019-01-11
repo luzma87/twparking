@@ -21,6 +21,7 @@ class CreateOwner extends Component<Props, State> {
       owner: {
         name: '',
         email: '',
+        bank: '',
       },
     };
   }
@@ -64,6 +65,15 @@ class CreateOwner extends Component<Props, State> {
           inputProps={{ type: 'email', autoFocus: false }}
           onChangeText={(value) => {
             this.mergeOwner({ email: value });
+          }}
+        />
+        <InputForm
+          field={owner.bank}
+          i18nLabel="screens.admin.owners.create.form.bank"
+          i18nPlaceholder="screens.admin.owners.create.form.bankPlaceholder"
+          inputProps={{ type: 'bank', autoFocus: false }}
+          onChangeText={(value) => {
+            this.mergeOwner({ bank: value });
           }}
         />
         <TWButton i18n="commons.buttons.save" onPress={() => this.saveOwner()} style={{ marginTop: 30 }} />

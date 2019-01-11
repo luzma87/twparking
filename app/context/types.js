@@ -15,7 +15,8 @@ export type User = {
 
 export type Owner = {
   name: string,
-  email: string
+  email: string,
+  bank: string
 }
 
 export type Account = {
