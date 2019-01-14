@@ -6,6 +6,7 @@ import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import TWText from '../../../_common/TWText/TWText';
 import type { Owner } from '../../../../context/types';
 import colors from '../../../../styles/colors';
+import BankTag from '../../../_common/BankTag/BankTag';
 
 type Props = {
   owner: Owner
@@ -34,7 +35,7 @@ const OwnerItem = (props: Props) => {
   const { owner } = props;
   return (
     <Card title={header(owner)}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row', marginTop: 8 }}>
         <FontAwesome5Pro
           solid
           size={16}
@@ -43,6 +44,10 @@ const OwnerItem = (props: Props) => {
           style={{ marginRight: 8 }}
         />
         <TWText text={owner.email} />
+      </View>
+      <View style={{ flexDirection: 'row', marginTop: 8 }}>
+        <BankTag bank={owner.bank} style={{ marginRight: 8 }} />
+        <TWText text={owner.bank} />
       </View>
     </Card>
   );
