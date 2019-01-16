@@ -1,23 +1,16 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
-import TWText from '../_common/TWText/TWText';
-import appNavigation from '../../navigation/Routes';
+import { ScrollView, View } from 'react-native';
 import withContext from '../../context/WithContext';
-import type { GlobalContext } from '../../context/types';
+import appNavigation from '../../navigation/Routes';
 import TWMetroButton from '../_common/TWFormControls/TWMetroButton';
 
 type Props = {
   navigation: Object,
-  context?: GlobalContext
 };
 type State = {};
 
 class AdminMetroMenu extends Component<Props, State> {
-  static defaultProps = {
-    context: null,
-  };
-
   changeUser() {
     const { navigation } = this.props;
     navigation.navigate(appNavigation.navigationTree.UserHome);
@@ -28,7 +21,7 @@ class AdminMetroMenu extends Component<Props, State> {
     CRUDS
     logistics fees (cuentas, heroku, transferencias interbancarias, etc.)
      */
-    const { context, navigation } = this.props;
+    const { navigation } = this.props;
     return (
       <ScrollView>
         <View style={{
@@ -38,7 +31,6 @@ class AdminMetroMenu extends Component<Props, State> {
           marginBottom: 16,
         }}
         >
-          <TWText text={`this is the Admin screen [${context ? context.user.name : ''}]`} />
           <TWMetroButton
             i18n="toggles.toRegular"
             onPress={() => this.changeUser()}
