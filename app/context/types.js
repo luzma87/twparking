@@ -20,6 +20,7 @@ export type ParkingSpot = {
   size: 'S' | 'M' | 'L',
   cost: number,
   active: boolean,
+  free: boolean,
   coords?: {
     lat: number,
     long: number
@@ -28,7 +29,7 @@ export type ParkingSpot = {
 }
 
 export type Owner = {
-  id: string,
+  id: ?string,
   name: string,
   email: string,
   bank: string,

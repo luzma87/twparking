@@ -26,6 +26,7 @@ class CreateParking extends Component<Props, State> {
         size: 'S',
         cost: 0,
         active: true,
+        free: true,
       },
     };
   }

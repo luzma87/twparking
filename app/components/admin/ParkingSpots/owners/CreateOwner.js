@@ -19,6 +19,7 @@ class CreateOwner extends Component<Props, State> {
     super(props);
     this.state = {
       owner: {
+        id: '',
         name: '',
         email: '',
         bank: '',
@@ -37,6 +38,7 @@ class CreateOwner extends Component<Props, State> {
     const { owner } = this.state;
     const { onSaveDone } = this.props;
     const newOwnerKey = firebase.database().ref().child('owners').push().key;
+    owner.id = newOwnerKey;
     firebase.database().ref(`owners/${newOwnerKey}`).set(owner, (error) => {
       if (error) {
         console.warn('The write failed...');

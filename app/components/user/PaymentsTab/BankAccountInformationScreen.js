@@ -27,7 +27,7 @@ const bankLogo = require('./images/bank_logo.png');
 class BankAccountInformationScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       account: {},
