@@ -22,6 +22,7 @@ class CreateOwner extends Component<Props, State> {
         name: '',
         email: '',
         bank: '',
+        parkingSpots: [],
       },
     };
   }

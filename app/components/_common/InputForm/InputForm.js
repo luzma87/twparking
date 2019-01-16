@@ -33,6 +33,7 @@ class InputForm extends Component<Props, State> {
     return (
       <View style={styles.container}>
         <TWText
+          font="vt323"
           i18n={i18nLabel}
           style={{ width: scale(labelPadding), marginRight: 5 }}
           align="right"

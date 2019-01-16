@@ -13,10 +13,25 @@ export type User = {
   car: Car
 }
 
+export type ParkingSpot = {
+  building: string,
+  number: string,
+  address: string,
+  size: 'S' | 'M' | 'L',
+  cost: number,
+  active: boolean,
+  coords?: {
+    lat: number,
+    long: number
+  },
+  comments?: string
+}
+
 export type Owner = {
   name: string,
   email: string,
-  bank: string
+  bank: string,
+  parkingSpots: Array<ParkingSpot>
 }
 
 export type Account = {

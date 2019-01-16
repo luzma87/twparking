@@ -113,7 +113,7 @@
         "tabs": {
           "Admin": "Admin",
           "Payments": "Payments",
-          "Parking": "Parking",
+          "Parking": "Parking spots",
           "Users": "Users",
           "Cars": "Cars",
           "Owners": "Owners",
@@ -130,13 +130,37 @@
         "empty": "There are no owners yet!\nCreate one...",
         "create": {
           "title": "Create owner",
-          "form" : {
+          "form": {
             "name": "Name",
             "namePlaceholder": "Name…",
             "email": "Email",
             "emailPlaceholder": "Email…",
             "bank": "Bank",
             "bankPlaceholder": "Bank…"
+          }
+        }
+      },
+      "parking": {
+        "empty": "There are no parking spots yet!\nCreate one...",
+        "list": "{{building}} (#{{number}} - {{size}})",
+        "create": {
+          "title": "Create parking spot",
+          "header": "New parking spot for {{owner}}",
+          "form": {
+            "building": "Building",
+            "buildingPlaceholder": "Building…",
+            "number": "Number",
+            "numberPlaceholder": "Number…",
+            "address": "Address",
+            "addressPlaceholder": "Address…",
+            "size": "Size",
+            "sizePlaceholder": "Size…",
+            "cost": "Cost",
+            "costPlaceholder": "Cost…",
+            "coords": "Coords",
+            "coordsPlaceholder": "Coords…",
+            "comments": "Comments",
+            "commentsPlaceholder": "Comments…"
           }
         }
       }

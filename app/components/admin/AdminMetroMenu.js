@@ -49,7 +49,7 @@ class AdminMetroMenu extends Component<Props, State> {
           />
           <TWMetroButton
             i18n="screens.admin.home.tabs.Parking"
-            onPress={() => {}}
+            onPress={() => navigation.navigate(appNavigation.navigationTree.ParkingScreen)}
             icon="warehouse"
             widthRatio={2}
             tint="blue"

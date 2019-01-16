@@ -41,7 +41,7 @@ const OwnerList = (props: Props) => {
         renderIcon={() => (
           <FontAwesome5Pro
             solid
-            size={16}
+            size={20}
             name="user-plus"
             color={colors.white}
           />

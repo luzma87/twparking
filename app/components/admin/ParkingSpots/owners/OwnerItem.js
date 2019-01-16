@@ -14,15 +14,15 @@ type Props = {
 
 const header = owner => (
   <View>
-    <View style={{ flexDirection: 'row' }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <FontAwesome5Pro
         solid
-        size={16}
+        size={24}
         name="hat-wizard"
         color={colors.secondary500}
         style={{ height: '100%', marginRight: 8 }}
       />
-      <TWText text={owner.name} color={colors.secondary500} />
+      <TWText text={owner.name} color={colors.secondary500} font="vt323" size="title" />
     </View>
     <View style={{
       backgroundColor: colors.secondary200, height: 1, width: '100%', marginBottom: 8,
@@ -35,7 +35,7 @@ const OwnerItem = (props: Props) => {
   const { owner } = props;
   return (
     <Card title={header(owner)}>
-      <View style={{ flexDirection: 'row', marginTop: 8 }}>
+      <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center' }}>
         <FontAwesome5Pro
           solid
           size={16}
@@ -43,11 +43,11 @@ const OwnerItem = (props: Props) => {
           color={colors.primary800}
           style={{ marginRight: 8 }}
         />
-        <TWText text={owner.email} />
+        <TWText text={owner.email} font="vt323" />
       </View>
-      <View style={{ flexDirection: 'row', marginTop: 8 }}>
+      <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center' }}>
         <BankTag bank={owner.bank} style={{ marginRight: 8 }} />
-        <TWText text={owner.bank} />
+        <TWText text={owner.bank} font="vt323" />
       </View>
     </Card>
   );
