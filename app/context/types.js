@@ -28,6 +28,7 @@ export type ParkingSpot = {
 }
 
 export type Owner = {
+  id: string,
   name: string,
   email: string,
   bank: string,

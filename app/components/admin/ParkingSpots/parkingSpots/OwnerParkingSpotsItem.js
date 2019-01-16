@@ -6,11 +6,13 @@ import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import type { Owner } from '../../../../context/types';
 import colors from '../../../../styles/colors';
 import TWText from '../../../_common/TWText/TWText';
+import ParkingSpotList from './ParkingSpotList';
 
 
 type Props = {
   owner: Owner,
-  onCreateClicked: (Owner) => void
+  onCreateClicked: (Owner) => void,
+  onSaveDone: () => void
 };
 
 const header = (owner, onCreateClicked) => (
@@ -41,7 +43,7 @@ const header = (owner, onCreateClicked) => (
           backgroundColor: colors.primary300,
           borderColor: 'transparent',
           padding: 8,
-          borderRadius: 50,
+          borderRadius: 5,
         }}
       />
     </View>
@@ -49,23 +51,15 @@ const header = (owner, onCreateClicked) => (
       backgroundColor: colors.secondary200, height: 1, width: '100%', marginBottom: 8,
     }}
     />
-    <View>
-      {owner.parkingSpots && owner.parkingSpots.map(parking => (
-        <TWText
-          key={`${parking.building}${parking.number}`}
-          font="vt323"
-          i18n="screens.admin.parking.list"
-          i18nParams={{ building: parking.building, number: parking.number, size: parking.size }}
-        />
-      ))}
-    </View>
   </View>
 );
 
 const OwnerParkingSpotsItem = (props: Props) => {
-  const { owner, onCreateClicked } = props;
+  const { owner, onCreateClicked, onSaveDone } = props;
   return (
-    <Card title={header(owner, onCreateClicked)} />
+    <Card title={header(owner, onCreateClicked)}>
+      <ParkingSpotList owner={owner} onSaveDone={onSaveDone} />
+    </Card>
   );
 };
 

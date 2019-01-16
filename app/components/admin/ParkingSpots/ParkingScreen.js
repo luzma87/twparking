@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
+import type { Owner } from '../../../context/types';
 import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
 import ParkingList from './parkingSpots/ParkingList';
@@ -67,7 +68,7 @@ class ParkingScreen extends Component<Props, State> {
     return 'screens.admin.parking.create.title';
   }
 
-  showCreateOwner(owner: Owner) {
+  showCreateOwner(owner: ?Owner) {
     this.setState({ creating: true, selectedOwner: owner });
   }
 
@@ -95,7 +96,13 @@ class ParkingScreen extends Component<Props, State> {
       >
         {creating
           ? <CreateParking owner={selectedOwner} onSaveDone={() => this.hideCreateOwner()} />
-          : <ParkingList owners={owners} onCreateClicked={owner => this.showCreateOwner(owner)} />}
+          : (
+            <ParkingList
+              owners={owners}
+              onCreateClicked={owner => this.showCreateOwner(owner)}
+              onSaveDone={() => this.getOwners()}
+            />
+          )}
       </TWScreenWithNavigationBar>
     );
   }

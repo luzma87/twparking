@@ -8,7 +8,7 @@ import TWButton from '../../../_common/TWFormControls/TWButton';
 import TWText from '../../../_common/TWText/TWText';
 
 type Props = {
-  owner: Owner,
+  owner: ?Owner,
   onSaveDone: () => void
 };
 type State = {
@@ -32,20 +32,22 @@ class CreateParking extends Component<Props, State> {
 
   saveParking() {
     const { owner } = this.props;
-    const { parking } = this.state;
-    const { onSaveDone } = this.props;
-    const ownerKey = owner.id;
-    if (!owner.parkingSpots) {
-      owner.parkingSpots = [];
-    }
-    owner.parkingSpots.push(parking);
-    firebase.database().ref(`owners/${ownerKey}`).set(owner, (error) => {
-      if (error) {
-        console.warn('The write failed...');
-      } else {
-        onSaveDone();
+    if (owner) {
+      const { parking } = this.state;
+      const { onSaveDone } = this.props;
+      const ownerKey = owner.id;
+      if (!owner.parkingSpots) {
+        owner.parkingSpots = [];
       }
-    });
+      owner.parkingSpots.push(parking);
+      firebase.database().ref(`owners/${ownerKey}`).set(owner, (error) => {
+        if (error) {
+          console.warn('The write failed...');
+        } else {
+          onSaveDone();
+        }
+      });
+    }
   }
 
   mergeParking(newData: Object) {
@@ -57,6 +59,9 @@ class CreateParking extends Component<Props, State> {
   render() {
     const { owner } = this.props;
     const { parking } = this.state;
+    if (!owner) {
+      return null;
+    }
     return (
       <View style={{
         flex: 1, paddingTop: '10%', paddingLeft: '10%', paddingRight: '10%',
@@ -108,7 +113,7 @@ class CreateParking extends Component<Props, State> {
               onChangeText={value => this.mergeParking({ cost: value })}
             />
             <InputForm
-              field={parking.comments}
+              field={parking.comments || ''}
               i18nLabel="screens.admin.parking.create.form.comments"
               i18nPlaceholder="screens.admin.parking.create.form.commentsPlaceholder"
               inputProps={{ autoFocus: true }}

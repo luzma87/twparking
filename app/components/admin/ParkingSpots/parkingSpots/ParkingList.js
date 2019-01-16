@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
 import TWText from '../../../_common/TWText/TWText';
 import OwnerParkingSpotsItem from './OwnerParkingSpotsItem';
-import type { Owner } from '../../../../context/types';
 
 type Props = {
   owners: any,
-  onCreateClicked: () => void
+  onCreateClicked: () => void,
+  onSaveDone: ()=>void
 };
 
 const keyExtractor = owner => owner.id;
@@ -30,8 +30,14 @@ class ParkingList extends Component<Props> {
   }
 
   renderItem(owner: any) {
-    const { onCreateClicked } = this.props;
-    return <OwnerParkingSpotsItem owner={owner.item} onCreateClicked={onCreateClicked} />;
+    const { onCreateClicked, onSaveDone } = this.props;
+    return (
+      <OwnerParkingSpotsItem
+        owner={owner.item}
+        onSaveDone={onSaveDone}
+        onCreateClicked={onCreateClicked}
+      />
+    );
   }
 
   render() {

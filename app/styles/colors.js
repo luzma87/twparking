@@ -25,6 +25,17 @@ const colors = {
   green800: '#2E7D32',
   green900: '#1B5E20',
 
+  red50: '#FFEBEE',
+  red100: '#FFCDD2',
+  red200: '#EF9A9A',
+  red300: '#E57373',
+  red400: '#EF5350',
+  red500: '#F44336',
+  red600: '#E53935',
+  red700: '#D32F2F',
+  red800: '#C62828',
+  red900: '#B71C1C',
+
   yellow50: '#FFFDE7',
   yellow100: '#FFF9C4',
   yellow200: '#FFF59D',
