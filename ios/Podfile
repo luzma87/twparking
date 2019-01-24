@@ -16,6 +16,8 @@ target 'twparking' do
 
   #pod 'RNLanguages', :path => '../node_modules/react-native-languages'
 
+  #pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'twparkingTests' do
     inherit! :search_paths
     # Pods for testing

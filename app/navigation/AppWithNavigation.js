@@ -7,15 +7,15 @@
  */
 
 import React, { Component } from 'react';
-import RNLanguages from 'react-native-languages';
-import { createStackNavigator } from 'react-navigation';
-import { ThemeProvider } from 'react-native-elements';
 import { StatusBar } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
+import RNLanguages from 'react-native-languages';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
+import GlobalProvider from '../context/GlobalProvider';
 import i18n from '../i18n';
-import appNavigation from './Routes';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
-import GlobalProvider from '../context/GlobalProvider';
+import appNavigation from './Routes';
 
 const theme = {
   colors: {
@@ -27,8 +27,10 @@ const theme = {
   },
 };
 
-const RootStack = createStackNavigator(appNavigation.routes,
-  { initialRouteName: appNavigation.initialScreen });
+const RootStack = createAppContainer(
+  createStackNavigator(appNavigation.routes,
+    { initialRouteName: appNavigation.initialScreen }),
+);
 
 class AppWithNavigation extends Component<{}, {}> {
   componentWillMount() {

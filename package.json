@@ -9,33 +9,34 @@
     "flow": "./node_modules/.bin/flow check"
   },
   "dependencies": {
-    "i18n-js": "^3.0.11",
+    "i18n-js": "^3.2.1",
     "lodash": "^4.17.11",
-    "react": "16.6.0-alpha.8af6728",
+    "react": "16.7.0",
     "react-native": "0.57.8",
     "react-native-action-button": "^2.8.5",
     "react-native-elements": "^1.0.0-beta6",
-    "react-native-firebase": "^5.0.0",
-    "react-native-languages": "^3.0.1",
+    "react-native-firebase": "^5.2.1",
+    "react-native-gesture-handler": "^1.0.12",
+    "react-native-languages": "^3.0.2",
     "react-native-modal": "^7.0.2",
-    "react-native-size-matters": "^0.1.4",
+    "react-native-size-matters": "^0.1.6",
     "react-native-tab-navigator": "^0.3.4",
-    "react-native-vector-icons": "^6.1.0",
-    "react-navigation": "^2.16.0"
+    "react-native-vector-icons": "^6.2.0",
+    "react-navigation": "^3.0.9"
   },
   "devDependencies": {
-    "babel-eslint": "^9.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "23.6.0",
-    "eslint": "^5.8.0",
+    "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-flowtype": "^2.50.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
-    "flow-bin": "^0.83.0",
+    "eslint-plugin-flowtype": "^3.2.1",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.4",
+    "flow-bin": "^0.91.0",
     "jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.45.5",
-    "react-test-renderer": "16.5.0"
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-test-renderer": "16.7.0"
   },
   "jest": {
     "preset": "react-native"
