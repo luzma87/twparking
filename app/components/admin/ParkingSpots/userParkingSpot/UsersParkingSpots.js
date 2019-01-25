@@ -12,17 +12,18 @@ const compareOwners = (a, b) => {
   return 0;
 };
 
+const areSpotsEqual = (spot1, spot2) => spot1.building === spot2.building
+  && spot1.number === spot2.number;
+
 const spotsArrayFromObject = (owners) => {
   let spotsArray = [];
   Object.keys(owners).forEach((ownerKey) => {
     const owner = owners[ownerKey];
     const { parkingSpots } = owner;
-    // console.warn(owner.name, parkingSpots, parkingSpots.length);
     if (parkingSpots && parkingSpots.length > 0) {
       spotsArray = [...spotsArray, ...parkingSpots];
     }
   });
-  // console.warn('-->', spotsArray.length);
   return spotsArray.map((spot) => {
     const label = `${spot.building} [${spot.number}]`;
     return {
@@ -141,12 +142,18 @@ class UsersParkingSpots extends Component<Props, State> {
     const peoplesSpots = peopleWithSpot.map(person => person.spot);
     spotsWithPerson.forEach((spot) => {
       peoplesSpots.forEach((ps) => {
-        if (ps.building === spot.building && ps.number === spot.number) {
+        if (areSpotsEqual(ps, spot)) {
           newSpotsWithPerson.push(spot);
-        } else {
-          newSpotsNoPerson.push(spot);
         }
       });
+    });
+
+    spotsWithPerson.forEach((originalSpot) => {
+      const assignedSpots = newSpotsWithPerson.filter(s => areSpotsEqual(s, originalSpot));
+      const spotIsAssigned = assignedSpots.length === 0;
+      if (spotIsAssigned) {
+        newSpotsNoPerson.push(originalSpot);
+      }
     });
 
     this.setState({
