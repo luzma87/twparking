@@ -54,7 +54,7 @@ class OwnerScreen extends Component<Props, State> {
             const owners = snapshot.val();
             this.setState({ owners: ownerArrayFromObject(owners) });
           }
-        }, (error) => { console.warn('??', error); });
+        }, (error) => { console.warn('Owner error', error); });
     });
   }
 

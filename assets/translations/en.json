@@ -117,7 +117,8 @@
           "Users": "Users",
           "Cars": "Cars",
           "Owners": "Owners",
-          "Fees": "Fees"
+          "Fees": "Fees",
+          "Assignments": "User parking spots"
         },
         "logistics": {
           "Balance": "Balance",
@@ -161,6 +162,16 @@
             "coordsPlaceholder": "Coords…",
             "comments": "Comments",
             "commentsPlaceholder": "Comments…"
+          }
+        }
+      },
+      "assignments": {
+        "empty": "There are no assignments yet!\nCreate one...",
+        "create": {
+          "title": "Create assignment",
+          "form": {
+            "spotPlaceholder": "Select a spot…",
+            "personPlaceholder": "Select a person…"
           }
         }
       }

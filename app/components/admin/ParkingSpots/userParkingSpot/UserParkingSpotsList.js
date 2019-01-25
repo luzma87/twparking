@@ -5,8 +5,6 @@ import ActionButton from 'react-native-action-button';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import colors from '../../../../styles/colors';
 import EmptyListMessage from '../../../_common/EmptyListMessage';
-import TWText from '../../../_common/TWText/TWText';
-import OwnerItem from './OwnerItem';
 
 type Props = {
   owners: any,
@@ -15,7 +13,7 @@ type Props = {
 
 const keyExtractor = owner => owner.id;
 
-const renderItem = owner => (<OwnerItem owner={owner.item} />);
+const renderItem = () => null;
 
 const ownersList = owners => (
   <FlatList
@@ -26,10 +24,10 @@ const ownersList = owners => (
 );
 
 const noOwners = () => (
-  <EmptyListMessage type="owners" />
+  <EmptyListMessage type="assignments" />
 );
 
-const OwnerList = (props: Props) => {
+const UserParkingSpotsList = (props: Props) => {
   const { owners, onCreateClicked } = props;
   return (
     <View style={{ flex: 1, marginBottom: 20 }}>
@@ -41,7 +39,7 @@ const OwnerList = (props: Props) => {
           <FontAwesome5Pro
             solid
             size={20}
-            name="user-plus"
+            name="plus"
             color={colors.white}
           />
         )}
@@ -50,4 +48,4 @@ const OwnerList = (props: Props) => {
   );
 };
 
-export default OwnerList;
+export default UserParkingSpotsList;

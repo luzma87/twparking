@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
-import TWText from '../../../_common/TWText/TWText';
+import EmptyListMessage from '../../../_common/EmptyListMessage';
 import OwnerParkingSpotsItem from './OwnerParkingSpotsItem';
 
 type Props = {
@@ -13,9 +13,7 @@ type Props = {
 const keyExtractor = owner => owner.id;
 
 const noOwners = () => (
-  <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-    <TWText i18n="screens.admin.owners.empty" weight="bold" multiline align="center" font="vt323" size="title" />
-  </View>
+  <EmptyListMessage type="parkings" />
 );
 
 class ParkingList extends Component<Props> {

@@ -53,6 +53,14 @@ class AdminMetroMenu extends Component<Props, State> {
             tint="green"
           />
           <TWMetroButton
+            i18n="screens.admin.home.tabs.Assignments"
+            onPress={() => navigation.navigate(appNavigation.navigationTree.UsersParkingSpots)}
+            icon="hand-holding-magic"
+            tint="indigo"
+            tintBase={400}
+            widthRatio={3}
+          />
+          <TWMetroButton
             i18n="screens.admin.home.tabs.Users"
             onPress={() => {}}
             tintBase={300}
