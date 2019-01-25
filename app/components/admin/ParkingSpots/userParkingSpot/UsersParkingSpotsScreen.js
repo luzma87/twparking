@@ -78,7 +78,7 @@ type State = {
   creating: boolean
 };
 
-class UsersParkingSpots extends Component<Props, State> {
+class UsersParkingSpotsScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
 
   constructor(props: Props) {
@@ -208,4 +208,4 @@ class UsersParkingSpots extends Component<Props, State> {
   }
 }
 
-export default UsersParkingSpots;
+export default UsersParkingSpotsScreen;

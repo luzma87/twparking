@@ -1,4 +1,4 @@
-import UsersParkingSpots from '../components/admin/ParkingSpots/userParkingSpot/UsersParkingSpots';
+import UsersParkingSpotsScreen from '../components/admin/ParkingSpots/userParkingSpot/UsersParkingSpotsScreen';
 import LoginScreen from '../components/LoginScreen';
 import UserHomeScreen from '../components/user/UserHomeScreen';
 import AdminHomeScreen from '../components/admin/AdminHomeScreen';
@@ -14,7 +14,7 @@ const routes = {
   BankInformation: { screen: BankAccountInformationScreen },
   OwnersScreen: { screen: OwnerScreen },
   ParkingScreen: { screen: ParkingScreen },
-  UsersParkingSpots: { screen: UsersParkingSpots },
+  UsersParkingSpots: { screen: UsersParkingSpotsScreen },
 };
 
 const routesKeys = Object.keys(routes);
