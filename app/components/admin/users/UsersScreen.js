@@ -69,7 +69,13 @@ class UsersScreen extends Component<Props, State> {
     if (loading) {
       return <LoadingMessage type="users" />;
     }
-    return <UserList users={users} onCreateClicked={() => this.showCreateForm()} />;
+    return (
+      <UserList
+        users={users}
+        onCreateClicked={() => this.showCreateForm()}
+        onSaveDone={() => this.getData()}
+      />
+    );
   }
 
   showCreateForm() {
