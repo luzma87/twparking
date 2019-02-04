@@ -182,8 +182,7 @@ class UsersParkingSpotsScreen extends Component<Props, State> {
   }
 
   render() {
-    const { creating, peopleNoSpot, spotsNoPerson } = this.state;
-    const owners = [];
+    const { creating, peopleNoSpot, spotsNoPerson, peopleWithSpot } = this.state;
     return (
       <TWScreenWithNavigationBar
         onPress={() => this.goBack()}
@@ -199,7 +198,7 @@ class UsersParkingSpotsScreen extends Component<Props, State> {
           )
           : (
             <UserParkingSpotsList
-              owners={owners}
+              people={peopleWithSpot}
               onCreateClicked={() => this.showCreateParkingSpot()}
             />
           )}
