@@ -129,6 +129,7 @@
       },
       "owners": {
         "empty": "There are no owners yet!\nCreate one...",
+        "loading": "Loading the owners...\nPlease wait...",
         "create": {
           "title": "Create owner",
           "form": {
@@ -143,6 +144,7 @@
       },
       "parking": {
         "empty": "There are no parking spots yet!\nCreate one...",
+        "loading": "Loading the parking spots...\nPlease wait...",
         "list": "{{building}} (#{{number}} - {{size}})",
         "create": {
           "title": "Create parking spot",
@@ -167,6 +169,7 @@
       },
       "assignments": {
         "empty": "There are no assignments yet!\nCreate one...",
+        "loading": "Loading the assignments...\nPlease wait...",
         "create": {
           "title": "Create assignment",
           "form": {

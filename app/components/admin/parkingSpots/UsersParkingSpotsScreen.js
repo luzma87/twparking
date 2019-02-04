@@ -1,16 +1,12 @@
 /* @flow */
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
-import navigationHeader from '../../../../navigation/NavigationStylesHelper';
-import TWScreenWithNavigationBar from '../../../_common/TWScreenWithNavigationBar';
-import CreateParkingSpot from './CreateParkingSpot';
-import UserParkingSpotsList from './UserParkingSpotsList';
-
-const compareOwners = (a, b) => {
-  if (a.name < b.name) return -1;
-  if (a.name > b.name) return 1;
-  return 0;
-};
+import navigationHeader from '../../../navigation/NavigationStylesHelper';
+import sortingHelper from '../../../util/sortingHelper';
+import LoadingMessage from '../../_common/LoadingMessage';
+import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
+import CreateParkingSpot from './userParkingSpot/CreateParkingSpot';
+import UserParkingSpotsList from './userParkingSpot/UserParkingSpotsList';
 
 const areSpotsEqual = (spot1, spot2) => spot1.building === spot2.building
   && spot1.number === spot2.number;
@@ -48,8 +44,8 @@ const peopleArrayFromObject = (people) => {
       peopleNoSpotArray.push(person);
     }
   });
-  peopleNoSpotArray.sort(compareOwners);
-  peopleWithSpotArray.sort(compareOwners);
+  peopleNoSpotArray.sort(sortingHelper.compareByName);
+  peopleWithSpotArray.sort(sortingHelper.compareByName);
 
   const newPeopleNoSpotArray = peopleNoSpotArray.map(person => ({
     ...person,
@@ -75,7 +71,8 @@ type State = {
   spotsNoPerson: any,
   peopleWithSpot: any,
   peopleNoSpot: any,
-  creating: boolean
+  creating: boolean,
+  loading: boolean,
 };
 
 class UsersParkingSpotsScreen extends Component<Props, State> {
@@ -85,6 +82,7 @@ class UsersParkingSpotsScreen extends Component<Props, State> {
     super(props);
     this.state = {
       creating: false,
+      loading: true,
       spotsWithPerson: [],
       spotsNoPerson: [],
       peopleWithSpot: [],
@@ -159,6 +157,7 @@ class UsersParkingSpotsScreen extends Component<Props, State> {
     this.setState({
       spotsWithPerson: newSpotsWithPerson,
       spotsNoPerson: newSpotsNoPerson,
+      loading: false,
     });
   }
 
@@ -172,17 +171,32 @@ class UsersParkingSpotsScreen extends Component<Props, State> {
     }
   }
 
-  showCreateParkingSpot() {
+  getContent() {
+    const { loading, peopleWithSpot } = this.state;
+    if (loading) {
+      return <LoadingMessage type="assignments" />;
+    }
+    return (
+      <UserParkingSpotsList
+        people={peopleWithSpot}
+        onCreateClicked={() => this.showCreateForm()}
+      />
+    );
+  }
+
+  showCreateForm() {
     this.setState({ creating: true });
   }
 
-  hideCreateParkingSpot() {
+  hideCreateForm() {
     this.getData();
     this.setState({ creating: false });
   }
 
   render() {
-    const { creating, peopleNoSpot, spotsNoPerson, peopleWithSpot } = this.state;
+    const {
+      creating, peopleNoSpot, spotsNoPerson,
+    } = this.state;
     return (
       <TWScreenWithNavigationBar
         onPress={() => this.goBack()}
@@ -193,15 +207,10 @@ class UsersParkingSpotsScreen extends Component<Props, State> {
             <CreateParkingSpot
               peopleNoSpot={peopleNoSpot}
               spotsNoPerson={spotsNoPerson}
-              onSaveDone={() => this.hideCreateParkingSpot()}
+              onSaveDone={() => this.hideCreateForm()}
             />
           )
-          : (
-            <UserParkingSpotsList
-              people={peopleWithSpot}
-              onCreateClicked={() => this.showCreateParkingSpot()}
-            />
-          )}
+          : this.getContent()}
       </TWScreenWithNavigationBar>
     );
   }

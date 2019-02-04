@@ -1,16 +1,12 @@
 /* @flow */
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
-import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
-import OwnerList from './owners/OwnerList';
+import sortingHelper from '../../../util/sortingHelper';
+import LoadingMessage from '../../_common/LoadingMessage';
+import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 import CreateOwner from './owners/CreateOwner';
-
-const compareOwners = (a, b) => {
-  if (a.name < b.name) return -1;
-  if (a.name > b.name) return 1;
-  return 0;
-};
+import OwnerList from './owners/OwnerList';
 
 const ownerArrayFromObject = (owners) => {
   const ownersArray = [];
@@ -21,7 +17,7 @@ const ownerArrayFromObject = (owners) => {
     };
     ownersArray.push(owner);
   });
-  ownersArray.sort(compareOwners);
+  ownersArray.sort(sortingHelper.compareByName);
   return ownersArray;
 };
 
@@ -30,6 +26,7 @@ type Props = {
 };
 type State = {
   owners: any,
+  loading: boolean,
   creating: boolean
 };
 
@@ -40,19 +37,20 @@ class OwnerScreen extends Component<Props, State> {
     super(props);
     this.state = {
       owners: [],
+      loading: true,
       creating: false,
     };
-    this.getOwners();
+    this.getData();
   }
 
-  getOwners() {
+  getData() {
     firebase.auth().onAuthStateChanged(() => {
       firebase.database()
         .ref('owners')
         .once('value', (snapshot) => {
           if (snapshot.exists()) {
             const owners = snapshot.val();
-            this.setState({ owners: ownerArrayFromObject(owners) });
+            this.setState({ owners: ownerArrayFromObject(owners), loading: false });
           }
         }, (error) => { console.warn('Owner error', error); });
     });
@@ -66,12 +64,20 @@ class OwnerScreen extends Component<Props, State> {
     return 'screens.admin.owners.create.title';
   }
 
-  showCreateOwner() {
+  getContent() {
+    const { owners, loading } = this.state;
+    if (loading) {
+      return <LoadingMessage type="owners" />;
+    }
+    return <OwnerList owners={owners} onCreateClicked={() => this.showCreateForm()} />;
+  }
+
+  showCreateForm() {
     this.setState({ creating: true });
   }
 
-  hideCreateOwner() {
-    this.getOwners();
+  hideCreateForm() {
+    this.getData();
     this.setState({ creating: false });
   }
 
@@ -86,15 +92,15 @@ class OwnerScreen extends Component<Props, State> {
   }
 
   render() {
-    const { owners, creating } = this.state;
+    const { creating } = this.state;
     return (
       <TWScreenWithNavigationBar
         onPress={() => this.goBack()}
         i18nTitle={this.getTitle()}
       >
         {creating
-          ? <CreateOwner onSaveDone={() => this.hideCreateOwner()} />
-          : <OwnerList owners={owners} onCreateClicked={() => this.showCreateOwner()} />}
+          ? <CreateOwner onSaveDone={() => this.hideCreateForm()} />
+          : this.getContent()}
       </TWScreenWithNavigationBar>
     );
   }

@@ -21,7 +21,7 @@ const renderItem = (element) => {
   const personBuilding = `${person.spot.building} #${person.spot.number}`;
   const personCar = `${person.car.brand} ${person.car.model} [${person.car.plate.toUpperCase()}]`;
   return (
-    <Card>
+    <Card key={person.id}>
       <TextWithIcon icon="user" color={colors.secondary600} text={personName} textSize="regular" style={{ marginBottom: 8 }} />
       <TextWithIcon icon="warehouse" color={colors.primary600} text={personBuilding} textSize="regular" style={{ marginBottom: 8 }} />
       <TextWithIcon icon="car" color={colors.blue600} text={personCar} textSize="regular" />

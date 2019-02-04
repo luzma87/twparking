@@ -2,16 +2,12 @@
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
 import type { Owner } from '../../../context/types';
-import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
-import ParkingList from './parkingSpots/ParkingList';
+import sortingHelper from '../../../util/sortingHelper';
+import LoadingMessage from '../../_common/LoadingMessage';
+import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
 import CreateParking from './parkingSpots/CreateParking';
-
-const compareOwners = (a, b) => {
-  if (a.name < b.name) return -1;
-  if (a.name > b.name) return 1;
-  return 0;
-};
+import ParkingList from './parkingSpots/ParkingList';
 
 const ownerArrayFromObject = (owners) => {
   const ownersArray = [];
@@ -22,7 +18,7 @@ const ownerArrayFromObject = (owners) => {
     };
     ownersArray.push(owner);
   });
-  ownersArray.sort(compareOwners);
+  ownersArray.sort(sortingHelper.compareByName);
   return ownersArray;
 };
 
@@ -32,7 +28,8 @@ type Props = {
 type State = {
   owners: any,
   selectedOwner: ?Owner,
-  creating: boolean
+  creating: boolean,
+  loading: boolean,
 };
 class ParkingScreen extends Component<Props, State> {
   static navigationOptions = navigationHeader.noHeader;
@@ -43,18 +40,19 @@ class ParkingScreen extends Component<Props, State> {
       owners: [],
       selectedOwner: undefined,
       creating: false,
+      loading: true,
     };
-    this.getOwners();
+    this.getData();
   }
 
-  getOwners() {
+  getData() {
     firebase.auth().onAuthStateChanged(() => {
       firebase.database()
         .ref('owners')
         .once('value', (snapshot) => {
           if (snapshot.exists()) {
             const owners = snapshot.val();
-            this.setState({ owners: ownerArrayFromObject(owners) });
+            this.setState({ owners: ownerArrayFromObject(owners), loading: false });
           }
         }, (error) => { console.warn('Parking error', error); });
     });
@@ -68,12 +66,26 @@ class ParkingScreen extends Component<Props, State> {
     return 'screens.admin.parking.create.title';
   }
 
-  showCreateOwner(owner: ?Owner) {
+  getContent() {
+    const { owners, loading } = this.state;
+    if (loading) {
+      return <LoadingMessage type="parking" />;
+    }
+    return (
+      <ParkingList
+        owners={owners}
+        onCreateClicked={owner => this.showCreateForm(owner)}
+        onSaveDone={() => this.getData()}
+      />
+    );
+  }
+
+  showCreateForm(owner: ?Owner) {
     this.setState({ creating: true, selectedOwner: owner });
   }
 
-  hideCreateOwner() {
-    this.getOwners();
+  hideCreateForm() {
+    this.getData();
     this.setState({ creating: false });
   }
 
@@ -88,21 +100,15 @@ class ParkingScreen extends Component<Props, State> {
   }
 
   render() {
-    const { owners, creating, selectedOwner } = this.state;
+    const { creating, selectedOwner } = this.state;
     return (
       <TWScreenWithNavigationBar
         onPress={() => this.goBack()}
         i18nTitle={this.getTitle()}
       >
         {creating
-          ? <CreateParking owner={selectedOwner} onSaveDone={() => this.hideCreateOwner()} />
-          : (
-            <ParkingList
-              owners={owners}
-              onCreateClicked={owner => this.showCreateOwner(owner)}
-              onSaveDone={() => this.getOwners()}
-            />
-          )}
+          ? <CreateParking owner={selectedOwner} onSaveDone={() => this.hideCreateForm()} />
+          : this.getContent()}
       </TWScreenWithNavigationBar>
     );
   }

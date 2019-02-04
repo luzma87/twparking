@@ -5,7 +5,6 @@ import ActionButton from 'react-native-action-button';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import colors from '../../../../styles/colors';
 import EmptyListMessage from '../../../_common/EmptyListMessage';
-import TWText from '../../../_common/TWText/TWText';
 import OwnerItem from './OwnerItem';
 
 type Props = {
@@ -15,7 +14,7 @@ type Props = {
 
 const keyExtractor = owner => owner.id;
 
-const renderItem = owner => (<OwnerItem owner={owner.item} />);
+const renderItem = owner => (<OwnerItem key={owner.item.id} owner={owner.item} />);
 
 const ownersList = owners => (
   <FlatList
