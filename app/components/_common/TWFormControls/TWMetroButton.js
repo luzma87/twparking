@@ -103,6 +103,7 @@ class TWMetroButton extends Component<Props, {}> {
             size={iconSize}
             name={icon}
             color={color3}
+            style={{marginRight: 4}}
           />
         )}
         titleStyle={{ ...titleStyle, ...{ color: color3 } }}
