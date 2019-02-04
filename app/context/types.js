@@ -10,7 +10,16 @@ export type Car = {
 
 export type User = {
   name: string,
-  car: Car
+  car: Car,
+  id: string,
+  bank: string,
+  ci: string,
+  phone: string,
+  user: string,
+  parkingStars: number,
+  admin: boolean,
+  champion: boolean,
+  enabled: boolean,
 }
 
 export type ParkingSpot = {

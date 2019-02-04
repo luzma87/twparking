@@ -33,6 +33,7 @@ class CreateUser extends Component<Props, State> {
         parkingStars: 0,
         phone: '',
         user: '',
+        enabled: true,
       },
     };
   }
