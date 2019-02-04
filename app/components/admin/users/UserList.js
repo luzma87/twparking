@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
+import type { User } from '../../../context/types';
 import colors from '../../../styles/colors';
 import EmptyListMessage from '../../_common/EmptyListMessage';
 import UserItem from './UserItem';
@@ -10,6 +11,7 @@ import UserItem from './UserItem';
 type Props = {
   users: any,
   onCreateClicked: () => void,
+  onEditClicked: User => void,
   onSaveDone: () => void
 };
 
@@ -31,8 +33,15 @@ class UserList extends Component<Props> {
   }
 
   renderItem(user) {
-    const { onSaveDone } = this.props;
-    return (<UserItem key={user.item.id} user={user.item} onSaveDone={onSaveDone} />);
+    const { onSaveDone, onEditClicked } = this.props;
+    return (
+      <UserItem
+        key={user.item.id}
+        user={user.item}
+        onSaveDone={onSaveDone}
+        onEditClicked={onEditClicked}
+      />
+    );
   }
 
   render() {

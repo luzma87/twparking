@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
+import type { User } from '../../../context/types';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
 import sortingHelper from '../../../util/sortingHelper';
 import LoadingMessage from '../../_common/LoadingMessage';
@@ -28,6 +29,7 @@ type State = {
   users: any,
   creating: boolean,
   loading: boolean,
+  selectedUser: User
 };
 
 class UsersScreen extends Component<Props, State> {
@@ -39,6 +41,7 @@ class UsersScreen extends Component<Props, State> {
       users: [],
       creating: false,
       loading: true,
+      selectedUser: null,
     };
     this.getData();
   }
@@ -73,6 +76,7 @@ class UsersScreen extends Component<Props, State> {
       <UserList
         users={users}
         onCreateClicked={() => this.showCreateForm()}
+        onEditClicked={user => this.showEditForm(user)}
         onSaveDone={() => this.getData()}
       />
     );
@@ -80,6 +84,10 @@ class UsersScreen extends Component<Props, State> {
 
   showCreateForm() {
     this.setState({ creating: true });
+  }
+
+  showEditForm(user) {
+    this.setState({ creating: true, selectedUser: user });
   }
 
   hideCreateForm() {
@@ -98,14 +106,14 @@ class UsersScreen extends Component<Props, State> {
   }
 
   render() {
-    const { users, creating } = this.state;
+    const { creating, selectedUser } = this.state;
     return (
       <TWScreenWithNavigationBar
         onPress={() => this.goBack()}
         i18nTitle={this.getTitle()}
       >
         {creating
-          ? <CreateUser onSaveDone={() => this.hideCreateForm()} />
+          ? <CreateUser onSaveDone={() => this.hideCreateForm()} selectedUser={selectedUser} />
           : this.getContent()}
       </TWScreenWithNavigationBar>
     );

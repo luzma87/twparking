@@ -12,7 +12,8 @@ import TextWithIcon from '../../_common/TWText/TextWithIcon';
 const CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarGrayBg.png');
 
 type Props = {
-  onSaveDone: () => void
+  onSaveDone: () => void,
+  selectedUser: ?User
 };
 
 type State = {
@@ -22,26 +23,29 @@ type State = {
 class CreateUser extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    let user = {
+      id: '',
+      admin: '',
+      bank: '',
+      champion: '',
+      ci: '',
+      name: '',
+      parkingStars: 0,
+      phone: '',
+      user: '',
+      enabled: true,
+    };
+    if (props.selectedUser) {
+      user = props.selectedUser;
+    }
     this.state = {
-      user: {
-        id: '',
-        admin: '',
-        bank: '',
-        champion: '',
-        ci: '',
-        name: '',
-        parkingStars: 0,
-        phone: '',
-        user: '',
-        enabled: true,
-      },
+      user,
     };
   }
 
   mergeUser(newData: Object) {
     const { user } = this.state;
     const newUser = { ...user, ...newData };
-    console.warn('-->', newUser);
     this.setState({ user: newUser });
   }
 
@@ -54,10 +58,15 @@ class CreateUser extends Component<Props, State> {
 
   save() {
     const { user } = this.state;
-    const { onSaveDone } = this.props;
-    const newUserKey = firebase.database().ref().child('people').push().key;
-    user.id = newUserKey;
-    firebase.database().ref(`people/${newUserKey}`).set(user, (error) => {
+    const { onSaveDone, selectedUser } = this.props;
+    let userKey;
+    if (selectedUser) {
+      userKey = selectedUser.id;
+    } else {
+      userKey = firebase.database().ref().child('people').push().key;
+      user.id = userKey;
+    }
+    firebase.database().ref(`people/${userKey}`).set(user, (error) => {
       if (error) {
         console.warn('The write failed...');
       } else {
