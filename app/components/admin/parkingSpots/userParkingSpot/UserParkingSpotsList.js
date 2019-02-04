@@ -6,7 +6,7 @@ import { Card } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import colors from '../../../../styles/colors';
 import EmptyListMessage from '../../../_common/EmptyListMessage';
-import TWText from '../../../_common/TWText/TWText';
+import TextWithIcon from '../../../_common/TWText/TextWithIcon';
 
 type Props = {
   people: any,
@@ -15,19 +15,6 @@ type Props = {
 
 const keyExtractor = owner => owner.id;
 
-const textWithIcon = (icon, text, color, bold) => (
-  <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-    <FontAwesome5Pro
-      solid
-      name={icon}
-      size={16}
-      color={colors[color]}
-      style={{ marginRight: 8 }}
-    />
-    <TWText text={text} font="vt323" color={colors[color]} weight={bold ? 'bold' : 'regular'} />
-  </View>
-);
-
 const renderItem = (element) => {
   const person = element.item;
   const personName = person.name;
@@ -35,9 +22,9 @@ const renderItem = (element) => {
   const personCar = `${person.car.brand} ${person.car.model} [${person.car.plate.toUpperCase()}]`;
   return (
     <Card>
-      {textWithIcon('user', personName, 'secondary600', true)}
-      {textWithIcon('warehouse', personBuilding, 'primary600')}
-      {textWithIcon('car', personCar, 'blue600')}
+      <TextWithIcon icon="user" color={colors.secondary600} text={personName} textSize="regular" style={{ marginBottom: 8 }} />
+      <TextWithIcon icon="warehouse" color={colors.primary600} text={personBuilding} textSize="regular" style={{ marginBottom: 8 }} />
+      <TextWithIcon icon="car" color={colors.blue600} text={personCar} textSize="regular" />
     </Card>
   );
 };
