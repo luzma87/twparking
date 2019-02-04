@@ -13,7 +13,7 @@ type Props = {
 const keyExtractor = owner => owner.id;
 
 const noOwners = () => (
-  <EmptyListMessage type="parkings" />
+  <EmptyListMessage type="parking" />
 );
 
 class ParkingList extends Component<Props> {
