@@ -1,11 +1,11 @@
-import UsersParkingSpotsScreen from '../components/admin/ParkingSpots/userParkingSpot/UsersParkingSpotsScreen';
+import UsersParkingSpotsScreen from '../components/admin/parkingSpots/userParkingSpot/UsersParkingSpotsScreen';
 import LoginScreen from '../components/LoginScreen';
 import UserHomeScreen from '../components/user/UserHomeScreen';
 import AdminHomeScreen from '../components/admin/AdminHomeScreen';
 import BankAccountInformationScreen
   from '../components/user/PaymentsTab/BankAccountInformationScreen';
-import OwnerScreen from '../components/admin/ParkingSpots/OwnerScreen';
-import ParkingScreen from '../components/admin/ParkingSpots/ParkingScreen';
+import OwnerScreen from '../components/admin/parkingSpots/OwnerScreen';
+import ParkingScreen from '../components/admin/parkingSpots/ParkingScreen';
 
 const routes = {
   Login: { screen: LoginScreen },
