@@ -1,18 +1,17 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { Button, Card, Rating } from 'react-native-elements';
 import firebase from 'react-native-firebase';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import type { User } from '../../../context/types';
-import colors from '../../../styles/colors';
-import fonts from '../../../styles/fonts';
-import BankTag from '../../_common/BankTag/BankTag';
-import TextWithIcon from '../../_common/TWText/TextWithIcon';
+import type { User } from '../../../../context/types';
+import colors from '../../../../styles/colors';
+import fonts from '../../../../styles/fonts';
+import BankTag from '../../../_common/BankTag/BankTag';
+import TextWithIcon from '../../../_common/TWText/TextWithIcon';
 import UserItemHeader from './UserItemHeader';
 
-const CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarWhiteBg.png');
-const DISABLED_CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarGrayBg.png');
+const CAR_RATING_IMAGE = require('../../../../../assets/images/ratingCarWhiteBg.png');
+const DISABLED_CAR_RATING_IMAGE = require('../../../../../assets/images/ratingCarGrayBg.png');
 
 type Props = {
   user: User,

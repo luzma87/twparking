@@ -3,10 +3,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import type { User } from '../../../context/types';
-import colors from '../../../styles/colors';
-import TextWithIcon from '../../_common/TWText/TextWithIcon';
-import TWText from '../../_common/TWText/TWText';
+import type { User } from '../../../../context/types';
+import colors from '../../../../styles/colors';
+import TextWithIcon from '../../../_common/TWText/TextWithIcon';
 
 type Props = {
   user: User,

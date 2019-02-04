@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import type { User } from '../../../context/types';
-import colors from '../../../styles/colors';
-import EmptyListMessage from '../../_common/EmptyListMessage';
+import type { User } from '../../../../context/types';
+import colors from '../../../../styles/colors';
+import EmptyListMessage from '../../../_common/EmptyListMessage';
 import UserItem from './UserItem';
 
 type Props = {

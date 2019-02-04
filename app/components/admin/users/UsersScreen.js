@@ -6,8 +6,8 @@ import navigationHeader from '../../../navigation/NavigationStylesHelper';
 import sortingHelper from '../../../util/sortingHelper';
 import LoadingMessage from '../../_common/LoadingMessage';
 import TWScreenWithNavigationBar from '../../_common/TWScreenWithNavigationBar';
-import CreateUser from './CreateUser';
-import UserList from './UserList';
+import CreateUser from './user/CreateUser';
+import UserList from './user/UserList';
 
 const userArrayFromObject = (users) => {
   const usersArray = [];

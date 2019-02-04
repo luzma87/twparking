@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Rating } from 'react-native-elements';
 import firebase from 'react-native-firebase';
-import type { User } from '../../../context/types';
-import colors from '../../../styles/colors';
-import InputForm from '../../_common/InputForm/InputForm';
-import TWButton from '../../_common/TWFormControls/TWButton';
-import TextWithIcon from '../../_common/TWText/TextWithIcon';
+import type { User } from '../../../../context/types';
+import colors from '../../../../styles/colors';
+import InputForm from '../../../_common/InputForm/InputForm';
+import TWButton from '../../../_common/TWFormControls/TWButton';
+import TextWithIcon from '../../../_common/TWText/TextWithIcon';
 
-const CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarGrayBg.png');
+const CAR_RATING_IMAGE = require('../../../../../assets/images/ratingCarGrayBg.png');
 
 type Props = {
   onSaveDone: () => void,
