@@ -1,14 +1,12 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Button, Card, Rating } from 'react-native-elements';
+import { Card, Rating } from 'react-native-elements';
 import firebase from 'react-native-firebase';
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import type { User } from '../../../context/types';
 import colors from '../../../styles/colors';
 import BankTag from '../../_common/BankTag/BankTag';
 import TextWithIcon from '../../_common/TWText/TextWithIcon';
-import TWText from '../../_common/TWText/TWText';
+import UserItemHeader from './UserItemHeader';
 
 const CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarWhiteBg.png');
 const DISABLED_CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarGrayBg.png');
@@ -33,51 +31,6 @@ class UserItem extends Component<Props> {
     });
   }
 
-  header(color) {
-    const { user } = this.props;
-    const icon = user.enabled ? 'toggle-on' : 'toggle-off';
-    const toggleBgColor = user.enabled ? colors.green200 : colors.red200;
-    const toggleIconColor = user.enabled ? colors.green800 : colors.red800;
-    return (
-      <View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <FontAwesome5Pro
-              solid
-              size={24}
-              name="user-astronaut"
-              color={color}
-              style={{ marginRight: 8 }}
-            />
-            <TWText text={user.name} color={color} font="vt323" size="title" />
-          </View>
-          <Button
-            onPress={() => this.toggleEnabled()}
-            icon={(
-              <FontAwesome5Pro
-                solid
-                size={20}
-                name={icon}
-                color={toggleIconColor}
-              />
-            )}
-            title=""
-            buttonStyle={{
-              backgroundColor: toggleBgColor,
-              borderColor: 'transparent',
-              paddingVertical: 4,
-              paddingHorizontal: 8,
-            }}
-          />
-        </View>
-        <View style={{
-          backgroundColor: colors.secondary200, height: 1, width: '100%', marginBottom: 8,
-        }}
-        />
-      </View>
-    );
-  }
-
   render() {
     const { user } = this.props;
     const backgroundColor = user.enabled ? colors.white : colors.blueGray100;
@@ -95,7 +48,16 @@ class UserItem extends Component<Props> {
       containerStyles.borderColor = colors.blueGray200;
     }
     return (
-      <Card title={this.header(secondaryColor)} containerStyle={containerStyles}>
+      <Card
+        title={(
+          <UserItemHeader
+            user={user}
+            toggleEnabled={() => this.toggleEnabled()}
+            color={secondaryColor}
+          />
+        )}
+        containerStyle={containerStyles}
+      >
         <Rating
           type="custom"
           ratingImage={user.enabled ? CAR_RATING_IMAGE : DISABLED_CAR_RATING_IMAGE}
