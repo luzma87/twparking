@@ -62,7 +62,7 @@ class AdminMetroMenu extends Component<Props, State> {
           />
           <TWMetroButton
             i18n="screens.admin.home.tabs.Users"
-            onPress={() => {}}
+            onPress={() => navigation.navigate(appNavigation.navigationTree.UsersScreen)}
             tintBase={300}
             icon="user-astronaut"
             tint="secondary"

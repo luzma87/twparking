@@ -58,7 +58,7 @@ const getFontFamily = (font, weight, italic) => {
 
 export default class TWText extends Component<Props, {}> {
   static defaultProps = {
-    font: 'almendra',
+    font: 'vt323',
     weight: 'regular',
     size: 'regular',
     color: colors.primary800,

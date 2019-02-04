@@ -12,7 +12,7 @@ import TWButton from '../../_common/TWFormControls/TWButton';
 import colors from '../../../styles/colors';
 import UserAvatar from './UserAvatar';
 
-const CAR_RATING_IMAGE = require('../../../../assets/images/car1.png');
+const CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarGrayBg.png');
 
 const isEmpty = (object: Object) => Object.keys(object).length === 0;
 

@@ -2,6 +2,7 @@ import AdminHomeScreen from '../components/admin/AdminHomeScreen';
 import OwnerScreen from '../components/admin/parkingSpots/OwnerScreen';
 import ParkingScreen from '../components/admin/parkingSpots/ParkingScreen';
 import UsersParkingSpotsScreen from '../components/admin/parkingSpots/UsersParkingSpotsScreen';
+import UsersScreen from '../components/admin/users/UsersScreen';
 import LoginScreen from '../components/LoginScreen';
 import BankAccountInformationScreen from '../components/user/PaymentsTab/BankAccountInformationScreen';
 import UserHomeScreen from '../components/user/UserHomeScreen';
@@ -12,6 +13,7 @@ const routes = {
   AdminHome: { screen: AdminHomeScreen },
   BankInformation: { screen: BankAccountInformationScreen },
   OwnersScreen: { screen: OwnerScreen },
+  UsersScreen: { screen: UsersScreen },
   ParkingScreen: { screen: ParkingScreen },
   UsersParkingSpots: { screen: UsersParkingSpotsScreen },
 };

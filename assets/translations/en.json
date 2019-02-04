@@ -177,6 +177,25 @@
             "personPlaceholder": "Select a person…"
           }
         }
+      },
+      "users": {
+        "empty": "There are no users yet!\nCreate one...",
+        "loading": "Loading the users...\nPlease wait...",
+        "admin": "Is admin",
+        "nonAdmin": "Is not admin",
+        "champion": "Is champion",
+        "nonChampion": "Is not champion",
+        "create": {
+          "title": "Create user",
+          "form": {
+            "name": "Name",
+            "namePlaceholder": "Name…",
+            "email": "Email",
+            "emailPlaceholder": "Email…",
+            "bank": "Bank",
+            "bankPlaceholder": "Bank…"
+          }
+        }
       }
     }
   }

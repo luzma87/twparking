@@ -2,12 +2,13 @@
 import React from 'react';
 import { View } from 'react-native';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
+import colors from '../../../styles/colors';
 import type { fontSizes } from './TWText';
 import TWText from './TWText';
 
 type Props = {
   icon: String,
-  color: String,
+  color?: String,
   text?: String,
   textSize?: fontSizes,
   i18n?: String,
@@ -67,6 +68,7 @@ const TextWithIcon = (props: Props) => {
 TextWithIcon.defaultProps = {
   text: undefined,
   i18n: undefined,
+  color: colors.primary800,
   i18nParams: {},
   textSize: 'title',
   style: {},
