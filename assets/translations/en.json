@@ -190,10 +190,23 @@
           "form": {
             "name": "Name",
             "namePlaceholder": "Name…",
-            "email": "Email",
-            "emailPlaceholder": "Email…",
+            "user": "Username",
+            "userPlaceholder": "Username…",
             "bank": "Bank",
-            "bankPlaceholder": "Bank…"
+            "bankPlaceholder": "Bank…",
+            "ci": "CI",
+            "ciPlaceholder": "CI…",
+            "phone": "Phone",
+            "phonePlaceholder": "Phone…",
+            "parkingStars": [ "Only open spaces", "Easy Buildings", "Medium", "asdf", "Anywhere" ],
+            "admin": {
+              "yes": "Admin (Yes)",
+              "no": "Admin (No)"
+            },
+            "champion": {
+              "yes": "Champion (Yes)",
+              "no": "Champion (No)"
+            }
           }
         }
       }

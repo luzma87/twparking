@@ -1,45 +1,62 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
+import { Rating } from 'react-native-elements';
 import firebase from 'react-native-firebase';
+import type { User } from '../../../context/types';
+import colors from '../../../styles/colors';
 import InputForm from '../../_common/InputForm/InputForm';
-import type { Owner } from '../../../context/types';
 import TWButton from '../../_common/TWFormControls/TWButton';
+import TextWithIcon from '../../_common/TWText/TextWithIcon';
+
+const CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarGrayBg.png');
 
 type Props = {
   onSaveDone: () => void
 };
 
 type State = {
-  owner: Owner
+  user: User
 }
 
 class CreateUser extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      owner: {
+      user: {
         id: '',
-        name: '',
-        email: '',
+        admin: '',
         bank: '',
-        parkingSpots: [],
+        champion: '',
+        ci: '',
+        name: '',
+        parkingStars: 0,
+        phone: '',
+        user: '',
       },
     };
   }
 
-  mergeOwner(newData: Object) {
-    const { owner } = this.state;
-    const newOwner = { ...owner, ...newData };
-    this.setState({ owner: newOwner });
+  mergeUser(newData: Object) {
+    const { user } = this.state;
+    const newUser = { ...user, ...newData };
+    console.warn('-->', newUser);
+    this.setState({ user: newUser });
   }
 
-  saveOwner() {
-    const { owner } = this.state;
+  toggleProp(prop: string) {
+    const { user } = this.state;
+    const oldProp = user[prop];
+    user[prop] = !oldProp;
+    this.setState({ user });
+  }
+
+  save() {
+    const { user } = this.state;
     const { onSaveDone } = this.props;
-    const newOwnerKey = firebase.database().ref().child('owners').push().key;
-    owner.id = newOwnerKey;
-    firebase.database().ref(`owners/${newOwnerKey}`).set(owner, (error) => {
+    const newUserKey = firebase.database().ref().child('people').push().key;
+    user.id = newUserKey;
+    firebase.database().ref(`people/${newUserKey}`).set(user, (error) => {
       if (error) {
         console.warn('The write failed...');
       } else {
@@ -49,37 +66,75 @@ class CreateUser extends Component<Props, State> {
   }
 
   render() {
-    const { owner } = this.state;
+    const { user } = this.state;
+    const championIcon = user.champion ? 'user-crown' : 'user';
+    const isChampion = user.champion ? 'yes' : 'no';
+    const adminIcon = user.admin ? 'alicorn' : 'horse';
+    const isAdmin = user.admin ? 'yes' : 'no';
+    const parkingStars = parseInt(user.parkingStars, 10);
     return (
       <View style={{ padding: '10%' }}>
         <InputForm
-          field={owner.name}
-          i18nLabel="screens.admin.owners.create.form.name"
-          i18nPlaceholder="screens.admin.owners.create.form.namePlaceholder"
+          field={user.name}
+          i18nLabel="screens.admin.users.create.form.name"
+          i18nPlaceholder="screens.admin.users.create.form.namePlaceholder"
           inputProps={{ autoFocus: true }}
-          onChangeText={(value) => {
-            this.mergeOwner({ name: value });
-          }}
+          onChangeText={value => this.mergeUser({ name: value })}
         />
         <InputForm
-          field={owner.email}
-          i18nLabel="screens.admin.owners.create.form.email"
-          i18nPlaceholder="screens.admin.owners.create.form.emailPlaceholder"
-          inputProps={{ type: 'email', autoFocus: false }}
-          onChangeText={(value) => {
-            this.mergeOwner({ email: value });
-          }}
+          field={user.user}
+          i18nLabel="screens.admin.users.create.form.user"
+          i18nPlaceholder="screens.admin.users.create.form.userPlaceholder"
+          inputProps={{ autoFocus: true }}
+          onChangeText={value => this.mergeUser({ user: value })}
         />
         <InputForm
-          field={owner.bank}
-          i18nLabel="screens.admin.owners.create.form.bank"
-          i18nPlaceholder="screens.admin.owners.create.form.bankPlaceholder"
-          inputProps={{ type: 'bank', autoFocus: false }}
-          onChangeText={(value) => {
-            this.mergeOwner({ bank: value });
-          }}
+          field={user.bank}
+          i18nLabel="screens.admin.users.create.form.bank"
+          i18nPlaceholder="screens.admin.users.create.form.bankPlaceholder"
+          inputProps={{ autoFocus: false }}
+          onChangeText={value => this.mergeUser({ bank: value })}
         />
-        <TWButton i18n="commons.buttons.save" onPress={() => this.saveOwner()} style={{ marginTop: 30 }} />
+        <InputForm
+          field={user.ci}
+          i18nLabel="screens.admin.users.create.form.ci"
+          i18nPlaceholder="screens.admin.users.create.form.ciPlaceholder"
+          inputProps={{ autoFocus: false }}
+          onChangeText={value => this.mergeUser({ ci: value })}
+        />
+        <InputForm
+          field={user.phone}
+          i18nLabel="screens.admin.users.create.form.phone"
+          i18nPlaceholder="screens.admin.users.create.form.phonePlaceholder"
+          inputProps={{ autoFocus: false }}
+          onChangeText={value => this.mergeUser({ phone: value })}
+        />
+        <Rating
+          type="custom"
+          ratingImage={CAR_RATING_IMAGE}
+          ratingColor={colors.secondary500}
+          ratingBackgroundColor={colors.primary200}
+          startingValue={parkingStars}
+          imageSize={32}
+          fractions={0}
+          style={{ marginBottom: 8 }}
+          onFinishRating={stars => this.mergeUser({ parkingStars: stars })}
+        />
+        <TouchableOpacity style={{ marginBottom: 8 }} onPress={() => this.toggleProp('admin')}>
+          <TextWithIcon
+            icon={adminIcon}
+            i18n={`screens.admin.users.create.form.admin.${isAdmin}`}
+            textSize="regular"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.toggleProp('champion')}>
+          <TextWithIcon
+            icon={championIcon}
+            i18n={`screens.admin.users.create.form.champion.${isChampion}`}
+            textSize="regular"
+          />
+        </TouchableOpacity>
+        <TWButton i18n="commons.buttons.save" onPress={() => this.save()} style={{ marginTop: 30 }} />
       </View>
     );
   }
