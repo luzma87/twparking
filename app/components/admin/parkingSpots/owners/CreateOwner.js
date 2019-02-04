@@ -2,12 +2,13 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'react-native-firebase';
-import InputForm from '../../../_common/InputForm/InputForm';
 import type { Owner } from '../../../../context/types';
+import InputForm from '../../../_common/InputForm/InputForm';
 import TWButton from '../../../_common/TWFormControls/TWButton';
 
 type Props = {
-  onSaveDone: () => void
+  onSaveDone: () => void,
+  selectedOwner: ?Owner,
 };
 
 type State = {
@@ -17,14 +18,18 @@ type State = {
 class CreateOwner extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    let owner = {
+      id: '',
+      name: '',
+      email: '',
+      bank: '',
+      parkingSpots: [],
+    };
+    if (props.selectedOwner) {
+      owner = props.selectedOwner;
+    }
     this.state = {
-      owner: {
-        id: '',
-        name: '',
-        email: '',
-        bank: '',
-        parkingSpots: [],
-      },
+      owner,
     };
   }
 
@@ -36,10 +41,15 @@ class CreateOwner extends Component<Props, State> {
 
   saveOwner() {
     const { owner } = this.state;
-    const { onSaveDone } = this.props;
-    const newOwnerKey = firebase.database().ref().child('owners').push().key;
-    owner.id = newOwnerKey;
-    firebase.database().ref(`owners/${newOwnerKey}`).set(owner, (error) => {
+    const { onSaveDone, selectedOwner } = this.props;
+    let ownerKey;
+    if (selectedOwner) {
+      ownerKey = selectedOwner.id;
+    } else {
+      ownerKey = firebase.database().ref().child('people').push().key;
+      owner.id = ownerKey;
+    }
+    firebase.database().ref(`owners/${ownerKey}`).set(owner, (error) => {
       if (error) {
         console.warn('The write failed...');
       } else {

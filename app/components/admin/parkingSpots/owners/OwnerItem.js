@@ -6,9 +6,11 @@ import type { Owner } from '../../../../context/types';
 import colors from '../../../../styles/colors';
 import BankTag from '../../../_common/BankTag/BankTag';
 import TextWithIcon from '../../../_common/TWText/TextWithIcon';
+import EditButton from '../../_common/EditButton';
 
 type Props = {
-  owner: Owner
+  owner: Owner,
+  onEditClicked: Owner => void
 };
 
 const header = owner => (
@@ -22,11 +24,12 @@ const header = owner => (
 );
 
 const OwnerItem = (props: Props) => {
-  const { owner } = props;
+  const { owner, onEditClicked } = props;
   return (
     <Card title={header(owner)}>
       <TextWithIcon icon="at" text={owner.email} textSize="regular" />
       <BankTag bank={owner.bank} />
+      <EditButton onEditClicked={() => onEditClicked(owner)} />
     </Card>
   );
 };

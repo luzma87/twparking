@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
+import type { Owner } from '../../../context/types';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
 import sortingHelper from '../../../util/sortingHelper';
 import LoadingMessage from '../../_common/LoadingMessage';
@@ -27,7 +28,8 @@ type Props = {
 type State = {
   owners: any,
   loading: boolean,
-  creating: boolean
+  creating: boolean,
+  selectedOwner: Owner,
 };
 
 class OwnerScreen extends Component<Props, State> {
@@ -39,6 +41,7 @@ class OwnerScreen extends Component<Props, State> {
       owners: [],
       loading: true,
       creating: false,
+      selectedOwner: null,
     };
     this.getData();
   }
@@ -69,11 +72,21 @@ class OwnerScreen extends Component<Props, State> {
     if (loading) {
       return <LoadingMessage type="owners" />;
     }
-    return <OwnerList owners={owners} onCreateClicked={() => this.showCreateForm()} />;
+    return (
+      <OwnerList
+        owners={owners}
+        onCreateClicked={() => this.showCreateForm()}
+        onEditClicked={owner => this.showEditForm(owner)}
+      />
+    );
   }
 
   showCreateForm() {
     this.setState({ creating: true });
+  }
+
+  showEditForm(owner) {
+    this.setState({ creating: true, selectedOwner: owner });
   }
 
   hideCreateForm() {
@@ -92,14 +105,14 @@ class OwnerScreen extends Component<Props, State> {
   }
 
   render() {
-    const { creating } = this.state;
+    const { creating, selectedOwner } = this.state;
     return (
       <TWScreenWithNavigationBar
         onPress={() => this.goBack()}
         i18nTitle={this.getTitle()}
       >
         {creating
-          ? <CreateOwner onSaveDone={() => this.hideCreateForm()} />
+          ? <CreateOwner onSaveDone={() => this.hideCreateForm()} selectedOwner={selectedOwner} />
           : this.getContent()}
       </TWScreenWithNavigationBar>
     );
