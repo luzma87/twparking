@@ -2,10 +2,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Card } from 'react-native-elements';
-import TextWithIcon from '../../../_common/TWText/TextWithIcon';
+import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import type { Owner } from '../../../../context/types';
 import colors from '../../../../styles/colors';
 import BankTag from '../../../_common/BankTag/BankTag';
+import TextWithIcon from '../../../_common/TWText/TextWithIcon';
+import TWText from '../../../_common/TWText/TWText';
 
 type Props = {
   owner: Owner
@@ -25,7 +27,16 @@ const OwnerItem = (props: Props) => {
   const { owner } = props;
   return (
     <Card title={header(owner)}>
-      <TextWithIcon icon="at" color={colors.primary800} text={owner.email} textSize="regular" />
+      <View style={{ flexDirection: 'row', marginTop: 8, alignItems: 'center' }}>
+        <FontAwesome5Pro
+          solid
+          size={16}
+          name="at"
+          color={colors.primary800}
+          style={{ marginRight: 8 }}
+        />
+        <TWText text={owner.email} font="vt323" />
+      </View>
       <BankTag bank={owner.bank} />
     </Card>
   );
