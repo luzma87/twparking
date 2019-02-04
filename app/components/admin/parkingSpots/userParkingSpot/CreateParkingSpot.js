@@ -1,11 +1,12 @@
 /* @flow */
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+import { View } from 'react-native';
 import firebase from 'react-native-firebase';
+import RNPickerSelect from 'react-native-picker-select';
 import I18n from '../../../../i18n';
 import colors from '../../../../styles/colors';
 import TWButton from '../../../_common/TWFormControls/TWButton';
+import pickerSelectStyles from '../../_common/PickerStyles';
 
 type Props = {
   onSaveDone: () => void,
@@ -114,27 +115,3 @@ class CreateParkingSpot extends Component<Props, State> {
   }
 }
 export default CreateParkingSpot;
-
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 16,
-    paddingTop: 13,
-    paddingHorizontal: 10,
-    paddingBottom: 12,
-    borderWidth: 1,
-    borderColor: colors.blueGray500,
-    borderRadius: 4,
-    color: 'black',
-    marginBottom: 4,
-  },
-  inputAndroid: {
-    paddingTop: 13,
-    paddingHorizontal: 10,
-    paddingBottom: 12,
-    borderWidth: 1,
-    borderColor: colors.blueGray500,
-    borderRadius: 4,
-    color: 'black',
-    marginBottom: 4,
-  },
-});
