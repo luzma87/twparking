@@ -1,13 +1,12 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Button, Card, Rating } from 'react-native-elements';
+import { Card, Rating } from 'react-native-elements';
 import firebase from 'react-native-firebase';
-import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import type { User } from '../../../../context/types';
 import colors from '../../../../styles/colors';
-import fonts from '../../../../styles/fonts';
 import BankTag from '../../../_common/BankTag/BankTag';
 import TextWithIcon from '../../../_common/TWText/TextWithIcon';
+import EditButton from '../../_common/EditButton';
 import UserItemHeader from './UserItemHeader';
 
 const CAR_RATING_IMAGE = require('../../../../../assets/images/ratingCarWhiteBg.png');
@@ -77,30 +76,7 @@ class UserItem extends Component<Props> {
         <TextWithIcon icon={userAdminIcon} i18n={userAdminText} textSize="regular" color={primaryColor} />
         <TextWithIcon icon={userChampionIcon} i18n={userChampionText} textSize="regular" color={primaryColor} />
         <BankTag bank={user.bank} textProps={{ color: primaryColor }} />
-        <Button
-          onPress={() => onEditClicked(user)}
-          icon={(
-            <FontAwesome5Pro
-              solid
-              size={16}
-              name="pencil"
-              color={colors.secondary700}
-              style={{ marginRight: 8 }}
-            />
-          )}
-          title="Edit"
-          style={{ marginTop: 16 }}
-          titleStyle={{
-            fontFamily: fonts.vt323.regular,
-            color: colors.secondary700,
-          }}
-          buttonStyle={{
-            backgroundColor: colors.secondary100,
-            borderColor: 'transparent',
-            paddingVertical: 4,
-            paddingHorizontal: 8,
-          }}
-        />
+        <EditButton onEditClicked={() => onEditClicked(user)} />
       </Card>
     );
   }
