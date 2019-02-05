@@ -108,6 +108,20 @@
           "undoPayment": "You made a mistake to mark as paid, Are you sure you want to undo your payment confirmation?"
         }
       },
+      "spot": {
+        "form": {
+          "number": "Number",
+          "numberPlaceholder": "Number…",
+          "address": "Address",
+          "addressPlaceholder": "Address…",
+          "building": "Building",
+          "buildingPlaceholder": "Building…",
+          "cost": "Cost",
+          "costPlaceholder": "Cost…",
+          "size": "Size",
+          "sizePlaceholder": "Size…"
+        }
+      },
       "profile": {
         "form": {
           "name": "Name",
