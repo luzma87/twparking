@@ -1,16 +1,16 @@
 /* @flow */
 import React, { Component } from 'react';
-import { Image, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
-import TWText from '../_common/TWText/TWText';
 import withContext from '../../context/WithContext';
 import styles from './CarTab/carStyles';
-import Plate from './CarTab/Plate';
 import InputForm from '../_common/InputForm/InputForm';
 import colors from '../../styles/colors';
-import carHelper from '../../util/carHelper';
+import type { GlobalContext } from '../../context/types';
 
-type Props = {};
+type Props = {
+  context?: GlobalContext,
+};
 type State = {};
 
 class SpotTab extends Component<Props, State> {
@@ -29,7 +29,6 @@ class SpotTab extends Component<Props, State> {
     const { context } = this.props;
     const { user } = context;
     const { spot } = user;
-    // car.vehicle = sample(vehicles);
     this.setState({ spot });
   }
 
@@ -56,7 +55,7 @@ class SpotTab extends Component<Props, State> {
                 solid
                 inverted
                 size={100}
-                name="parking"
+                name="parking-circle"
                 color={colors.secondary500}
               />
               <FontAwesome5Pro
@@ -64,7 +63,7 @@ class SpotTab extends Component<Props, State> {
                 inverted
                 size={100}
                 name="car"
-                color={colors.secondary500}
+                color={colors.primary800}
               />
             </View>
 
