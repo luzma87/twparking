@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
-import type { Owner } from '../../../context/types';
+import type { Car, User } from '../../../context/types';
 import navigationHeader from '../../../navigation/NavigationStylesHelper';
 import sortingHelper from '../../../util/sortingHelper';
 import LoadingMessage from '../../_common/LoadingMessage';
@@ -18,7 +18,7 @@ const peopleArrayFromObject = (people) => {
     };
     peopleArray.push(person);
   });
-  peopleArray.sort(sortingHelper.compareByName);
+  peopleArray.sort(sortingHelper.compareByCar);
   return peopleArray;
 };
 
@@ -27,7 +27,8 @@ type Props = {
 };
 type State = {
   people: any,
-  selectedOwner: ?Owner,
+  selectedPerson: ?User,
+  selectedCar: ?Car,
   creating: boolean,
   loading: boolean,
 };
@@ -38,7 +39,8 @@ class UsersCarsScreen extends Component<Props, State> {
     super(props);
     this.state = {
       people: [],
-      selectedOwner: undefined,
+      selectedPerson: undefined,
+      selectedCar: undefined,
       creating: false,
       loading: true,
     };
@@ -80,8 +82,8 @@ class UsersCarsScreen extends Component<Props, State> {
     );
   }
 
-  showCreateForm(person: ?Owner) {
-    this.setState({ creating: true, selectedOwner: person });
+  showCreateForm(person: ?User) {
+    this.setState({ creating: true, selectedPerson: person });
   }
 
   hideCreateForm() {
@@ -100,14 +102,14 @@ class UsersCarsScreen extends Component<Props, State> {
   }
 
   render() {
-    const { creating, selectedOwner } = this.state;
+    const { creating, selectedPerson } = this.state;
     return (
       <TWScreenWithNavigationBar
         onPress={() => this.goBack()}
         i18nTitle={this.getTitle()}
       >
         {creating
-          ? <CreateCar person={selectedOwner} onSaveDone={() => this.hideCreateForm()} />
+          ? <CreateCar person={selectedPerson} onSaveDone={() => this.hideCreateForm()} />
           : this.getContent()}
       </TWScreenWithNavigationBar>
     );

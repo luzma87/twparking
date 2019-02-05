@@ -159,7 +159,6 @@
       "parking": {
         "empty": "There are no parking spots yet!\nCreate one...",
         "loading": "Loading the parking spots...\nPlease wait...",
-        "list": "{{building}} (#{{number}} - {{size}})",
         "create": {
           "title": "Create parking spot",
           "header": "New parking spot for {{owner}}",
@@ -197,9 +196,18 @@
         "loading": "Loading the cars...\nPlease wait...",
         "create": {
           "title": "Create car",
+          "header": "New car for {{person}}",
           "form": {
-            "spotPlaceholder": "Select a spot…",
-            "personPlaceholder": "Select a person…"
+            "brand": "Brand",
+            "brandPlaceholder": "Brand…",
+            "model": "Model",
+            "modelPlaceholder": "Model…",
+            "color": "Color",
+            "colorPlaceholder": "Color…",
+            "size": "Size",
+            "sizePlaceholder": "Size…",
+            "plate": "Plate",
+            "platePlaceholder": "Plate…"
           }
         }
       },

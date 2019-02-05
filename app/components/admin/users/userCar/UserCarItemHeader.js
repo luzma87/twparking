@@ -14,17 +14,18 @@ type Props = {
 
 const UserCarItemHeader = (props: Props) => {
   const { user, onCreateClicked } = props;
+  const icon = user.car ? 'pencil' : 'plus';
   return (
     <View>
       <View style={{ flexDirection: 'row', alignContent: 'center', justifyContent: 'space-between' }}>
         <TextWithIcon icon="user-astronaut" color={colors.secondary500} text={user.name} />
         <Button
-          onPress={() => onCreateClicked(user)}
+          onPress={onCreateClicked}
           icon={(
             <FontAwesome5Pro
               solid
               size={20}
-              name="plus"
+              name={icon}
               color={colors.white}
             />
           )}

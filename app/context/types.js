@@ -5,7 +5,8 @@ export type Car = {
   vehicle?: string | number,
   brand?: string,
   model?: string,
-  size?: string
+  size?: string,
+  color?: string,
 }
 
 export type User = {

@@ -2,46 +2,49 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import firebase from 'react-native-firebase';
-import type { Owner, ParkingSpot } from '../../../../context/types';
+import type { User, Car } from '../../../../context/types';
 import InputForm from '../../../_common/InputForm/InputForm';
 import TWButton from '../../../_common/TWFormControls/TWButton';
 import TWText from '../../../_common/TWText/TWText';
 
 type Props = {
-  person: ?Owner,
+  person: ?User,
+  car: ?Car,
   onSaveDone: () => void
 };
 type State = {
-  parking: ParkingSpot
+  car: Car
+};
+
+const emptyCar = {
+  brand: '',
+  model: '',
+  plate: '',
+  size: '',
+  color: '',
 };
 
 class CreateCar extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    let { car } = props;
+    if (!props.car) {
+      car = emptyCar;
+    }
     this.state = {
-      parking: {
-        building: '',
-        number: '',
-        address: '',
-        size: 'S',
-        cost: 0,
-        active: true,
-        free: true,
-      },
+      car,
     };
   }
 
-  saveParking() {
+  save() {
     const { person } = this.props;
     if (person) {
-      const { parking } = this.state;
+      const { car } = this.state;
       const { onSaveDone } = this.props;
       const personKey = person.id;
-      if (!person.parkingSpots) {
-        person.parkingSpots = [];
-      }
-      person.parkingSpots.push(parking);
-      firebase.database().ref(`persons/${personKey}`).set(person, (error) => {
+      person.car = car;
+      console.warn(person);
+      firebase.database().ref(`people/${personKey}`).set(person, (error) => {
         if (error) {
           console.warn('The write failed...');
         } else {
@@ -51,15 +54,15 @@ class CreateCar extends Component<Props, State> {
     }
   }
 
-  mergeParking(newData: Object) {
-    const { parking } = this.state;
-    const newParking = { ...parking, ...newData };
-    this.setState({ parking: newParking });
+  merge(newData: Object) {
+    const { car } = this.state;
+    const newCar = { ...car, ...newData };
+    this.setState({ car: newCar });
   }
 
   render() {
     const { person } = this.props;
-    const { parking } = this.state;
+    const { car } = this.state;
     if (!person) {
       return null;
     }
@@ -73,54 +76,47 @@ class CreateCar extends Component<Props, State> {
           size="title"
           multiline
           align="center"
-          i18n="screens.admin.parking.create.header"
+          i18n="screens.admin.cars.create.header"
           i18nParams={{ person: person.name }}
         />
         <ScrollView style={{ flex: 1 }}>
           <View>
             <InputForm
-              field={parking.building}
-              i18nLabel="screens.admin.parking.create.form.building"
-              i18nPlaceholder="screens.admin.parking.create.form.buildingPlaceholder"
+              field={car.brand}
+              i18nLabel="screens.admin.cars.create.form.brand"
+              i18nPlaceholder="screens.admin.cars.create.form.brandPlaceholder"
               inputProps={{ autoFocus: true }}
-              onChangeText={value => this.mergeParking({ building: value })}
+              onChangeText={value => this.merge({ brand: value })}
             />
             <InputForm
-              field={parking.number}
-              i18nLabel="screens.admin.parking.create.form.number"
-              i18nPlaceholder="screens.admin.parking.create.form.numberPlaceholder"
+              field={car.model}
+              i18nLabel="screens.admin.cars.create.form.model"
+              i18nPlaceholder="screens.admin.cars.create.form.modelPlaceholder"
               inputProps={{ autoFocus: true }}
-              onChangeText={value => this.mergeParking({ number: value })}
+              onChangeText={value => this.merge({ model: value })}
             />
             <InputForm
-              field={parking.address}
-              i18nLabel="screens.admin.parking.create.form.address"
-              i18nPlaceholder="screens.admin.parking.create.form.addressPlaceholder"
+              field={car.color}
+              i18nLabel="screens.admin.cars.create.form.color"
+              i18nPlaceholder="screens.admin.cars.create.form.colorPlaceholder"
               inputProps={{ autoFocus: true }}
-              onChangeText={value => this.mergeParking({ address: value })}
+              onChangeText={value => this.merge({ color: value })}
             />
             <InputForm
-              field={parking.size}
-              i18nLabel="screens.admin.parking.create.form.size"
-              i18nPlaceholder="screens.admin.parking.create.form.sizePlaceholder"
+              field={car.size}
+              i18nLabel="screens.admin.cars.create.form.size"
+              i18nPlaceholder="screens.admin.cars.create.form.sizePlaceholder"
               inputProps={{ autoFocus: true }}
-              onChangeText={value => this.mergeParking({ size: value })}
+              onChangeText={value => this.merge({ size: value })}
             />
             <InputForm
-              field={parking.cost}
-              i18nLabel="screens.admin.parking.create.form.cost"
-              i18nPlaceholder="screens.admin.parking.create.form.costPlaceholder"
+              field={car.plate}
+              i18nLabel="screens.admin.cars.create.form.plate"
+              i18nPlaceholder="screens.admin.cars.create.form.platePlaceholder"
               inputProps={{ autoFocus: true }}
-              onChangeText={value => this.mergeParking({ cost: value })}
+              onChangeText={value => this.merge({ plate: value })}
             />
-            <InputForm
-              field={parking.comments || ''}
-              i18nLabel="screens.admin.parking.create.form.comments"
-              i18nPlaceholder="screens.admin.parking.create.form.commentsPlaceholder"
-              inputProps={{ autoFocus: true }}
-              onChangeText={value => this.mergeParking({ comments: value })}
-            />
-            <TWButton i18n="commons.buttons.save" onPress={() => this.saveParking()} style={{ marginTop: 30 }} />
+            <TWButton i18n="commons.buttons.save" onPress={() => this.save()} style={{ marginTop: 30 }} />
           </View>
         </ScrollView>
       </View>

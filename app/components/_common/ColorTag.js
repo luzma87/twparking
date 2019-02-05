@@ -10,7 +10,7 @@ type Props = {
 
 const ColorTag = (props: Props) => {
   const { color, style } = props;
-  const backgroundColor = colors.carColor[color];
+  const backgroundColor = colors.carColor[color.toUpperCase()];
   return (
     <Badge status="primary" containerStyle={[style]} badgeStyle={{ backgroundColor, borderColor: colors.black }} />
   );
