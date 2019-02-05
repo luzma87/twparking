@@ -5,6 +5,7 @@ import { scale } from 'react-native-size-matters';
 import TWText from '../TWText/TWText';
 import TWInput from '../TWFormControls/TWInput';
 import styles from './inputFormStyles';
+import TWLabel from './TWLabel';
 
 type Props = {
   field: string | number,
@@ -32,12 +33,7 @@ class InputForm extends Component<Props, State> {
     const paddingRight = labelPadding || 0 > 60 ? '18%' : '10%';
     return (
       <View style={styles.container}>
-        <TWText
-          font="vt323"
-          i18n={i18nLabel}
-          style={{ width: scale(labelPadding), marginRight: 5 }}
-          align="right"
-        />
+        <TWLabel i18nLabel={i18nLabel} labelPadding={labelPadding} />
         <TWInput
           value={field ? field.toString() : ''}
           containerStyle={[styles.inputContainer, { paddingRight }]}

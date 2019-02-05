@@ -2,10 +2,16 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import firebase from 'react-native-firebase';
+import RNPickerSelect from 'react-native-picker-select';
 import type { Owner, ParkingSpot } from '../../../../context/types';
+import I18n from '../../../../i18n';
+import colors from '../../../../styles/colors';
 import InputForm from '../../../_common/InputForm/InputForm';
+import SizePicker from '../../../_common/InputForm/SizePicker';
+import TWLabel from '../../../_common/InputForm/TWLabel';
 import TWButton from '../../../_common/TWFormControls/TWButton';
 import TWText from '../../../_common/TWText/TWText';
+import pickerSelectStyles from '../../_common/PickerStyles';
 
 type Props = {
   owner: ?Owner,
@@ -23,7 +29,7 @@ class CreateParking extends Component<Props, State> {
         building: '',
         number: '',
         address: '',
-        size: 'S',
+        size: '',
         cost: 0,
         active: true,
         free: true,
@@ -60,6 +66,16 @@ class CreateParking extends Component<Props, State> {
   render() {
     const { owner } = this.props;
     const { parking } = this.state;
+    const rawSizes = I18n.t('commons.size');
+    const sizes = [];
+    Object.keys(rawSizes).forEach((sizeKey) => {
+      const rawSize = rawSizes[sizeKey];
+      const size = {
+        label: rawSize,
+        value: sizeKey,
+      };
+      sizes.push(size);
+    });
     if (!owner) {
       return null;
     }
@@ -99,12 +115,9 @@ class CreateParking extends Component<Props, State> {
               inputProps={{ autoFocus: true }}
               onChangeText={value => this.mergeParking({ address: value })}
             />
-            <InputForm
-              field={parking.size}
-              i18nLabel="screens.admin.parking.create.form.size"
-              i18nPlaceholder="screens.admin.parking.create.form.sizePlaceholder"
-              inputProps={{ autoFocus: true }}
-              onChangeText={value => this.mergeParking({ size: value })}
+            <SizePicker
+              value={parking.size}
+              onValueChange={value => this.mergeParking({ size: value })}
             />
             <InputForm
               field={parking.cost}

@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import type { User, Car } from '../../../../context/types';
+import ColorPicker from "../../../_common/InputForm/ColorPicker";
 import InputForm from '../../../_common/InputForm/InputForm';
+import SizePicker from '../../../_common/InputForm/SizePicker';
 import TWButton from '../../../_common/TWFormControls/TWButton';
 import TWText from '../../../_common/TWText/TWText';
 
@@ -93,20 +95,8 @@ class CreateCar extends Component<Props, State> {
               inputProps={{ autoFocus: true }}
               onChangeText={value => this.merge({ model: value })}
             />
-            <InputForm
-              field={car.color}
-              i18nLabel="screens.admin.cars.create.form.color"
-              i18nPlaceholder="screens.admin.cars.create.form.colorPlaceholder"
-              inputProps={{ autoFocus: true }}
-              onChangeText={value => this.merge({ color: value })}
-            />
-            <InputForm
-              field={car.size}
-              i18nLabel="screens.admin.cars.create.form.size"
-              i18nPlaceholder="screens.admin.cars.create.form.sizePlaceholder"
-              inputProps={{ autoFocus: true }}
-              onChangeText={value => this.merge({ size: value })}
-            />
+            <ColorPicker value={car.color} onValueChange={value => this.merge({ color: value })} />
+            <SizePicker value={car.size} onValueChange={value => this.merge({ size: value })} />
             <InputForm
               field={car.plate}
               i18nLabel="screens.admin.cars.create.form.plate"

@@ -15,6 +15,7 @@
       "RED": "Red",
       "GREEN": "Green",
       "GRAY": "Gray",
+      "SILVER": "Silver",
       "BLUE": "Blue"
     },
     "size": {
@@ -195,17 +196,17 @@
         "empty": "There are no cars yet!\nCreate one...",
         "loading": "Loading the cars...\nPlease wait...",
         "create": {
-          "title": "Create car",
-          "header": "New car for {{person}}",
+          "title": "Create/Update car",
+          "header": "{{person}}'s car",
           "form": {
             "brand": "Brand",
             "brandPlaceholder": "Brand…",
             "model": "Model",
             "modelPlaceholder": "Model…",
             "color": "Color",
-            "colorPlaceholder": "Color…",
+            "colorPlaceholder": "Choose color…",
             "size": "Size",
-            "sizePlaceholder": "Size…",
+            "sizePlaceholder": "Choose size…",
             "plate": "Plate",
             "platePlaceholder": "Plate…"
           }
