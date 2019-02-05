@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import type { User, Car } from '../../../../context/types';
-import ColorPicker from "../../../_common/InputForm/ColorPicker";
+import ColorPicker from '../../../_common/InputForm/ColorPicker';
 import InputForm from '../../../_common/InputForm/InputForm';
 import SizePicker from '../../../_common/InputForm/SizePicker';
 import TWButton from '../../../_common/TWFormControls/TWButton';

@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import { scale } from 'react-native-size-matters';
+import { cloneDeep } from 'lodash';
+import firebase from 'react-native-firebase';
 import InputForm from '../../_common/InputForm/InputForm';
 import colors from '../../../styles/colors';
 import TWText from '../../_common/TWText/TWText';
@@ -11,19 +13,33 @@ import TWButton from '../../_common/TWFormControls/TWButton';
 import paymentStyles from './paymentStyles';
 import appNavigation from '../../../navigation/Routes';
 import TWModal from '../../_common/TWModal/TWModal';
-import type { payments } from '../../../context/types';
+import type { GlobalContext, payments, User } from '../../../context/types';
+import withContext from '../../../context/WithContext';
 
 type Props = {
   navigation: Object,
+  context?: GlobalContext
 };
 type State = {
   isConfirmationPaymentVisible: boolean,
   isUndoPaymentVisible: boolean,
   paymentStatus: payments,
   labelColor: string,
+  user: ?User,
+};
+
+const emptyPayment = {
+  userId: '',
+  amount: '',
+  date: '',
+  status: '',
 };
 
 class Payments extends Component<Props, State> {
+  static defaultProps = {
+    context: null,
+  };
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -34,16 +50,48 @@ class Payments extends Component<Props, State> {
     };
   }
 
+  componentDidMount() {
+    const { context } = this.props;
+    const { user } = context;
+    this.setState({ user });
+  }
+
   hideModal() {
     this.setState({ isConfirmationPaymentVisible: false, isUndoPaymentVisible: false });
   }
 
   confirmPayment() {
-    this.setState({ isConfirmationPaymentVisible: false, paymentStatus: 'Paid', labelColor: colors.green500 });
+    const payment = this.executePayment();
+
+    firebase.database()
+      .ref(`payments/idcualquiera/paymentsDone/${payment.userId}`)
+      .set(payment, (error) => {
+        if (error) {
+          console.warn('The write failed...');
+        } else {
+          this.setState({
+            isConfirmationPaymentVisible: false,
+            paymentStatus: 'Paid',
+            labelColor: colors.green500,
+          });
+        }
+      });
+  }
+
+  executePayment() {
+    const payment = cloneDeep(emptyPayment);
+    const { user } = this.state;
+    payment.userId = user.id;
+    payment.amount = 30;
+    payment.date = new Date();
+    payment.status = 'Paid';
+    return payment;
   }
 
   undoPayment() {
-    this.setState({ isUndoPaymentVisible: false, paymentStatus: 'Pending', labelColor: colors.yellow800 });
+    this.setState(
+      { isUndoPaymentVisible: false, paymentStatus: 'Pending', labelColor: colors.yellow800 },
+    );
   }
 
   render() {
@@ -144,4 +192,4 @@ class Payments extends Component<Props, State> {
   }
 }
 
-export default Payments;
+export default withContext(Payments);
