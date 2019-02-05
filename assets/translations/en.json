@@ -9,6 +9,20 @@
     "logout": "Logout",
     "champion": "Champion",
     "confirmation": "Confirmation",
+    "color": {
+      "BLACK": "Black",
+      "WHITE": "White",
+      "RED": "Red",
+      "GREEN": "Green",
+      "GRAY": "Gray",
+      "BLUE": "Blue"
+    },
+    "size": {
+      "S": "Small",
+      "M": "Medium",
+      "L": "Large",
+      "XL": "Extra large"
+    },
     "buttons": {
       "save": "Save",
       "delete": "Delete",
@@ -178,6 +192,17 @@
           }
         }
       },
+      "cars": {
+        "empty": "There are no cars yet!\nCreate one...",
+        "loading": "Loading the cars...\nPlease wait...",
+        "create": {
+          "title": "Create car",
+          "form": {
+            "spotPlaceholder": "Select a spot…",
+            "personPlaceholder": "Select a person…"
+          }
+        }
+      },
       "users": {
         "empty": "There are no users yet!\nCreate one...",
         "loading": "Loading the users...\nPlease wait...",
@@ -198,7 +223,6 @@
             "ciPlaceholder": "CI…",
             "phone": "Phone",
             "phonePlaceholder": "Phone…",
-            "parkingStars": [ "Only open spaces", "Easy Buildings", "Medium", "asdf", "Anywhere" ],
             "admin": {
               "yes": "Admin (Yes)",
               "no": "Admin (No)"

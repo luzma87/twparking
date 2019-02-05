@@ -5,7 +5,9 @@ import { Button } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import type { ParkingSpot } from '../../../../context/types';
 import colors from '../../../../styles/colors';
+import SizeTag from '../../../_common/SizeTag';
 import TextWithIcon from '../../../_common/TWText/TextWithIcon';
+import TWText from '../../../_common/TWText/TWText';
 
 type Props = {
   parking: ParkingSpot,
@@ -23,13 +25,16 @@ const ParkingSpotItem = (props: Props) => {
       flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8,
     }}
     >
-      <TextWithIcon
-        icon="warehouse"
-        i18n="screens.admin.parking.list"
-        i18nParams={{ building: parking.building, number: parking.number, size: parking.size }}
-        textSize="regular"
-        color={textColor}
-      />
+      <View style={{ flexDirection: 'row' }}>
+        <TextWithIcon
+          icon="warehouse"
+          text={`${parking.building} ${parking.number}`}
+          textSize="regular"
+          color={textColor}
+          style={{ marginRight: 8 }}
+        />
+        <SizeTag size={parking.size} />
+      </View>
       <Button
         onPress={() => onPress(!parking.active)}
         icon={(

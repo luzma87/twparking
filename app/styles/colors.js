@@ -124,6 +124,16 @@ const colors = {
   gray5: '#E2E4E6',
   gray6: '#EBEFF2',
   gray7: '#F7FBFF',
+
+  carColor: {
+    BLACK: '#000000',
+    WHITE: '#FFFFFF',
+    RED: '#E53935',
+    GREEN: '#2E7D32',
+    GRAY: '#757575',
+    SILVER: '#BDBDBD',
+    BLUE: '#1976D2',
+  },
 };
 
 export default colors;
