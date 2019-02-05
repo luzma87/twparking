@@ -9,7 +9,6 @@ import TWText from '../../../_common/TWText/TWText';
 
 type Props = {
   person: ?User,
-  car: ?Car,
   onSaveDone: () => void
 };
 type State = {
@@ -27,8 +26,8 @@ const emptyCar = {
 class CreateCar extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    let { car } = props;
-    if (!props.car) {
+    let { car } = props.person;
+    if (!props.person.car) {
       car = emptyCar;
     }
     this.state = {
@@ -43,7 +42,6 @@ class CreateCar extends Component<Props, State> {
       const { onSaveDone } = this.props;
       const personKey = person.id;
       person.car = car;
-      console.warn(person);
       firebase.database().ref(`people/${personKey}`).set(person, (error) => {
         if (error) {
           console.warn('The write failed...');

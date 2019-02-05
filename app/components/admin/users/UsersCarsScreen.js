@@ -28,7 +28,6 @@ type Props = {
 type State = {
   people: any,
   selectedPerson: ?User,
-  selectedCar: ?Car,
   creating: boolean,
   loading: boolean,
 };
@@ -40,7 +39,6 @@ class UsersCarsScreen extends Component<Props, State> {
     this.state = {
       people: [],
       selectedPerson: undefined,
-      selectedCar: undefined,
       creating: false,
       loading: true,
     };
