@@ -1,11 +1,13 @@
 /* @flow */
 import React, { Component } from 'react';
+import { scale } from 'react-native-size-matters';
 import { Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
 import I18n from '../../../i18n';
 import colors from '../../../styles/colors';
 import fonts from '../../../styles/fonts';
+import deviceHelper from '../../../util/deviceHelper';
 
 const buttonMargin = 2;
 const windowWidth = Dimensions.get('window').width;
@@ -78,9 +80,11 @@ class TWMetroButton extends Component<Props, {}> {
     const color2 = colors[color2Number];
     const color3 = colors[color3Number];
 
+    const baseFontSize = deviceHelper.isTinyPhone() ? 18 : 24;
+
     const titleStyle = {
       fontFamily: fonts.vt323.regular,
-      fontSize: 24,
+      fontSize: scale(baseFontSize),
     };
     const buttonStyle = {
       backgroundColor: colors.secondary500,
@@ -103,7 +107,7 @@ class TWMetroButton extends Component<Props, {}> {
             size={iconSize}
             name={icon}
             color={color3}
-            style={{marginRight: 4}}
+            style={{ marginRight: 4 }}
           />
         )}
         titleStyle={{ ...titleStyle, ...{ color: color3 } }}
