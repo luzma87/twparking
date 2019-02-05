@@ -6,7 +6,7 @@ import TWText from '../_common/TWText/TWText';
 type Props = {};
 type State = {};
 
-class HistoryTab extends Component<Props, State> {
+class SpotTab extends Component<Props, State> {
   render() {
     return (
       <View>
@@ -16,4 +16,4 @@ class HistoryTab extends Component<Props, State> {
   }
 }
 
-export default HistoryTab;
+export default SpotTab;
