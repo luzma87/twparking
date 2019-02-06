@@ -41,13 +41,10 @@ class SpotTab extends Component<Props, State> {
     const { spot, isVisible } = this.state;
     return (
       <View>
-
         <ScrollView
           style={styles.scrollContainer}
         >
-
           <View style={{ flex: 1 }}>
-
             <View
               style={{
                 marginTop: 20,

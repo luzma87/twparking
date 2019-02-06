@@ -69,7 +69,8 @@ class LoginScreen extends Component<Props, State> {
     }
   }
 
-  unsubscribe = () => {};
+  unsubscribe = () => {
+  };
 
   signIn = () => {
     const { phoneNumber } = this.state;
@@ -84,7 +85,8 @@ class LoginScreen extends Component<Props, State> {
         } else {
           this.setState({ message: 'screens.login.errors.notAllowed', messageParam: {} });
         }
-      }, () => {});
+      }, () => {
+      });
   };
 
   confirmCode = () => {
@@ -111,11 +113,15 @@ class LoginScreen extends Component<Props, State> {
     this.setState({ message: 'screens.login.codeSending', messageParam: {} });
 
     firebase.auth().signInWithPhoneNumber(phoneNumber)
-      .then(confirmResult => this.setState({ confirmResult, message: 'screens.login.codeSent', messageParam: {} }))
+      .then(confirmResult => this.setState(
+        { confirmResult, message: 'screens.login.codeSent', messageParam: {} }))
       .catch(
-        error => this.setState(
-          { message: 'screens.login.errors.signIn', messageParam: { message: error.message } },
-        ),
+        error => {
+          console.warn('error.message', error.message);
+          this.setState(
+            { message: 'screens.login.errors.signIn', messageParam: { message: error.message } },
+          );
+        },
       );
   }
 
@@ -124,7 +130,7 @@ class LoginScreen extends Component<Props, State> {
 
     return (
       <View style={{ padding: 25 }}>
-        <TWText i18n="screens.login.form.phoneLabel" />
+        <TWText i18n="screens.login.form.phoneLabel"/>
         <TWInput
           value={phoneNumber}
           containerStyle={{ marginTop: 15, marginBottom: 20 }}
@@ -142,7 +148,7 @@ class LoginScreen extends Component<Props, State> {
           onPress={() => this.signIn()}
           style={{ marginTop: 20 }}
         />
-      </View>
+      </View >
     );
   }
 
@@ -155,6 +161,7 @@ class LoginScreen extends Component<Props, State> {
 
     return (
       <TWText
+        multiline
         color={colors.white}
         style={{ padding: 5, backgroundColor: colors.secondary900 }}
         i18n={message}
@@ -168,7 +175,7 @@ class LoginScreen extends Component<Props, State> {
 
     return (
       <View style={{ marginTop: 25, padding: 25 }}>
-        <TWText i18n="screens.login.form.codeLabel" />
+        <TWText i18n="screens.login.form.codeLabel"/>
         <TWInput
           value={codeInput}
           containerStyle={{ marginTop: 15, marginBottom: 20 }}
@@ -185,7 +192,7 @@ class LoginScreen extends Component<Props, State> {
           onPress={() => this.confirmCode()}
           style={{ marginTop: 20 }}
         />
-      </View>
+      </View >
     );
   }
 
@@ -197,7 +204,7 @@ class LoginScreen extends Component<Props, State> {
         {this.renderMessage()}
         {!user && confirmResult ? this.renderVerificationCodeInput() : null}
         {user ? <View /> : null}
-      </TWScreenWithNavigationBar>
+      </TWScreenWithNavigationBar >
     );
   }
 }
