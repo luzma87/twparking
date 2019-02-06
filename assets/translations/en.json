@@ -119,7 +119,8 @@
           "cost": "Cost",
           "costPlaceholder": "Cost…",
           "size": "Size",
-          "sizePlaceholder": "Size…"
+          "sizePlaceholder": "Size…",
+          "map": "Maps"
         }
       },
       "profile": {

@@ -2,16 +2,20 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import FontAwesome5Pro from 'react-native-vector-icons/FontAwesome5Pro';
+import { Popup } from 'react-native-map-link';
 import withContext from '../../context/WithContext';
 import styles from './CarTab/carStyles';
 import InputForm from '../_common/InputForm/InputForm';
 import colors from '../../styles/colors';
 import type { GlobalContext } from '../../context/types';
+import TWButton from '../_common/TWFormControls/TWButton';
 
 type Props = {
   context?: GlobalContext,
 };
 type State = {};
+
+const source = { latitude: -0.185251, longitude: -78.481786 };
 
 class SpotTab extends Component<Props, State> {
   static defaultProps = {
@@ -22,6 +26,7 @@ class SpotTab extends Component<Props, State> {
     super(props);
     this.state = {
       spot: {},
+      isVisible: false,
     };
   }
 
@@ -33,7 +38,7 @@ class SpotTab extends Component<Props, State> {
   }
 
   render() {
-    const { spot } = this.state;
+    const { spot, isVisible } = this.state;
     return (
       <View>
 
@@ -104,11 +109,35 @@ class SpotTab extends Component<Props, State> {
               i18nPlaceholder="screens.user.spot.form.costPlaceholder"
             />
 
+            <TWButton
+              i18n="screens.user.spot.form.map"
+              icon="map"
+              iconSize={30}
+              buttonColor={colors.blueGray800}
+              onPress={() => {
+                this.setState({ isVisible: true });
+              }}
+            />
           </View>
 
         </ScrollView>
 
 
+        <Popup
+          isVisible={isVisible}
+          onCancelPressed={() => this.setState({ isVisible: false })}
+          onAppPressed={() => this.setState({ isVisible: false })}
+          onBackButtonPressed={() => this.setState({ isVisible: false })}
+          modalProps={{
+            animationIn: 'slideInUp',
+          }}
+          options={{
+            latitude: spot.latitude,
+            longitude: spot.longitude,
+            sourceLatitude: source.latitude,
+            sourceLongitude: source.longitude,
+          }}
+        />
       </View>
     );
   }
