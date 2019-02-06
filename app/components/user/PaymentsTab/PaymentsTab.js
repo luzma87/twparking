@@ -17,6 +17,7 @@ import type { GlobalContext, payments, User } from '../../../context/types';
 import withContext from '../../../context/WithContext';
 import paymentUtil from '../../../util/paymentUtil';
 import I18n from '../../../i18n';
+import TWMetroButton from '../../_common/TWFormControls/TWMetroButton';
 
 type Props = {
   navigation: Object,
@@ -146,12 +147,11 @@ class Payments extends Component<Props, State> {
     const {
       isUndoPaymentVisible, isConfirmationPaymentVisible, paymentStatus,
     } = this.state;
-    const buttonSpacing = { paddingVertical: 15 };
-    const iconSize = 23;
+    const buttonSpacing = { marginBottom: 15, paddingHorizontal: '3%' };
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={{ flex: 1 }}>
-          <View>
+          <View style={{ marginBottom: 50 }}>
             <View style={paymentStyles.header}>
               <MoneyCauldron size={scale(130)} />
               <View style={paymentStyles.headerTag}>
@@ -183,40 +183,39 @@ class Payments extends Component<Props, State> {
                 i18nPlaceholder="screens.user.payments.form.monthPlaceholder"
               />
 
-              <View>
-                <TWButton
-                  i18n="screens.user.payments.form.bankAccount"
-                  icon="piggy-bank"
-                  iconSize={iconSize}
-                  style={buttonSpacing}
-                  buttonColor={colors.yellow800}
-                  onPress={() => {
-                    navigation.navigate(appNavigation.navigationTree.BankInformation);
-                  }}
-                />
 
-                <TWButton
-                  i18n="screens.user.payments.form.payment"
-                  icon="usd-circle"
-                  style={buttonSpacing}
-                  disabled={paymentStatus === 'Paid'}
-                  iconSize={iconSize}
-                  buttonColor={colors.green400}
-                  onPress={() => this.getConfirmationPaymentModal()}
-                />
-
-                <TWButton
-                  i18n="screens.user.payments.form.undo"
-                  icon="undo"
-                  disabled={paymentStatus === 'Pending'}
-                  iconSize={iconSize}
-                  buttonColor={colors.secondary500}
-                  style={buttonSpacing}
-                  onPress={() => this.setState({ isUndoPaymentVisible: true })}
-                />
-              </View>
             </View>
           </View>
+
+          <View style={buttonSpacing}>
+            <TWMetroButton
+              i18n="screens.user.payments.form.bankAccount"
+              onPress={() => {
+                navigation.navigate(appNavigation.navigationTree.BankInformation);
+              }}
+              icon="piggy-bank"
+              widthRatio={3}
+              tint="yellow"
+              tintBase={800}
+            />
+
+            <TWMetroButton
+              i18n="screens.user.payments.form.payment"
+              onPress={() => this.getConfirmationPaymentModal()}
+              icon="usd-circle"
+              widthRatio={3}
+              tint="green"
+            />
+
+            <TWMetroButton
+              i18n="screens.user.payments.form.undo"
+              onPress={() => this.setState({ isUndoPaymentVisible: true })}
+              icon="undo"
+              widthRatio={3}
+              tint="secondary"
+            />
+          </View>
+
         </ScrollView>
 
         <TWModal
