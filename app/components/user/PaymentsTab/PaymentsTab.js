@@ -203,6 +203,7 @@ class Payments extends Component<Props, State> {
               i18n="screens.user.payments.form.payment"
               onPress={() => this.getConfirmationPaymentModal()}
               icon="usd-circle"
+              disabled={paymentStatus === 'Paid'}
               widthRatio={3}
               tint="green"
             />
@@ -211,6 +212,7 @@ class Payments extends Component<Props, State> {
               i18n="screens.user.payments.form.undo"
               onPress={() => this.setState({ isUndoPaymentVisible: true })}
               icon="undo"
+              disabled={paymentStatus === 'Pending'}
               widthRatio={3}
               tint="secondary"
             />

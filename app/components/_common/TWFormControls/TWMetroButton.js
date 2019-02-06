@@ -19,6 +19,7 @@ const defaultWidth = buttonSize;
 const defaultHeight = buttonSize;
 const contrastBase = 200;
 const iconColorBase = 400;
+const iconDisabledBase = 100;
 
 type Props = {
   i18n: string,
@@ -76,9 +77,11 @@ class TWMetroButton extends Component<Props, {}> {
     const color1Number = `${usableTint}${usableTintBase}`;
     const color2Number = `${usableTint}${usableTintBase + contrastBase}`;
     const color3Number = `${usableTint}${usableTintBase + iconColorBase}`;
+    const color4Number = `${usableTint}${usableTintBase + iconDisabledBase}`;
     const color1 = colors[color1Number];
     const color2 = colors[color2Number];
     const color3 = colors[color3Number];
+    const color4 = colors[color4Number];
 
     const baseFontSize = deviceHelper.isTinyPhone() ? 18 : 24;
 
@@ -99,6 +102,14 @@ class TWMetroButton extends Component<Props, {}> {
       shownText = shownText.toUpperCase();
     }
 
+    let disableStyles = {};
+    if (disabled) {
+      disableStyles = {
+        borderColor: colors.blueGray800,
+        backgroundColor: colors.blueGray400,
+      };
+    }
+
     return (
       <Button
         icon={(
@@ -110,7 +121,7 @@ class TWMetroButton extends Component<Props, {}> {
             style={{ marginRight: 4 }}
           />
         )}
-        titleStyle={{ ...titleStyle, ...{ color: color3 } }}
+        titleStyle={{ ...titleStyle, ...{ color: disabled ? colors.blueGray900 : color3 } }}
         buttonStyle={{
           ...buttonStyle,
           ...{
@@ -120,6 +131,8 @@ class TWMetroButton extends Component<Props, {}> {
             borderColor: color2,
           },
         }}
+        disabled={disabled}
+        disabledStyle={disableStyles}
         buttonColor={colors.primary700}
         title={shownText}
         onPress={onPress}
