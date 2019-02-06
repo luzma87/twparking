@@ -8,9 +8,9 @@ import type { GlobalContext } from '../../../context/types';
 import withContext from '../../../context/WithContext';
 import TWCornerRibbon from '../../_common/TWCornerRibbon/TWCornerRibbon';
 import InputForm from '../../_common/InputForm/InputForm';
-import TWButton from '../../_common/TWFormControls/TWButton';
 import colors from '../../../styles/colors';
 import UserAvatar from './UserAvatar';
+import TWMetroButton from '../../_common/TWFormControls/TWMetroButton';
 
 const CAR_RATING_IMAGE = require('../../../../assets/images/ratingCarGrayBg.png');
 
@@ -170,20 +170,22 @@ class ProfileTab extends Component<Props, State> {
           </View>
           <View style={{ marginBottom: 30 }}>
             {user.admin ? (
-              <TWButton
+              <TWMetroButton
                 i18n="toggles.toAdmin"
                 icon="user-ninja"
-                buttonColor={colors.primary700}
+                widthRatio={3}
+                tint="secondary"
+                tintBase={700}
                 onPress={() => this.changeUser()}
-                style={{ marginVertical: 40 }}
               />
             ) : null}
-            <TWButton
+            <TWMetroButton
               i18n="commons.logout"
               icon="sign-out"
-              buttonColor={colors.primary700}
+              tint="primary"
+              tintBase={700}
               onPress={() => this.signOut()}
-              style={{ marginVertical: 10 }}
+              widthRatio={3}
             />
           </View>
         </View>
