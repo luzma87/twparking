@@ -44,21 +44,19 @@ class LoginScreen extends Component<Props, State> {
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user: user.toJSON() }, () => {
-          // redirect here
-          const { navigation } = this.props;
-          navigation.navigate(appNavigation.navigationTree.UserHome);
-        });
+        const { phoneNumber } = user;
+        this._checkUserByPhone(
+          phoneNumber,
+          () => this.setState({ user: user.toJSON() }, () => {
+            // redirect here
+            const { navigation } = this.props;
+            navigation.navigate(appNavigation.navigationTree.UserHome);
+          }),
+          this._resetState() 
+        )
       } else {
         // User has been signed out, reset the state
-        this.setState({
-          user: null,
-          message: '',
-          messageParam: {},
-          codeInput: '',
-          phoneNumber: '+593',
-          confirmResult: null,
-        });
+        this._resetState();
       }
     });
   }
@@ -74,19 +72,11 @@ class LoginScreen extends Component<Props, State> {
 
   signIn = () => {
     const { phoneNumber } = this.state;
-
-    firebase.database()
-      .ref('people')
-      .orderByChild('phone')
-      .equalTo(phoneNumber)
-      .once('value', (snapshot) => {
-        if (snapshot.exists()) {
-          this.signInWithPhoneNumber(phoneNumber);
-        } else {
-          this.setState({ message: 'screens.login.errors.notAllowed', messageParam: {} });
-        }
-      }, () => {
-      });
+    this._checkUserByPhone(
+      phoneNumber,
+      () => this.signInWithPhoneNumber(phoneNumber),
+      () => this.setState({ message: 'screens.login.errors.notAllowed', messageParam: {} })
+    );
   };
 
   confirmCode = () => {
@@ -206,6 +196,40 @@ class LoginScreen extends Component<Props, State> {
         {user ? <View /> : null}
       </TWScreenWithNavigationBar >
     );
+  }
+
+  _checkUserByPhone = (
+    phoneNumber: string,
+    activeCB: () => mixed,
+    inactiveCB: () => mixed
+  ): void => {
+    const isUserEnabled = (userData) => {
+      const [key] = Object.keys(userData.val());
+      const { enabled } = userData.val()[key];
+      return enabled;
+    }
+    firebase.database()
+      .ref('people')
+      .orderByChild('phone')
+      .limitToFirst(1)
+      .equalTo(phoneNumber)
+      .once('value', (snapshot) =>
+        (snapshot.exists() && isUserEnabled(snapshot))
+          ? activeCB()
+          : inactiveCB()
+      , () => {
+      });
+  }
+
+  _resetState = (): void => {
+    this.setState({
+      user: null,
+      message: '',
+      messageParam: {},
+      codeInput: '',
+      phoneNumber: '+593',
+      confirmResult: null,
+    });
   }
 }
 
