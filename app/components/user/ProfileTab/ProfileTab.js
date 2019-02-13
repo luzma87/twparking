@@ -21,7 +21,7 @@ type Props = {
   context?: GlobalContext
 };
 type State = {
-  user: Object
+  user: User
 };
 
 class ProfileTab extends Component<Props, State> {
@@ -68,7 +68,6 @@ class ProfileTab extends Component<Props, State> {
   changeUser() {
     // firebase.auth().signOut();
     const { context } = this.props;
-    // console.warn(this.props);
     const user = {
       name: 'Pepe',
       car: {

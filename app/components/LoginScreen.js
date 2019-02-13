@@ -45,14 +45,18 @@ class LoginScreen extends Component<Props, State> {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const { phoneNumber } = user;
+        const isUserMissingInfo = !user.email || !user.displayName;
         this._checkUserByPhone(
           phoneNumber,
           () => this.setState({ user: user.toJSON() }, () => {
             // redirect here
             const { navigation } = this.props;
-            navigation.navigate(appNavigation.navigationTree.UserHome);
+            navigation.navigate(
+              "UserHome",
+              { isUserMissingInfo }
+            );
           }),
-          this._resetState() 
+          this._resetState
         )
       } else {
         // User has been signed out, reset the state
@@ -200,8 +204,8 @@ class LoginScreen extends Component<Props, State> {
 
   _checkUserByPhone = (
     phoneNumber: string,
-    activeCB: () => mixed,
-    inactiveCB: () => mixed
+    activeCB: () => void,
+    inactiveCB: () => void
   ): void => {
     const isUserEnabled = (userData) => {
       const [key] = Object.keys(userData.val());

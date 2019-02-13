@@ -17,6 +17,7 @@ export type User = {
   ci: string,
   phone: string,
   user: string,
+  spot: ParkingSpot,
   parkingStars: number,
   admin: boolean,
   champion: boolean,
