@@ -9,7 +9,7 @@ import TextWithIcon from '../../../_common/TWText/TextWithIcon';
 
 type Props = {
   owner: Owner,
-  onCreateClicked: () => void
+  onCreateClicked: (Owner) => void
 }
 
 const OwnerParkingSpotsItemHeader = (props: Props) => {

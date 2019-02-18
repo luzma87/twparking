@@ -4,7 +4,7 @@ import { ScrollView, View } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Rating } from 'react-native-elements';
 import appNavigation from '../../../navigation/Routes';
-import type { GlobalContext } from '../../../context/types';
+import type { GlobalContext, User } from '../../../context/types';
 import withContext from '../../../context/WithContext';
 import TWCornerRibbon from '../../_common/TWCornerRibbon/TWCornerRibbon';
 import InputForm from '../../_common/InputForm/InputForm';
@@ -68,11 +68,20 @@ class ProfileTab extends Component<Props, State> {
   changeUser() {
     // firebase.auth().signOut();
     const { context } = this.props;
-    const user = {
+    const user: User = {
       name: 'Pepe',
       car: {
         plate: 'AAA-000',
       },
+      admin: false,
+      bank: "",
+      champion: false,
+      ci: "",
+      enabled: true,
+      id: "",
+      parkingStars: 0,
+      phone: "",
+      user: "",
     };
     if (context) {
       context.updateUser(user);

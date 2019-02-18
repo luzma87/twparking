@@ -17,6 +17,15 @@ class GlobalProvider extends Component<Props, GlobalContext> {
         car: {
           plate: '',
         },
+        admin: false,
+        bank: '',
+        champion: false,
+        ci: '',
+        enabled: true,
+        id: '',
+        parkingStars: 0,
+        phone: '',
+        user: ''
       },
       updateUser: user => this.updateUser(user),
     };

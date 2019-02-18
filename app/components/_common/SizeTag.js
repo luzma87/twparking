@@ -2,9 +2,10 @@
 import React from 'react';
 import { Badge } from 'react-native-elements';
 import I18n from '../../i18n';
+import type { CarSize } from '../../context/types';
 
 type Props = {
-  size: "S" | "M" | "L" | "XL"
+  size: CarSize
 }
 
 const SizeTag = (props: Props) => {

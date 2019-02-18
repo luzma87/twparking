@@ -7,11 +7,11 @@ import type { fontSizes } from './TWText';
 import TWText from './TWText';
 
 type Props = {
-  icon: String,
-  color?: String,
-  text?: String,
+  icon: string,
+  color?: string,
+  text?: string,
   textSize?: fontSizes,
-  i18n?: String,
+  i18n?: string,
   i18nParams?: Object,
   style?: Object,
   textParams?: Object,
@@ -55,7 +55,7 @@ const TextWithIcon = (props: Props) => {
     <View style={[{ flexDirection: 'row', alignItems: 'center' }, style]}>
       <FontAwesome5Pro
         solid
-        size={iconSize(textSize)}
+        size={iconSize(textSize || 'title')}
         name={icon}
         color={color}
         style={{ marginRight: 8 }}

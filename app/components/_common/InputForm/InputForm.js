@@ -8,7 +8,7 @@ import styles from './inputFormStyles';
 import TWLabel from './TWLabel';
 
 type Props = {
-  field: string | number,
+  field?: string | number,
   onChangeText?: (string) => void,
   i18nLabel: string,
   i18nPlaceholder: string,

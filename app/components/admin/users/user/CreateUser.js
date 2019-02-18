@@ -25,9 +25,9 @@ class CreateUser extends Component<Props, State> {
     super(props);
     let user = {
       id: '',
-      admin: '',
+      admin: false,
       bank: '',
-      champion: '',
+      champion: false,
       ci: '',
       name: '',
       parkingStars: 0,

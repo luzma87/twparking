@@ -13,7 +13,7 @@ import UserCarItemHeader from './UserCarItemHeader';
 
 type Props = {
   person: User,
-  onCreateClicked: User => void,
+  onCreateClicked: (User) => void,
 };
 
 const carDetails = (car) => {
@@ -28,9 +28,9 @@ const carDetails = (car) => {
             color={colors.primary700}
             style={{ marginRight: 8 }}
           />
-          <ColorTag color={car.color} style={{ marginRight: 8 }} />
-          <TWText text={`${car.brand} ${car.model}`} style={{ marginRight: 8 }} />
-          <SizeTag size={car.size} />
+          <ColorTag color={car.color || "black"} style={{ marginRight: 8 }} />
+          <TWText text={`${car.brand || ""} ${car.model || ""}`} style={{ marginRight: 8 }} />
+          <SizeTag size={car.size || "S"} />
         </View>
         <TWText text={car.plate.toUpperCase()} />
       </>

@@ -43,12 +43,10 @@ class UserItem extends Component<Props> {
     const userParkingStars = parseInt(user.parkingStars, 10);
     const containerStyles = {
       backgroundColor,
+      ...user.enabled ? { borderColor: colors.blueGray200 } : {}
     };
     const primaryColor = user.enabled ? colors.primary800 : colors.primary300;
     const secondaryColor = user.enabled ? colors.secondary500 : colors.secondary200;
-    if (!user.enabled) {
-      containerStyles.borderColor = colors.blueGray200;
-    }
     return (
       <Card
         title={(

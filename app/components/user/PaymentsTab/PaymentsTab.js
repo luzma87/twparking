@@ -27,8 +27,10 @@ type State = {
   isConfirmationPaymentVisible: boolean,
   isUndoPaymentVisible: boolean,
   paymentStatus: payments,
-  labelColor: string,
-  user: ?User,
+  labelColor?: string,
+  user?: User,
+  paymentKey?: string,
+  fee?: Object
 };
 
 const emptyPayment = {
@@ -56,43 +58,49 @@ class Payments extends Component<Props, State> {
 
   componentDidMount() {
     const { context } = this.props;
-    const { user } = context;
-    this.setState({ user });
-    this.getMonthlyFee();
-    this.getPaymentState();
+    if (context) {
+      const { user } = context;
+      this.setState({ user });
+      this.getMonthlyFee();
+      this.getPaymentState();
+    }
   }
 
   getMonthlyFee() {
     const { paymentKey } = this.state;
-    firebase.auth().onAuthStateChanged(() => {
-      firebase.database()
-        .ref(`payments/${paymentKey}/fee`)
-        .once('value', (snapshot) => {
-          if (snapshot.exists()) {
-            const { fee } = this.state;
-            if (isEmpty(fee)) {
-              this.setState({ fee: snapshot.val() });
+    if (paymentKey) {
+      firebase.auth().onAuthStateChanged(() => {
+        firebase.database()
+          .ref(`payments/${paymentKey}/fee`)
+          .once('value', (snapshot) => {
+            if (snapshot.exists()) {
+              const { fee } = this.state;
+              if (isEmpty(fee)) {
+                this.setState({ fee: snapshot.val() });
+              }
             }
-          }
-        }, () => {
-        });
-    });
+          }, () => {
+          });
+      });
+    }
   }
 
   getPaymentState() {
     const { context } = this.props;
     const { paymentKey } = this.state;
-    const { user } = context;
-    firebase.auth().onAuthStateChanged(() => {
-      firebase.database()
-        .ref(`payments/${paymentKey}/paymentsDone/${user.id}`)
-        .once('value', (snapshot) => {
-          if (snapshot.exists()) {
-            this.setState({ paymentStatus: snapshot.val().status });
-          }
-        }, () => {
-        });
-    });
+    if (context && context.user && paymentKey) {
+      const { user } = context;
+      firebase.auth().onAuthStateChanged(() => {
+        firebase.database()
+          .ref(`payments/${paymentKey}/paymentsDone/${user.id}`)
+          .once('value', (snapshot) => {
+            if (snapshot.exists()) {
+              this.setState({ paymentStatus: snapshot.val().status });
+            }
+          }, () => {
+          });
+      });
+    }
   }
 
   getConfirmationPaymentModal() {
@@ -105,26 +113,29 @@ class Payments extends Component<Props, State> {
 
   doPayment(payment) {
     const { paymentKey } = this.state;
-
-    firebase.database()
-      .ref(`payments/${paymentKey}/paymentsDone/${payment.userId}`)
-      .set(payment, (error) => {
-        if (error) {
-          console.warn('The write failed...');
-        } else {
-          this.setState({
-            isConfirmationPaymentVisible: false,
-            isUndoPaymentVisible: false,
-            paymentStatus: payment.status,
-          });
-        }
-      });
+    if (paymentKey) {
+      firebase.database()
+        .ref(`payments/${paymentKey}/paymentsDone/${payment.userId}`)
+        .set(payment, (error) => {
+          if (error) {
+            console.warn('The write failed...');
+          } else {
+            this.setState({
+              isConfirmationPaymentVisible: false,
+              isUndoPaymentVisible: false,
+              paymentStatus: payment.status,
+            });
+          }
+        });
+    }
   }
 
   executePayment() {
     const payment = cloneDeep(emptyPayment);
     const { user } = this.state;
-    payment.userId = user.id;
+    if (user) {
+      payment.userId = user.id;
+    }
     payment.amount = 30;
     payment.date = new Date();
     payment.status = 'Paid';
@@ -134,7 +145,9 @@ class Payments extends Component<Props, State> {
   cancelPayment() {
     const payment = cloneDeep(emptyPayment);
     const { user } = this.state;
-    payment.userId = user.id;
+    if (user) {
+      payment.userId = user.id;
+    }
     payment.amount = 0;
     payment.date = new Date();
     payment.status = 'Pending';
@@ -157,7 +170,7 @@ class Payments extends Component<Props, State> {
               <View style={paymentStyles.headerTag}>
                 <TWText
                   weight="bold"
-                  text={paymentUtil.getMoneyExpression(fee.amount)}
+                  text={paymentUtil.getMoneyExpression(fee && fee.amount)}
                   size="big"
                   color={colors.green800}
                 />
@@ -170,14 +183,14 @@ class Payments extends Component<Props, State> {
             </View>
             <View style={paymentStyles.form}>
               <InputForm
-                field={fee.year}
+                field={fee && fee.year}
                 inputProps={{ editable: false }}
                 i18nLabel="screens.user.payments.form.year"
                 i18nPlaceholder="screens.user.payments.form.yearPlaceholder"
               />
 
               <InputForm
-                field={I18n.t(paymentUtil.getMonthName(fee.month))}
+                field={I18n.t(paymentUtil.getMonthName(fee && fee.month))}
                 inputProps={{ editable: false }}
                 i18nLabel="screens.user.payments.form.month"
                 i18nPlaceholder="screens.user.payments.form.monthPlaceholder"

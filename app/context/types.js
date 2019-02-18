@@ -5,19 +5,19 @@ export type Car = {
   vehicle?: string | number,
   brand?: string,
   model?: string,
-  size?: string,
+  size?: CarSize,
   color?: string,
 }
 
 export type User = {
   name: string,
-  car: Car,
+  car?: Car,
   id: string,
   bank: string,
   ci: string,
   phone: string,
   user: string,
-  spot: ParkingSpot,
+  spot?: ParkingSpot,
   parkingStars: number,
   admin: boolean,
   champion: boolean,
@@ -52,9 +52,12 @@ export type Account = {
   bank: string,
   beneficiary: string,
   id: string,
+  type?: string,
 }
 
 export type payments = 'Pending' | 'Paid'
+
+export type CarSize = "S" | "M" | "L" | "XL" | "";
 
 export type GlobalContext = {
   user: User,

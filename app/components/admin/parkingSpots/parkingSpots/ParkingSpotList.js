@@ -18,13 +18,17 @@ class ParkingSpotList extends Component<Props> {
     owner.parkingSpots[index] = newParking;
     const ownerKey = owner.id;
 
-    firebase.database().ref(`owners/${ownerKey}`).set(owner, (error) => {
-      if (error) {
-        console.warn('The write failed...', error);
-      } else {
-        onSaveDone();
-      }
-    });
+    if (ownerKey) {
+      firebase.database().ref(`owners/${ownerKey}`).set(owner, (error) => {
+        if (error) {
+          console.warn('The write failed...', error);
+        } else {
+          onSaveDone();
+        }
+      });
+    } else {
+      console.warn('No owner id provided');
+    }
   }
 
   render() {

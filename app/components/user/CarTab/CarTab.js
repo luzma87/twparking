@@ -8,7 +8,7 @@ import withContext from '../../../context/WithContext';
 import InputForm from '../../_common/InputForm/InputForm';
 import Plate from './Plate';
 import TWText from '../../_common/TWText/TWText';
-import type { Car, GlobalContext } from '../../../context/types';
+import type { Car, CarSize, GlobalContext } from '../../../context/types';
 import carHelper from '../../../util/carHelper';
 import styles from './carStyles';
 import colors from '../../../styles/colors';
@@ -42,14 +42,19 @@ class CarTab extends Component<Props, State> {
 
   componentDidMount() {
     const { context } = this.props;
-    const { user } = context;
-    const { car } = user;
-    car.vehicle = sample(vehicles);
-    this.setState({ car });
+    if (context) {
+      const { user } = context;
+      const { car } = user;
+      if (car) {
+        car.vehicle = sample(vehicles);
+        this.setState({ car });
+      }
+    }
   }
 
   render() {
     const { car } = this.state;
+    const getCarSize: (sizeStr: any) => CarSize = (sizeStr) => sizeStr;
     return (
       <ScrollView
         style={styles.scrollContainer}
@@ -99,7 +104,7 @@ class CarTab extends Component<Props, State> {
             i18nLabel="screens.user.cars.form.size"
             i18nPlaceholder="screens.user.cars.form.sizePlaceholder"
             onChangeText={(value) => {
-              this.setState({ car: { ...car, size: value } });
+              this.setState({ car: { ...car, size: getCarSize(value) } });
             }}
           />
 

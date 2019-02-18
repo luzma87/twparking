@@ -32,7 +32,7 @@ class CreateParkingSpot extends Component<Props, State> {
     };
   }
 
-  inputRefs;
+  inputRefs: Object;
 
   saveAssignment() {
     const { selectedSpot, selectedPerson } = this.state;

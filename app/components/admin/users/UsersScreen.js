@@ -29,7 +29,7 @@ type State = {
   users: any,
   creating: boolean,
   loading: boolean,
-  selectedUser: User
+  selectedUser: User | null,
 };
 
 class UsersScreen extends Component<Props, State> {
@@ -86,7 +86,7 @@ class UsersScreen extends Component<Props, State> {
     this.setState({ creating: true });
   }
 
-  showEditForm(user) {
+  showEditForm(user: User) {
     this.setState({ creating: true, selectedUser: user });
   }
 

@@ -7,7 +7,7 @@ import colors from '../../../styles/colors';
 
 type Props = {
   onChangeText: (string) => void,
-  i18nPlaceholder?: string,
+  i18nPlaceholder?: string | null,
   i18nPlaceholderParams?: Object,
   icon?: ?string,
   iconSize?: number,

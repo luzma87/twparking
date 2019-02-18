@@ -28,10 +28,9 @@ const emptyCar = {
 class CreateCar extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    let { car } = props.person;
-    if (!props.person.car) {
-      car = emptyCar;
-    }
+    const car = props.person && props.person.car
+      ? props.person.car
+      : emptyCar;
     this.state = {
       car,
     };
@@ -95,8 +94,8 @@ class CreateCar extends Component<Props, State> {
               inputProps={{ autoFocus: true }}
               onChangeText={value => this.merge({ model: value })}
             />
-            <ColorPicker value={car.color} onValueChange={value => this.merge({ color: value })} />
-            <SizePicker value={car.size} onValueChange={value => this.merge({ size: value })} />
+            <ColorPicker value={car.color || "black"} onValueChange={value => this.merge({ color: value })} />
+            <SizePicker value={car.size || ""} onValueChange={value => this.merge({ size: value })} />
             <InputForm
               field={car.plate}
               i18nLabel="screens.admin.cars.create.form.plate"

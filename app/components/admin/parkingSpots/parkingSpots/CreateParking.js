@@ -29,7 +29,7 @@ class CreateParking extends Component<Props, State> {
         building: '',
         number: '',
         address: '',
-        size: '',
+        size: 'M',
         cost: 0,
         active: true,
         free: true,
@@ -39,7 +39,7 @@ class CreateParking extends Component<Props, State> {
 
   saveParking() {
     const { owner } = this.props;
-    if (owner) {
+    if (owner && owner.id) {
       const { parking } = this.state;
       const { onSaveDone } = this.props;
       const ownerKey = owner.id;

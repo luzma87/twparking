@@ -29,7 +29,7 @@ type State = {
   owners: any,
   loading: boolean,
   creating: boolean,
-  selectedOwner: Owner,
+  selectedOwner: Owner | null,
 };
 
 class OwnerScreen extends Component<Props, State> {
@@ -85,7 +85,7 @@ class OwnerScreen extends Component<Props, State> {
     this.setState({ creating: true });
   }
 
-  showEditForm(owner) {
+  showEditForm(owner: Owner) {
     this.setState({ creating: true, selectedOwner: owner });
   }
 

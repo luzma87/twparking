@@ -22,7 +22,7 @@ const noData = () => (
 );
 
 class UserList extends Component<Props> {
-  list(owners) {
+  list(owners: Array<any>) {
     return (
       <FlatList
         data={owners}
@@ -32,7 +32,7 @@ class UserList extends Component<Props> {
     );
   }
 
-  renderItem(user) {
+  renderItem(user: any) {
     const { onSaveDone, onEditClicked } = this.props;
     return (
       <UserItem

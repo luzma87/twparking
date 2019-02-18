@@ -9,7 +9,7 @@ import TWLabel from './TWLabel';
 
 type Props = {
   value: string,
-  onValueChange: string => void
+  onValueChange: (string) => void
 };
 
 const SizePicker = (props: Props) => {

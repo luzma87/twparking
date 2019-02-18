@@ -10,7 +10,7 @@ import OwnerItem from './OwnerItem';
 
 type Props = {
   owners: any,
-  onEditClicked: Owner => void,
+  onEditClicked: (Owner) => void,
   onCreateClicked: () => void
 };
 
@@ -21,7 +21,7 @@ const noOwners = () => (
 );
 
 class OwnerList extends Component<Props> {
-  ownersList(owners) {
+  ownersList(owners: Array<any>) {
     return (
       <FlatList
         data={owners}
@@ -31,7 +31,7 @@ class OwnerList extends Component<Props> {
     );
   }
 
-  renderItem(owner) {
+  renderItem(owner: any) {
     const { onEditClicked } = this.props;
     return (
       <OwnerItem

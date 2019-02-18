@@ -13,7 +13,10 @@ import TWButton from '../_common/TWFormControls/TWButton';
 type Props = {
   context?: GlobalContext,
 };
-type State = {};
+type State = {
+  spot: Object,
+  isVisible: boolean
+};
 
 const source = { latitude: -0.185251, longitude: -78.481786 };
 
@@ -32,9 +35,10 @@ class SpotTab extends Component<Props, State> {
 
   componentDidMount() {
     const { context } = this.props;
-    const { user } = context;
-    const { spot } = user;
-    this.setState({ spot });
+    if (context && context.user && context.user.spot) {
+      const { user: { spot } } = context;
+      this.setState({ spot });
+    }
   }
 
   render() {
