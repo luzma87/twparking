@@ -1,0 +1,31 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: flow-bin
+    versions:
+    - 0.143.1
+    - 0.144.0
+    - 0.145.0
+    - 0.146.0
+    - 0.147.0
+    - 0.148.0
+  - dependency-name: react-native-vector-icons
+    versions:
+    - 8.0.0
+  - dependency-name: react-native
+    versions:
+    - 0.63.4
+  - dependency-name: react-navigation
+    versions:
+    - 4.4.3
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+  - dependency-name: handlebars
+    versions:
+    - 4.7.6
